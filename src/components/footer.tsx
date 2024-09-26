@@ -1,50 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { Logo } from "./Logo";
+import { links, legal, socials } from "@/constants/footer_links";
 
 export const Footer = () => {
-  const links = [
-    {
-      name: "Pricing",
-      href: "/pricing",
-    },
-    // {
-    //   name: "Blog",
-    //   href: "/blog",
-    // },
-    {
-      name: "Contact",
-      href: "/contact",
-    },
-  ];
-  const legal = [
-    {
-      name: "Privacy Policy",
-      href: "#",
-    },
-    {
-      name: "Terms of Service",
-      href: "#",
-    },
-    {
-      name: "Refund Policy",
-      href: "#",
-    },
-  ];
-  const socials = [
-    {
-      name: "Twitter",
-      href: "https://twitter.com/mannupaaji",
-    },
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/in/manuarora28",
-    },
-    {
-      name: "GitHub",
-      href: "https://github.com/manuarora700",
-    },
-  ];
   return (
     <div className="relative">
       <div className="border-t border-neutral-100  dark:border-neutral-800 px-8 pt-20 pb-32 relative bg-white dark:bg-black">

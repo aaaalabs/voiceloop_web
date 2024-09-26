@@ -7,8 +7,22 @@ import { Button } from "../button";
 import { Logo } from "../Logo";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { ModeToggle } from "../mode-toggle";
+import { ActionButtons } from "./action-buttons";
 
-export const MobileNavbar = ({ navItems }: any) => {
+type Props = {
+  navItems: {
+    link: string;
+    title: string;
+    target?: "_blank";
+  }[];
+  actionButtons: {
+    title: string;
+    href: string;
+    variant?: "default" | "simple";
+  }[];
+};
+
+export const MobileNavbar = ({ navItems, actionButtons }: Props) => {
   const [open, setOpen] = useState(false);
   const [windowHeight, setWindowHeight] = useState(0);
   const { scrollY } = useScroll();
@@ -92,21 +106,7 @@ export const MobileNavbar = ({ navItems }: any) => {
             ))}
           </div>
           <div className="flex flex-row w-full items-start gap-2.5 px-8 py-4">
-            <Button
-              as={Link}
-              href="https://waitlist.voiceloop.io/"
-              target="_blank"
-            >
-              Waitlist
-            </Button>
-            <Button
-              variant="simple"
-              as={Link}
-              href="https://aaa.voiceloop.io/"
-              target="_blank"
-            >
-              Login
-            </Button>
+            <ActionButtons buttons={actionButtons} />
           </div>
         </div>
       )}

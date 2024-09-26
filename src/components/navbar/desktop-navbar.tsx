@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Link } from "next-view-transitions";
 import { ModeToggle } from "../mode-toggle";
+import { ActionButtons } from "./action-buttons";
 
 type Props = {
   navItems: {
@@ -19,9 +20,14 @@ type Props = {
     title: string;
     target?: "_blank";
   }[];
+  actionButtons: {
+    title: string;
+    href: string;
+    variant?: "default" | "simple";
+  }[];
 };
 
-export const DesktopNavbar = ({ navItems }: Props) => {
+export const DesktopNavbar = ({ navItems, actionButtons }: Props) => {
   const { scrollY } = useScroll();
 
   const [showBackground, setShowBackground] = useState(false);
@@ -66,17 +72,7 @@ export const DesktopNavbar = ({ navItems }: Props) => {
       </div>
       <div className="flex space-x-2 items-center">
         <ModeToggle />
-        <Button
-          variant="simple"
-          as={Link}
-          href="https://aaa.voiceloop.io/"
-          target="_blank"
-        >
-          Login
-        </Button>
-        <Button as={Link} href="https://waitlist.voiceloop.io/" target="_blank">
-          Waitlist
-        </Button>
+        <ActionButtons buttons={actionButtons} />
       </div>
     </div>
   );

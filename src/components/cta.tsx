@@ -3,6 +3,7 @@ import React from "react";
 import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 import { Button } from "./button";
+
 export const CTA = () => {
   return (
     <section className="py-60 w-full  overflow-hidden relative z-30">
@@ -35,7 +36,9 @@ export const CTA = () => {
               </p>
 
               <div className="relative z-10 mx-auto flex justify-center mt-6">
-                <Button>Join Waitlist</Button>
+                <Button href="https://waitlist.voiceloop.io/" as={Link} target="_blank">
+                  Join Waitlist
+                </Button>
               </div>
             </div>
           </div>

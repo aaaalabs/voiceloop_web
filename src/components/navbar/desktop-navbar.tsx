@@ -66,11 +66,16 @@ export const DesktopNavbar = ({ navItems }: Props) => {
       </div>
       <div className="flex space-x-2 items-center">
         <ModeToggle />
-        <Button variant="simple" as={Link} href="https://aaa.voiceloop.io/">
+        <Button
+          variant="simple"
+          as={Link}
+          href="https://aaa.voiceloop.io/"
+          target="_blank"
+        >
           Login
         </Button>
-        <Button as={Link} href="/signup">
-          Sign Up
+        <Button as={Link} href="https://waitlist.voiceloop.io/" target="_blank">
+          Waitlist
         </Button>
       </div>
     </div>

@@ -4,14 +4,18 @@ import { MobileNavbar } from "./mobile-navbar";
 import { motion } from "framer-motion";
 
 const navItems = [
-  {
-    title: "Pricing",
-    link: "/pricing",
-  },
+  // {
+  //   title: "Pricing",
+  //   link: "/pricing",
+  // },
   // {
   //   title: "Blog",
   //   link: "/blog",
   // },
+  {
+    title: "Roadmap",
+    link: "https://voiceloop.canny.io/feature-requests",
+  },
   {
     title: "Contact",
     link: "/contact",

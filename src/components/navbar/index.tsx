@@ -8,10 +8,10 @@ const navItems = [
     title: "Pricing",
     link: "/pricing",
   },
-  {
-    title: "Blog",
-    link: "/blog",
-  },
+  // {
+  //   title: "Blog",
+  //   link: "/blog",
+  // },
   {
     title: "Contact",
     link: "/contact",

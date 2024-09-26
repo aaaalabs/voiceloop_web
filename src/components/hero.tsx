@@ -48,7 +48,7 @@ export const Hero = () => {
         }}
         className="text-2xl md:text-4xl lg:text-8xl font-semibold max-w-6xl mx-auto text-center mt-6 relative z-10"
       >
-        <Balancer>Generate Images, Text and Videos with AI</Balancer>
+        <Balancer>XXX matches created for picsHere xxx members</Balancer>
       </motion.h1>
       <motion.p
         initial={{

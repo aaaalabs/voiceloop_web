@@ -1,8 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 import React, { useId } from "react";
+// import { useTheme } from "next-themes";
 
 export const Background = () => {
   return (

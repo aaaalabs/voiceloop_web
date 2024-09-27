@@ -4,6 +4,7 @@ import { FeaturedTestimonials } from "@/components/featured-testimonials";
 import { cn } from "@/lib/utils";
 import { HorizontalGradient } from "@/components/horizontal-gradient";
 import { ContactForm } from "@/components/contact";
+import { getTestimonials } from "@/db";
 
 export const metadata: Metadata = {
   title: "Contact Us - Everything AI",
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PricingPage() {
+export default async function ContactPage() {
+  const testimonials = await getTestimonials();
+  console.log("testimonials", testimonials);
+
   return (
     <div className="relative overflow-hidden py-20 md:py-0 px-4 md:px-20 bg-gray-50 dark:bg-black">
       <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
@@ -22,7 +26,7 @@ export default function PricingPage() {
         <ContactForm />
         <div className="relative w-full z-20 hidden md:flex border-l border-neutral-100 dark:border-neutral-900 overflow-hidden bg-gray-50 dark:bg-black items-center justify-center">
           <div className="max-w-sm mx-auto">
-            <FeaturedTestimonials />
+            <FeaturedTestimonials testimonials={testimonials} />
             <p
               className={cn(
                 "font-semibold text-xl text-center dark:text-muted-dark text-muted"

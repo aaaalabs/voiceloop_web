@@ -1,7 +1,8 @@
 import { createClient } from "@/utils/supabase";
 import { Database } from "types/supabase";
-import useSWR from "swr";
-type MvCurrentKpis = Database["public"]["Views"]["mv_current_kpis"]["Row"];
+
+export type MvCurrentKpis =
+  Database["public"]["Views"]["mv_current_kpis"]["Row"];
 
 export async function getCurrentKpis(): Promise<MvCurrentKpis | null> {
   const supabase = createClient();

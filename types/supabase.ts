@@ -825,6 +825,15 @@ export type Database = {
         }
         Relationships: []
       }
+      testimonials_view: {
+        Row: {
+          career_stage: string | null
+          content: string | null
+          image_url: string | null
+          name: string | null
+        }
+        Relationships: []
+      }
       view_usermatch_teaser: {
         Row: {
           email: string | null

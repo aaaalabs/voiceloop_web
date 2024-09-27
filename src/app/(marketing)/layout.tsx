@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
 import "../globals.css";
-import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next";
 import { NavBar } from "@/components/navbar";
-import { cn } from "@/lib/utils";
 import { Footer } from "@/components/footer";
+// import { GeistSans } from "geist/font/sans";
+// import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Everything AI",

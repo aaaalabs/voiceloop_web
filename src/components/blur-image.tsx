@@ -20,7 +20,7 @@ export const BlurImage = ({
   width,
   src,
   className,
-  objectFit,
+  _objectFit,
   alt,
   layout,
   ...rest

@@ -1,6 +1,5 @@
 "use client";
 import { Logo } from "../Logo";
-import { Button } from "../button";
 import { NavBarItem } from "./navbar-item";
 import {
   useMotionValueEvent,
@@ -10,7 +9,6 @@ import {
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Link } from "next-view-transitions";
 import { ModeToggle } from "../mode-toggle";
 import { ActionButtons } from "./action-buttons";
 

@@ -8,7 +8,7 @@ export function InViewDiv({
   ...props
 }: { children: React.ReactNode } & any) {
   const containerRef = useRef<HTMLDivElement>(null);
-  let isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
 
   return (
     <div ref={containerRef} {...props}>

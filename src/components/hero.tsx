@@ -8,26 +8,28 @@ import { Badge } from "./badge";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Link } from "next-view-transitions";
-import { getCurrentKpis } from "@/db/mv_current_kpis";
-import useSWR from "swr";
-import { toast } from "sonner";
+import { MvCurrentKpis } from "@/db";
 import { Avatar, AvatarImage } from "./ui/avatar";
 
-export const Hero = () => {
+export const Hero = ({
+  currentKpis,
+}: {
+  currentKpis: MvCurrentKpis | null;
+}) => {
   const router = useRouter();
 
-  const { data, error } = useSWR("mv_current_kpis", getCurrentKpis, {
-    // Move this a hooks file
-    refreshInterval: 300000, // Every 5 minutes
-    dedupingInterval: 300000, // Prevents duplicate requests within the interval
-  });
+  // const { data, error } = useSWR("mv_current_kpis", getCurrentKpis, {
+  //   // Move this a hooks file
+  //   refreshInterval: 300000, // Every 5 minutes
+  //   dedupingInterval: 300000, // Prevents duplicate requests within the interval
+  // });
 
-  console.log(data);
+  // console.log(data);
 
-  if (error) {
-    console.error("Error fetching current KPIs:", error);
-    toast.error("Error fetching current KPIs");
-  }
+  // if (error) {
+  //   console.error("Error fetching current KPIs:", error);
+  //   toast.error("Error fetching current KPIs");
+  // }
 
   return (
     <div className="flex flex-col min-h-screen pt-20 md:pt-40 relative overflow-hidden">
@@ -67,9 +69,9 @@ export const Hero = () => {
       >
         <Balancer>
           <div className="flex items-center justify-center flex-wrap gap-2">
-            {data?.product_variants_delivered} matches created for{" "}
+            {currentKpis?.product_variants_delivered} matches created for{" "}
             <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
-              {data?.random_image_urls
+              {currentKpis?.random_image_urls
                 ?.filter((url) => url && url.trim() !== "")
                 .map((url, index) => (
                   <Avatar
@@ -80,7 +82,7 @@ export const Hero = () => {
                   </Avatar>
                 ))}
             </div>
-            {data?.members} members
+            {currentKpis?.members} members
           </div>
         </Balancer>
       </motion.h1>

@@ -14,7 +14,6 @@ import {
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import { IconBrandGithub } from "@tabler/icons-react";
 import Password from "./password";
 import { Button } from "./button";

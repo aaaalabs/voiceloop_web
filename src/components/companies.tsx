@@ -6,7 +6,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
 export const Companies = () => {
-  let [logos, setLogos] = useState([
+  const [logos, setLogos] = useState([
     [
       {
         title: "netflix",

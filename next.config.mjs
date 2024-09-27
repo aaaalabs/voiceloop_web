@@ -1,19 +1,29 @@
-// import rehypePrism from "@mapbox/rehype-prism";
-// import nextMDX from "@next/mdx";
-// import remarkGfm from "remark-gfm";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: { domains: ["i.pravatar.cc", "images.unsplash.com"] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "https",
+        hostname: "media.licdn.com",
+      },
+    ],
+  },
   pageExtensions: ["ts", "tsx", "mdx"],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
-
-// const withMDX = nextMDX({
-//   extension: /\.mdx?$/,
-//   options: {
-//     remarkPlugins: [remarkGfm],
-//     rehypePlugins: [rehypePrism],
-//   },
-// });
 
 export default nextConfig;

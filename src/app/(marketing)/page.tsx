@@ -12,33 +12,18 @@ import {
   type Testimonial,
   type MvCurrentKpis,
 } from "@/db";
-
-//! # Why doesn't NEXT JS do this by default?
-// export const dynamic = "force-dynamic";
-
-async function fetchConcurrently(): Promise<{
-  testimonials: Testimonial[];
-  currentKpis: MvCurrentKpis | null;
-}> {
-  const results = await Promise.allSettled([
-    getTestimonials(),
-    getCurrentKpis(),
-  ]);
-
-  results.forEach((result, index) => {
-    if (result.status === "rejected") {
-      console.error(`Error in Promise ${index + 1}:`, result.reason);
-    }
-  });
-
-  return {
-    testimonials: results[0].status === "fulfilled" ? results[0].value : [],
-    currentKpis: results[1].status === "fulfilled" ? results[1].value : null,
-  };
+import fetchConcurrently from "@/hooks/fetch_concurrent";
+async function fetchData() {
+  // ? Is this risky because if one fails, the other one won't be fetched?
+  const testimonials = getTestimonials();
+  const currentKpis = getCurrentKpis();
+  return Promise.all([testimonials, currentKpis]);
 }
 
 export default async function Home() {
-  const { testimonials, currentKpis } = await fetchConcurrently();
+  // const { testimonials, currentKpis } = await fetchConcurrently();
+  const testimonials = await getTestimonials();
+  const currentKpis = await getCurrentKpis();
 
   return (
     <div className="relative">

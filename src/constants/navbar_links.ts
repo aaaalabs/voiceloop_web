@@ -16,8 +16,8 @@ const actionButtons = [
     variant: "simple" as const,
   },
   {
-    title: "Waitlist",
-    href: "https://waitlist.voiceloop.io/",
+    title: "Demo",
+    href: "/contact",
   },
 ];
 

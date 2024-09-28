@@ -32,15 +32,15 @@ export default async function ContactPage() {
                 "font-semibold text-xl text-center dark:text-muted-dark text-muted"
               )}
             >
-              Every AI is used by thousands of users
+              voiceloop services are used by hundrets of communities
             </p>
             <p
               className={cn(
                 "font-normal text-base text-center text-neutral-500 dark:text-neutral-200 mt-8"
               )}
             >
-              With lots of AI applications around, Everything AI stands out with
-              its state of the art Shitposting capabilities.
+              With lots of AI applications around, voiceloop stands out with
+              its state of the art retention increasing capabilities.
             </p>
           </div>
           <HorizontalGradient className="top-20" />

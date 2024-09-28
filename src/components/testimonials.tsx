@@ -15,10 +15,9 @@ export const Testimonials = ({
 }) => {
   return (
     <div className="relative z-20 py-10 md:py-40">
-      <Heading as="h2">Loved by people all over the universe</Heading>
+      <Heading as="h2">Loved by Community Leaders Worldwide</Heading>
       <Subheading className="text-center max-w-lg mx-auto">
-        Every AI is used by millions of people around the globe.Our APIs have
-        fan bases and people fight for us over twitter.
+      See how VoiceLoop is transforming community engagement and saving time for managers across industries
       </Subheading>
       <TestimonialGrid testimonials={testimonials} />
     </div>

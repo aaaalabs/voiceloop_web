@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 import { features } from "@/constants/features";
+import { Heading } from "./heading";
+import { Subheading } from "./subheading";
 
 export const GridFeatures = () => {
   return (

@@ -24,7 +24,7 @@ export default function PricingPage() {
         <div className="relative z-20 py-10 md:pt-40">
           <Heading as="h1">Simple pricing for your ease</Heading>
           <Subheading className="text-center">
-            Every AI offers a wide range of services. You can choose the one
+            voiceloop offers a wide range of services. You can choose the one
             that suits your needs. Select from your favourite plan and get
             started instantly.
           </Subheading>

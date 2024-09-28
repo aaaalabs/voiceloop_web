@@ -7,9 +7,9 @@ import { type Metadata } from "next";
 // import { BlogCard } from "@/components/blog-card";
 
 export const metadata: Metadata = {
-  title: "Blogs - Every AI",
+  title: "VoiceLoop | Cut the Noise, Amplify What Matters in Community Management",
   description:
-    "Everything AI is a platform that provides a wide range of AI tools and services to help you stay on top of your business. Generate images, text and everything else that you need to get your business off the ground.",
+    "VoiceLoop empowers community leaders to focus on authentic connections. Our AI filters the noise, delivers key insights, and saves time - amplifying your community's impact without the overwhelm. Experience effortless growth and engagement today.",
   openGraph: {
     images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
   },

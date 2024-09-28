@@ -2,19 +2,19 @@ import { IconCheckbox, IconChartBar, IconUsers } from "@tabler/icons-react";
 
 const features = [
   {
-    title: "AI-Powered Check-Ins",
+    title: "AI Noise Filter",
     description:
-      "Daily voice messages keep students accountable and motivated.",
+      "Cut through the clutter, focus on authentic interactions.",
     icon: <IconCheckbox />,
   },
   {
-    title: "Real-Time Analytics",
-    description: "Spot at-risk students before they drop out.",
+    title: "Insight Amplifier",
+    description: "Spotlight key trends and member needs instantly.",
     icon: <IconChartBar />,
   },
   {
-    title: "Community Engagement",
-    description: "Foster peer support and collaboration effortlessly.",
+    title: "Time Reclaimer",
+    description: "Automate routines, free up time for high-impact engagement",
     icon: <IconUsers />,
   },
 ];

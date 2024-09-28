@@ -2,7 +2,7 @@ const testimonials = [
   {
     name: "Manu Arora",
     content:
-      "What a fantastic AI Every AI is, I just love it. It has completely transformed the way I approach problems and develop solutions.",
+      "What a fantastic AI voiceloop is, I just love it. It has completely transformed the way I approach problems and develop solutions.",
     image_url: "https://i.pravatar.cc/150?img=1",
     career_stage: "Tech Innovator & Entrepreneur",
   },

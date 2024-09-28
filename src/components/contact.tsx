@@ -18,6 +18,7 @@ import Link from "next/link";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
+  IconBrandYoutube,
   IconBrandX,
 } from "@tabler/icons-react";
 import { Button } from "./ui/button";
@@ -85,22 +86,15 @@ export function ContactForm() {
 
   const socials = [
     {
-      title: "twitter",
-      href: "https://twitter.com/mannupaaji",
+      title: "youtube",
+      href: "https://www.youtube.com/@voiceloop",
       icon: (
-        <IconBrandX className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
-      ),
-    },
-    {
-      title: "github",
-      href: "https://github.com/manuarora700",
-      icon: (
-        <IconBrandGithub className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
+        <IconBrandYoutube className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
       ),
     },
     {
       title: "linkedin",
-      href: "https://linkedin.com/manuarora28",
+      href: "https://www.linkedin.com/in/thomasseiger/",
       icon: (
         <IconBrandLinkedin className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
       ),

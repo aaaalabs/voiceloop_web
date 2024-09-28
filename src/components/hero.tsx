@@ -10,6 +10,50 @@ import { useRouter } from "next/navigation";
 import { Link } from "next-view-transitions";
 import { MvCurrentKpis } from "@/db";
 import { Avatar, AvatarImage } from "./ui/avatar";
+import { HeroHighlight, Highlight } from "./ui/hero-highlight";
+import { FlipWords } from "./ui/flip-words";
+
+
+export function FlipWordsDemo() {
+  const words = ["colleague", "partner", "member", "human"];
+ 
+  return (
+    <div className="h-[40rem] flex justify-center items-center px-4">
+      <div className="text-3xl md:text-4xl lg:text-8xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10">
+      Connect with the perfect  {" "}
+        <FlipWords words={words} /> <br />
+        for your journey.
+      </div>
+    </div>
+  );
+}
+
+export function HeroHighlightDemo() {
+  return (
+    <HeroHighlight>
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: [20, -5, 0],
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0.0, 0.2, 1],
+        }}
+        className="text-3xl md:text-4xl lg:text-8xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10"
+      >
+        Connect with the perfect human for your journey {" "}
+        <Highlight className="text-black dark:text-white">
+        {" "} - At Zero Cost! {" "}
+        </Highlight>
+      </motion.h1>
+    </HeroHighlight>
+  );
+}
 
 export const Hero = ({
   currentKpis,
@@ -49,7 +93,7 @@ export const Hero = ({
         className="flex justify-center"
       >
         <Badge onClick={() => router.push("/blog/top-5-llm-of-all-time")}>
-          We are cool
+          First Case Study started in the AAA Accelerator
         </Badge>
       </motion.div>
       <motion.h1
@@ -65,24 +109,11 @@ export const Hero = ({
           ease: "easeOut",
           duration: 0.5,
         }}
-        className="text-2xl md:text-4xl lg:text-8xl font-semibold max-w-6xl mx-auto text-center mt-6 relative z-10"
+        className="text-3xl md:text-4xl lg:text-8xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10"
       >
         <Balancer>
           <div className="flex items-center justify-center flex-wrap gap-2">
-            {currentKpis?.product_variants_delivered} matches created for{" "}
-            <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
-              {currentKpis?.random_image_urls
-                ?.filter((url) => url && url.trim() !== "")
-                .map((url, index) => (
-                  <Avatar
-                    key={index}
-                    className="border-2 border-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[70px] lg:h-[70px]"
-                  >
-                    <AvatarImage src={url} alt={`Avatar ${index + 1}`} />
-                  </Avatar>
-                ))}
-            </div>
-            {currentKpis?.members} membe rs
+          Cut the Noise, Amplify What Matters
           </div>
         </Balancer>
       </motion.h1>
@@ -100,12 +131,25 @@ export const Hero = ({
           duration: 0.5,
           delay: 0.2,
         }}
-        className="text-center mt-6 text-base md:text-xl text-muted dark:text-muted-dark max-w-3xl mx-auto relative z-10"
+        className="text-center mt-6 text-base md:text-xl text-muted font-medium dark:text-muted-dark max-w-3xl mx-auto relative z-10"
       >
         <Balancer>
-          Everything AI seamlessly integrated all the modern AI generation tools
-          into one platform so that you can generate content with a single
-          click.
+        <div className="flex items-center justify-center flex-wrap gap-2">
+            {currentKpis?.product_variants_delivered} connections made for{" "}
+            <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
+              {currentKpis?.random_image_urls
+                ?.filter((url) => url && url.trim() !== "")
+                .map((url, index) => (
+                  <Avatar
+                    key={index}
+                    className="border-2 border-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[30px] lg:h-[30px]"
+                  >
+                    <AvatarImage src={url} alt={`Avatar ${index + 1}`} />
+                  </Avatar>
+                ))}
+            </div>
+            {currentKpis?.members} community members
+          </div>
         </Balancer>
       </motion.p>
       <motion.div
@@ -124,7 +168,7 @@ export const Hero = ({
         }}
         className="flex items-center gap-4 justify-center mt-6 relative z-10"
       >
-        <Button>Get started</Button>
+        <Button>Book a Demo</Button>
         <Button
           variant="simple"
           as={Link}
@@ -149,4 +193,4 @@ export const Hero = ({
       </div>
     </div>
   );
-};
+}

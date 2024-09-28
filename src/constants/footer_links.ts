@@ -37,11 +37,11 @@ const legal = [
 const socials = [
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/manuarora28",
+    href: "https://www.linkedin.com/in/thomasseiger/",
   },
   {
     name: "Youtube",
-    href: "#",
+    href: "https://www.youtube.com/@voiceloop",
   },
   // {
   //   name: "Twitter",

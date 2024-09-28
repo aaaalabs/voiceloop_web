@@ -82,7 +82,7 @@ export const Hero = ({
                   </Avatar>
                 ))}
             </div>
-            {currentKpis?.members} members
+            {currentKpis?.members} membe rs
           </div>
         </Balancer>
       </motion.h1>

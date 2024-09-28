@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/contact";
 import { getTestimonials } from "@/db";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Everything AI",
+  title: "Contact Us - voiceloop.io",
   description:
     "Everything AI is a platform that provides a wide range of AI tools and services to help you stay on top of your business. Generate images, text and everything else that you need to get your business off the ground.",
   openGraph: {
@@ -32,15 +32,14 @@ export default async function ContactPage() {
                 "font-semibold text-xl text-center dark:text-muted-dark text-muted"
               )}
             >
-              voiceloop services are used by hundrets of communities
+              Join Hundreds of Forward-Thinking Community Leaders
             </p>
             <p
               className={cn(
                 "font-normal text-base text-center text-neutral-500 dark:text-neutral-200 mt-8"
               )}
             >
-              With lots of AI applications around, voiceloop stands out with
-              its state of the art retention increasing capabilities.
+              VoiceLoop revolutionizes engagement with AI-powered insights and time-saving tools. Boost retention and authentic connections.
             </p>
           </div>
           <HorizontalGradient className="top-20" />

@@ -35,11 +35,11 @@ const formSchema = z.object({
     })
     .email("Please enter valid email")
     .min(1, "Please enter email"),
-  company: z
+  community: z
     .string({
-      required_error: "Please enter your company's name",
+      required_error: "Please enter your communities's name",
     })
-    .min(1, "Please enter your company's name"),
+    .min(1, "Please enter your communities's name"),
   message: z
     .string({
       required_error: "Please enter your message",
@@ -60,7 +60,7 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      company: "",
+      community: "",
       message: "",
     },
   });

@@ -92,7 +92,7 @@ export const Hero = ({
         }}
         className="flex justify-center"
       >
-        <Badge onClick={() => router.push("/blog/top-5-llm-of-all-time")}>
+        <Badge onClick={() => router.push("https://www.aaaaccelerator.com/")}>
           First Case Study started in the AAA Accelerator
         </Badge>
       </motion.div>

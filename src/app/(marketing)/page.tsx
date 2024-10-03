@@ -1,9 +1,8 @@
 import { Container } from "@/components/container";
 import { Hero } from "@/components/hero";
-import { HeroHighlightDemo } from "@/components/hero";
-import { FlipWordsDemo } from "@/components/hero";
-
 import { Background } from "@/components/background";
+// import { HeroHighlightDemo } from "@/components/hero";
+// import { FlipWordsDemo } from "@/components/hero";
 // import { Features } from "@/components/features";
 // import { Companies } from "@/components/companies";
 import { GridFeatures } from "@/components/grid-features";
@@ -59,13 +58,13 @@ export default async function Home() {
         <Background />
       </div>
       <Container className="flex min-h-screen flex-col items-center justify-between ">
-        {/* <FlipWordsDemo /> */}       
-       {/*  <HeroHighlightDemo /> */}
+        {/* <FlipWordsDemo /> */}
+        {/*  <HeroHighlightDemo /> */}
         <Hero currentKpis={currentKpis} />
         {/* <Companies /> */}
         {/* <Features /> */}
         <GridFeatures />
-        <Testimonials testimonials={testimonials} />
+        {/* <Testimonials testimonials={testimonials} /> */}
       </Container>
       <div className="relative">
         <div className="absolute inset-0 h-full w-full overflow-hidden">

@@ -16,10 +16,9 @@ const actionButtons = [
     variant: "simple" as const,
   },
   {
-    title: "Demo",
-    href: "/contact",
+    title: "Sign Up",
+    href: "/signup",
   },
 ];
 
 export { navItems, actionButtons };
-  

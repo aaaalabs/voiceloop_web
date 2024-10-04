@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Button } from "../button";
 import { Link } from "next-view-transitions";
 
@@ -8,13 +8,12 @@ type ActionButtonProps = {
   variant?: "default" | "simple";
 };
 
-export const ActionButton: React.FC<ActionButtonProps> = ({ title, href, variant = "default" }) => (
-  <Button
-    variant={variant}
-    as={Link}
-    href={href}
-    target="_blank"
-  >
+export const ActionButton: React.FC<ActionButtonProps> = ({
+  title,
+  href,
+  variant = "default",
+}) => (
+  <Button variant={variant} as={Link} href={href}>
     {title}
   </Button>
 );

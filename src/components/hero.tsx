@@ -13,15 +13,13 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { HeroHighlight, Highlight } from "./ui/hero-highlight";
 import { FlipWords } from "./ui/flip-words";
 
-
 export function FlipWordsDemo() {
   const words = ["colleague", "partner", "member", "human"];
- 
+
   return (
     <div className="h-[40rem] flex justify-center items-center px-4">
       <div className="text-3xl md:text-4xl lg:text-8xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10">
-      Connect with the perfect  {" "}
-        <FlipWords words={words} /> <br />
+        Connect with the perfect <FlipWords words={words} /> <br />
         for your journey.
       </div>
     </div>
@@ -46,9 +44,10 @@ export function HeroHighlightDemo() {
         }}
         className="text-3xl md:text-4xl lg:text-8xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10"
       >
-        Connect with the perfect human for your journey {" "}
+        Connect with the perfect human for your journey{" "}
         <Highlight className="text-black dark:text-white">
-        {" "} - At Zero Cost! {" "}
+          {" "}
+          - At Zero Cost!{" "}
         </Highlight>
       </motion.h1>
     </HeroHighlight>
@@ -111,13 +110,9 @@ export const Hero = ({
         }}
         className="text-3xl md:text-4xl lg:text-8xl font-bold max-w-6xl mx-auto text-center mt-6 relative z-10"
       >
-        <Balancer>
-          <div className="flex items-center justify-center flex-wrap gap-2">
-          Cut the Noise, Amplify What Matters
-          </div>
-        </Balancer>
+        <Balancer>Cut the Noise, Amplify What Matters</Balancer>
       </motion.h1>
-      <motion.p
+      <motion.div
         initial={{
           y: 40,
           opacity: 0,
@@ -134,7 +129,7 @@ export const Hero = ({
         className="text-center mt-6 text-base md:text-xl text-muted font-medium dark:text-muted-dark max-w-3xl mx-auto relative z-10"
       >
         <Balancer>
-        <div className="flex items-center justify-center flex-wrap gap-2">
+          <div className="flex items-center justify-center flex-wrap gap-2">
             {currentKpis?.product_variants_delivered} connections made for{" "}
             <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
               {currentKpis?.random_image_urls
@@ -151,7 +146,7 @@ export const Hero = ({
             {currentKpis?.members} community members
           </div>
         </Balancer>
-      </motion.p>
+      </motion.div>
       <motion.div
         initial={{
           y: 80,
@@ -193,4 +188,4 @@ export const Hero = ({
       </div>
     </div>
   );
-}
+};

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 9002 --turbo",
+    "dev": "next dev -p 9002 --turbo & npx next-video sync -w",
     "build": "next build",
     "build:dev": "next build --debug",
     "start": "next start -p 8080",
@@ -63,6 +63,7 @@
     "lucide-react": "^0.439.0",
     "next": "14.2.9",
     "next-themes": "^0.3.0",
+    "next-video": "^1.2.0",
     "next-view-transitions": "^0.3.2",
     "react": "^18",
     "react-day-picker": "^8.10.1",

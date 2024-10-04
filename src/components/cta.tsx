@@ -37,11 +37,10 @@ export const CTA = () => {
 
               <div className="relative z-10 mx-auto flex justify-center mt-6">
                 <Button
-                  href="https://waitlist.voiceloop.io/"
+                  href="/signup"
                   as={Link}
-                  target="_blank"
                 >
-                  Join Waitlist
+                  Signup
                 </Button>
               </div>
             </div>

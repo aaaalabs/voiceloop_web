@@ -36,7 +36,6 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
-          <script src="https://server.fillout.com/embed/v1/" async></script>
         </body>
       </html>
     </ViewTransitions>

@@ -1,27 +1,22 @@
-import { Metadata } from "next";
+"use client";
+// import { Metadata } from "next";
+import { FilloutStandardEmbed } from "@fillout/react";
+import "@fillout/react/style.css";
 
-export const metadata: Metadata = {
-  title: "Signup - Everything AI",
-  description:
-    "Everything AI is a platform that provides a wide range of AI tools and services to help you stay on top of your business. Generate images, text and everything else that you need to get your business off the ground.",
-  openGraph: {
-    images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
-  },
-};
+// const metadata: Metadata = {
+//   title: "Signup - Everything AI",
+//   description:
+//     "Everything AI is a platform that provides a wide range of AI tools and services to help you stay on top of your business. Generate images, text and everything else that you need to get your business off the ground.",
+//   openGraph: {
+//     images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
+//   },
+// };
 
 export default function SignupPage() {
   return (
-    <div className="flex items-center w-full justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-      <div className="mx-auto w-full max-w-md">
-        <div className="mt-10">
-          <div
-            style={{ width: "100%", height: "500px" }}
-            data-fillout-id="79oPkgvSZGus"
-            data-fillout-embed-type="standard"
-            data-fillout-inherit-parameters
-            data-fillout-dynamic-resize
-          ></div>
-        </div>
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-[600px] sm:mt-0 lg:mt-20">
+        <FilloutStandardEmbed filloutId="79oPkgvSZGus" dynamicResize={true} />
       </div>
     </div>
   );

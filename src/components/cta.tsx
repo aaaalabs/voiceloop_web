@@ -15,7 +15,7 @@ export const CTA = () => {
               style={{
                 backgroundImage: "url(/noise.webp)",
                 backgroundSize: "30%",
-              }} 
+              }}
             ></div>
             <div
               className="pointer-events-none absolute inset-y-0 right-0 select-none overflow-hidden rounded-2xl"
@@ -26,17 +26,21 @@ export const CTA = () => {
 
             <div className="relative px-6 pb-14 pt-20 sm:px-10 sm:pb-20 lg:px-[4.5rem]">
               <h2 className="  text-center text-balance mx-auto text-2xl md:text-5xl font-semibold tracking-[-0.015em] text-white">
-              AAA Members: Be a Pioneer in AI-Powered Networking 
+                AAA Members: Be a Pioneer in AI-Powered Networking
               </h2>
               <p className="mt-4 max-w-[26rem] text-center mx-auto font-semibold  text-base/6 text-neutral-200">
                 <Balancer>
-                Join the exclusive VoiceLoop Matchmaker beta and shape the future of community connections.
-               
+                  Join the exclusive VoiceLoop Matchmaker beta and shape the
+                  future of community connections.
                 </Balancer>
               </p>
 
               <div className="relative z-10 mx-auto flex justify-center mt-6">
-                <Button href="https://waitlist.voiceloop.io/" as={Link} target="_blank">
+                <Button
+                  href="https://waitlist.voiceloop.io/"
+                  as={Link}
+                  target="_blank"
+                >
                   Join Waitlist
                 </Button>
               </div>

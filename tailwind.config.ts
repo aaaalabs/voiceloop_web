@@ -15,7 +15,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "#020022",
+        primary: "#A062F9",
+        secondary: "#1A77DA",
         muted: "var(--neutral-600)",
         "muted-dark": "var(--neutral-300)",
       },

@@ -13,7 +13,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { HeroHighlight, Highlight } from "./ui/hero-highlight";
 import { FlipWords } from "./ui/flip-words";
 import Video from "next-video";
-import PlacerholderVideo from "@v/6769800-uhd_3840_2160_24fps.mp4";
+import PlacerholderVideo from "@v/placerholder_video.mp4";
 
 export function FlipWordsDemo() {
   const words = ["colleague", "partner", "member", "human"];
@@ -62,19 +62,6 @@ export const Hero = ({
   currentKpis: MvCurrentKpis | null;
 }) => {
   const router = useRouter();
-
-  // const { data, error } = useSWR("mv_current_kpis", getCurrentKpis, {
-  //   // Move this a hooks file
-  //   refreshInterval: 300000, // Every 5 minutes
-  //   dedupingInterval: 300000, // Prevents duplicate requests within the interval
-  // });
-
-  // console.log(data);
-
-  // if (error) {
-  //   console.error("Error fetching current KPIs:", error);
-  //   toast.error("Error fetching current KPIs");
-  // }
 
   return (
     <div className="flex flex-col min-h-screen  pt-20  md:pt-40 relative overflow-hidden">
@@ -131,7 +118,10 @@ export const Hero = ({
         className="text-center mt-6 text-base md:text-xl text-muted font-medium dark:text-muted-dark max-w-3xl mx-auto relative z-10"
       >
         <div className="flex items-center justify-center flex-wrap gap-2">
-          {currentKpis?.product_variants_delivered} connections made for{" "}
+          <span className="text-primary">
+            {currentKpis?.product_variants_delivered}{" "}
+          </span>
+          connections made for{" "}
           <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
             {currentKpis?.random_image_urls
               ?.filter((url) => url && url.trim() !== "")
@@ -144,7 +134,8 @@ export const Hero = ({
                 </Avatar>
               ))}
           </div>
-          {currentKpis?.members} community members
+          <span className="text-primary">{currentKpis?.members}</span> community
+          members
         </div>
       </motion.div>
       <motion.div

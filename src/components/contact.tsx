@@ -110,7 +110,7 @@ export function ContactForm() {
               Let's Connect
             </h1>
             <p className="mt-4 text-muted dark:text-muted-dark  text-sm max-w-sm">
-            Questions? Ready to amplify your community? We're here.
+              Questions? Ready to amplify your community? We're here.
             </p>
           </div>
 
@@ -224,7 +224,7 @@ export function ContactForm() {
               <div>
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Start the Conversation"}

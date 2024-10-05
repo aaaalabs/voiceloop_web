@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { HorizontalGradient } from "@/components/horizontal-gradient";
 import { FeaturedTestimonials } from "@/components/featured-testimonials";
 
-import PlacerholderVideo from "@v/6769800-uhd_3840_2160_24fps.mp4";
+import placerholderVideo from "@v/placerholder_video.mp4";
 import Video from "next-video";
 
 export function AuthLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
           <div className="p-8">
             {
               <Video
-                src={PlacerholderVideo}
+                src={placerholderVideo}
                 style={{ width: "100%", height: "100%" }}
                 autoPlay
                 loop

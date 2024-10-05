@@ -6,6 +6,7 @@ import { ViewTransitions } from "next-view-transitions";
 import { ThemeProvider } from "@/context/theme-provider";
 
 import { Poppins } from "next/font/google";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+          <Toaster position="top-right" />
         </body>
       </html>
     </ViewTransitions>

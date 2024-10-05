@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import {
   Form,
@@ -73,8 +74,10 @@ export function ContactForm() {
         values
       );
       form.reset();
+      toast.success("Form submitted successfully");
     } catch (e) {
       console.error("Error submitting form:", e);
+      toast.error("Error submitting form");
     } finally {
       setIsSubmitting(false);
     }

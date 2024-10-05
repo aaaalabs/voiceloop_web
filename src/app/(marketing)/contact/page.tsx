@@ -4,7 +4,7 @@ import { FeaturedTestimonials } from "@/components/featured-testimonials";
 import { cn } from "@/lib/utils";
 import { HorizontalGradient } from "@/components/horizontal-gradient";
 import { ContactForm } from "@/components/contact";
-import { getTestimonials } from "@/db";
+import { getCurrentKpis, getTestimonials } from "@/db";
 
 export const metadata: Metadata = {
   title: "Contact Us - voiceloop.io",
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const testimonials = await getTestimonials();
-  console.log("testimonials", testimonials);
-
+  const currentKpis = await getCurrentKpis();
+  
   return (
     <div className="relative overflow-hidden py-20 md:py-0 px-4 md:px-20 bg-gray-50 dark:bg-black">
       <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
@@ -32,14 +32,23 @@ export default async function ContactPage() {
                 "font-semibold text-xl text-center dark:text-muted-dark text-muted"
               )}
             >
-              Join Hundreds of Forward-Thinking Community Leaders
+              {currentKpis?.members ? (
+                <span>
+                  Voiceloop is used by {currentKpis?.members} community members
+                </span>
+              ) : (
+                <span>
+                  Voiceloop is used by community members around the world
+                </span>
+              )}
             </p>
             <p
               className={cn(
                 "font-normal text-base text-center text-neutral-500 dark:text-neutral-200 mt-8"
               )}
             >
-              VoiceLoop revolutionizes engagement with AI-powered insights and time-saving tools. Boost retention and authentic connections.
+              VoiceLoop revolutionizes engagement with AI-powered insights and
+              time-saving tools. Boost retention and authentic connections.
             </p>
           </div>
           <HorizontalGradient className="top-20" />

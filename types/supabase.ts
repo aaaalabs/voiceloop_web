@@ -38,11 +38,12 @@ export type Database = {
           feedback_type: string | null
           highlight: string | null
           is_testimonial: boolean | null
-          linkedin_recommendation_clicked: boolean
+          linkedin_recommendation_clicked: boolean | null
           linkedin_recommendation_url: string | null
           media_url: string | null
           meeting_id: string | null
           rating: number | null
+          testimonial_approved: boolean
           transcript: string | null
           updated_at: string | null
           user_id: string
@@ -54,11 +55,12 @@ export type Database = {
           feedback_type?: string | null
           highlight?: string | null
           is_testimonial?: boolean | null
-          linkedin_recommendation_clicked?: boolean
+          linkedin_recommendation_clicked?: boolean | null
           linkedin_recommendation_url?: string | null
           media_url?: string | null
           meeting_id?: string | null
           rating?: number | null
+          testimonial_approved?: boolean
           transcript?: string | null
           updated_at?: string | null
           user_id?: string
@@ -70,11 +72,12 @@ export type Database = {
           feedback_type?: string | null
           highlight?: string | null
           is_testimonial?: boolean | null
-          linkedin_recommendation_clicked?: boolean
+          linkedin_recommendation_clicked?: boolean | null
           linkedin_recommendation_url?: string | null
           media_url?: string | null
           meeting_id?: string | null
           rating?: number | null
+          testimonial_approved?: boolean
           transcript?: string | null
           updated_at?: string | null
           user_id?: string
@@ -99,6 +102,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "feedback_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "searchable_users"
             referencedColumns: ["user_id"]
           },
         ]
@@ -228,6 +238,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["user_id"]
           },
+          {
+            foreignKeyName: "hosts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "searchable_users"
+            referencedColumns: ["user_id"]
+          },
         ]
       }
       inputfeeds: {
@@ -291,8 +308,10 @@ export type Database = {
           product_qualified: number | null
           product_rated: number | null
           product_variants_delivered: number | null
+          random_image_urls: string[] | null
           timestamp: string
           total_leads: number | null
+          users_signed_in_today: number | null
         }
         Insert: {
           committed_leads?: number | null
@@ -306,8 +325,10 @@ export type Database = {
           product_qualified?: number | null
           product_rated?: number | null
           product_variants_delivered?: number | null
+          random_image_urls?: string[] | null
           timestamp?: string
           total_leads?: number | null
+          users_signed_in_today?: number | null
         }
         Update: {
           committed_leads?: number | null
@@ -321,8 +342,10 @@ export type Database = {
           product_qualified?: number | null
           product_rated?: number | null
           product_variants_delivered?: number | null
+          random_image_urls?: string[] | null
           timestamp?: string
           total_leads?: number | null
+          users_signed_in_today?: number | null
         }
         Relationships: []
       }
@@ -408,7 +431,9 @@ export type Database = {
           experience: string[] | null
           full_name: string | null
           interests: string[] | null
+          latitude: string | null
           location: string | null
+          longitude: string | null
           phone: string | null
           profile_photo_url: string | null
           profile_url: string
@@ -431,7 +456,9 @@ export type Database = {
           experience?: string[] | null
           full_name?: string | null
           interests?: string[] | null
+          latitude?: string | null
           location?: string | null
+          longitude?: string | null
           phone?: string | null
           profile_photo_url?: string | null
           profile_url: string
@@ -454,7 +481,9 @@ export type Database = {
           experience?: string[] | null
           full_name?: string | null
           interests?: string[] | null
+          latitude?: string | null
           location?: string | null
+          longitude?: string | null
           phone?: string | null
           profile_photo_url?: string | null
           profile_url?: string
@@ -537,10 +566,24 @@ export type Database = {
             referencedColumns: ["user_id"]
           },
           {
+            foreignKeyName: "matches_matched_user_id_fkey"
+            columns: ["matched_user_id"]
+            isOneToOne: false
+            referencedRelation: "searchable_users"
+            referencedColumns: ["user_id"]
+          },
+          {
             foreignKeyName: "matches_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "matches_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "searchable_users"
             referencedColumns: ["user_id"]
           },
         ]
@@ -630,6 +673,13 @@ export type Database = {
             referencedColumns: ["user_id"]
           },
           {
+            foreignKeyName: "meetings_guest_user_id_fkey"
+            columns: ["guest_user_id"]
+            isOneToOne: false
+            referencedRelation: "searchable_users"
+            referencedColumns: ["user_id"]
+          },
+          {
             foreignKeyName: "meetings_host_user_id_fkey"
             columns: ["host_user_id"]
             isOneToOne: false
@@ -685,54 +735,75 @@ export type Database = {
       profiles: {
         Row: {
           business_goals: string[] | null
+          calendar_booking_url: string | null
           career_stage: string | null
           created_at: string
           hobbies: string[] | null
           image_url: string | null
           industry: string | null
+          interest_hosting: boolean
+          interest_podcast: boolean
+          interest_spotlight: boolean
+          interest_updates: boolean
           interests: string[] | null
           key_skills: string[] | null
           link_aaa: string | null
           link_linkedin: string | null
           location: string | null
+          logo_url: string | null
           name: string | null
           preferred_communication: string | null
           updated_at: string
           user_id: string
+          website_url: string | null
         }
         Insert: {
           business_goals?: string[] | null
+          calendar_booking_url?: string | null
           career_stage?: string | null
           created_at?: string
           hobbies?: string[] | null
           image_url?: string | null
           industry?: string | null
+          interest_hosting?: boolean
+          interest_podcast?: boolean
+          interest_spotlight?: boolean
+          interest_updates?: boolean
           interests?: string[] | null
           key_skills?: string[] | null
           link_aaa?: string | null
           link_linkedin?: string | null
           location?: string | null
+          logo_url?: string | null
           name?: string | null
           preferred_communication?: string | null
           updated_at?: string
           user_id: string
+          website_url?: string | null
         }
         Update: {
           business_goals?: string[] | null
+          calendar_booking_url?: string | null
           career_stage?: string | null
           created_at?: string
           hobbies?: string[] | null
           image_url?: string | null
           industry?: string | null
+          interest_hosting?: boolean
+          interest_podcast?: boolean
+          interest_spotlight?: boolean
+          interest_updates?: boolean
           interests?: string[] | null
           key_skills?: string[] | null
           link_aaa?: string | null
           link_linkedin?: string | null
           location?: string | null
+          logo_url?: string | null
           name?: string | null
           preferred_communication?: string | null
           updated_at?: string
           user_id?: string
+          website_url?: string | null
         }
         Relationships: [
           {
@@ -798,6 +869,17 @@ export type Database = {
       }
     }
     Views: {
+      feedback_with_giver: {
+        Row: {
+          content: string | null
+          created_at: string | null
+          feedback_type: string | null
+          giver_name: string | null
+          is_testimonial: boolean | null
+          rating: number | null
+        }
+        Relationships: []
+      }
       host_info: {
         Row: {
           host_image_url: string | null
@@ -822,8 +904,33 @@ export type Database = {
           product_variants_delivered: number | null
           random_image_urls: string[] | null
           total_leads: number | null
+          users_signed_in_today: number | null
         }
         Relationships: []
+      }
+      searchable_users: {
+        Row: {
+          email: string | null
+          name: string | null
+          search_vector: unknown | null
+          user_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "view_usermatch_teaser"
+            referencedColumns: ["user_id"]
+          },
+        ]
       }
       testimonials_view: {
         Row: {
@@ -867,6 +974,16 @@ export type Database = {
       refresh_mv_current_kpis: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      search_users: {
+        Args: {
+          search_term: string
+        }
+        Returns: {
+          user_id: string
+          name: string
+          email: string
+        }[]
       }
       update_kpi_history: {
         Args: Record<PropertyKey, never>

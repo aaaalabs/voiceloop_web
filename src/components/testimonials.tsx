@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { TestimonialColumnContainer } from "./testimonial-column-container";
 import Image from "next/image";
 import { type Testimonial } from "@/db";
-import AvatarCircle from "../../public/avatar.jpeg";
+import AvatarCircle from "@p/AvatarCircle.png";
 
 export const Testimonials = ({
   testimonials,
@@ -17,7 +17,8 @@ export const Testimonials = ({
     <div className="relative z-20 py-10 md:py-40">
       <Heading as="h2">Loved by Community Leaders Worldwide</Heading>
       <Subheading className="text-center max-w-lg mx-auto">
-      See how VoiceLoop is transforming community engagement and saving time for managers across industries
+        See how VoiceLoop is transforming community engagement and saving time
+        for managers across industries
       </Subheading>
       <TestimonialGrid testimonials={testimonials} />
     </div>

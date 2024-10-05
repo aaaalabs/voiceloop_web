@@ -64,7 +64,7 @@ export default async function Home() {
         <Companies />
         {/* <Features /> */}
         <GridFeatures />
-        {/* <Testimonials testimonials={testimonials} /> */}
+        <Testimonials testimonials={testimonials} />
       </Container>
       <div className="relative">
         <div className="absolute inset-0 h-full w-full overflow-hidden">

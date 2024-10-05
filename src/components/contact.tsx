@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
+  IconBrandYoutube,
   IconBrandX,
 } from "@tabler/icons-react";
 import Password from "./password";
@@ -38,11 +39,11 @@ const formSchema = z.object({
     })
     .email("Please enter valid email")
     .min(1, "Please enter email"),
-  company: z
+  community: z
     .string({
-      required_error: "Please enter your company's name",
+      required_error: "Please enter your communities's name",
     })
-    .min(1, "Please enter your company's name"),
+    .min(1, "Please enter your communities's name"),
   message: z
     .string({
       required_error: "Please enter your message",
@@ -59,7 +60,7 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      company: "",
+      community: "",
       message: "",
     },
   });
@@ -81,22 +82,15 @@ export function ContactForm() {
 
   const socials = [
     {
-      title: "twitter",
-      href: "https://twitter.com/mannupaaji",
+      title: "youtube",
+      href: "https://www.youtube.com/@voiceloop",
       icon: (
-        <IconBrandX className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
-      ),
-    },
-    {
-      title: "github",
-      href: "https://github.com/manuarora700",
-      icon: (
-        <IconBrandGithub className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
+        <IconBrandYoutube className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
       ),
     },
     {
       title: "linkedin",
-      href: "https://linkedin.com/manuarora28",
+      href: "https://www.linkedin.com/in/thomasseiger/",
       icon: (
         <IconBrandLinkedin className="h-5 w-5 text-muted dark:text-muted-dark hover:text-black" />
       ),
@@ -112,8 +106,7 @@ export function ContactForm() {
               Contact Us
             </h1>
             <p className="mt-4 text-muted dark:text-muted-dark  text-sm max-w-sm">
-              Please reach out to us and we will get back to you at the speed of
-              light.
+              Questions? Ready to amplify your community? We're here.
             </p>
           </div>
 
@@ -177,11 +170,11 @@ export function ContactForm() {
                 />
                 <FormField
                   control={form.control}
-                  name="company"
+                  name="community"
                   render={({ field }) => (
                     <FormItem>
                       <label
-                        htmlFor="company"
+                        htmlFor="community"
                         className="block text-sm font-medium leading-6 text-neutral-700 dark:text-muted-dark"
                       >
                         Community
@@ -189,9 +182,9 @@ export function ContactForm() {
                       <FormControl>
                         <div className="mt-2">
                           <input
-                            id="company"
-                            type="company"
-                            placeholder="Aceternity Labs, LLC"
+                            id="community"
+                            type="community"
+                            placeholder="My Skool Community"
                             className="block w-full bg-white dark:bg-neutral-900 px-4 rounded-md border-0 py-1.5  shadow-aceternity text-black placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 dark:text-white"
                             {...field}
                           />

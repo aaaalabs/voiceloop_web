@@ -77,7 +77,7 @@ export const Hero = ({
   // }
 
   return (
-    <div className="flex flex-col min-h-screen pb-10 pt-20 md:pb-20 md:pt-40 relative overflow-hidden">
+    <div className="flex flex-col min-h-screen  pt-20  md:pt-40 relative overflow-hidden">
       <motion.div
         initial={{
           y: 40,
@@ -130,24 +130,22 @@ export const Hero = ({
         }}
         className="text-center mt-6 text-base md:text-xl text-muted font-medium dark:text-muted-dark max-w-3xl mx-auto relative z-10"
       >
-        <Balancer>
-          <div className="flex items-center justify-center flex-wrap gap-2">
-            {currentKpis?.product_variants_delivered} connections made for{" "}
-            <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
-              {currentKpis?.random_image_urls
-                ?.filter((url) => url && url.trim() !== "")
-                .map((url, index) => (
-                  <Avatar
-                    key={index}
-                    className="border-2 border-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[30px] lg:h-[30px]"
-                  >
-                    <AvatarImage src={url} alt={`Avatar ${index + 1}`} />
-                  </Avatar>
-                ))}
-            </div>
-            {currentKpis?.members} community members
+        <div className="flex items-center justify-center flex-wrap gap-2">
+          {currentKpis?.product_variants_delivered} connections made for{" "}
+          <div className="flex -space-x-2 sm:-space-x-3 md:-space-x-4 mx-2">
+            {currentKpis?.random_image_urls
+              ?.filter((url) => url && url.trim() !== "")
+              .map((url, index) => (
+                <Avatar
+                  key={index}
+                  className="border-2 border-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[30px] lg:h-[30px]"
+                >
+                  <AvatarImage src={url} alt={`Avatar ${index + 1}`} />
+                </Avatar>
+              ))}
           </div>
-        </Balancer>
+          {currentKpis?.members} community members
+        </div>
       </motion.div>
       <motion.div
         initial={{

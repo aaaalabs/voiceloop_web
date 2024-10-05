@@ -5,6 +5,14 @@ import { cn } from "@/lib/utils";
 import { ViewTransitions } from "next-view-transitions";
 import { ThemeProvider } from "@/context/theme-provider";
 
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Everything AI",
   description:
@@ -24,7 +32,8 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            GeistSans.className,
+            // GeistSans.className,
+            poppins.className,
             "bg-white dark:bg-black antialiased h-full w-full"
           )}
         >

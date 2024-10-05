@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@v/*": ["./videos/*"],
-      "types/*": ["./types/*"]
+      "types/*": ["./types/*"],
+      "@p/*": ["./public/*"]
     }
   },
   "include": [

@@ -10,37 +10,37 @@ export const Companies = () => {
     [
       {
         title: "netflix",
-        src: "/logos/netflix.png",
+        src: "/LogoVoiceloop.png",
       },
       {
         title: "google",
-        src: "/logos/google.webp",
+        src: "/LogoVoiceloop.png",
       },
       {
         title: "meta",
-        src: "/logos/meta.png",
+        src: "/LogoVoiceloop.png",
       },
       {
         title: "onlyfans",
-        src: "/logos/onlyfans.png",
+        src: "/LogoVoiceloop.png",
       },
     ],
     [
       {
         title: "netflix second",
-        src: "/logos/netflix.png",
+        src: "/LogoVoiceloop.png",
       },
       {
         title: "google second",
-        src: "/logos/google.webp",
+        src: "/LogoVoiceloop.png",
       },
       {
         title: "meta second",
-        src: "/logos/meta.png",
+        src: "/LogoVoiceloop.png",
       },
       {
         title: "onlyfans second",
-        src: "/logos/onlyfans.png",
+        src: "/LogoVoiceloop.png",
       },
     ],
   ]);

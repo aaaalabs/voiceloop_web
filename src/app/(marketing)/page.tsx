@@ -4,7 +4,7 @@ import { Background } from "@/components/background";
 // import { HeroHighlightDemo } from "@/components/hero";
 // import { FlipWordsDemo } from "@/components/hero";
 // import { Features } from "@/components/features";
-// import { Companies } from "@/components/companies";
+import { Companies } from "@/components/companies";
 import { GridFeatures } from "@/components/grid-features";
 import { Testimonials } from "@/components/testimonials";
 import { CTA } from "@/components/cta";
@@ -61,7 +61,7 @@ export default async function Home() {
         {/* <FlipWordsDemo /> */}
         {/*  <HeroHighlightDemo /> */}
         <Hero currentKpis={currentKpis} />
-        {/* <Companies /> */}
+        <Companies />
         {/* <Features /> */}
         <GridFeatures />
         {/* <Testimonials testimonials={testimonials} /> */}

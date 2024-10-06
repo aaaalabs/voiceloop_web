@@ -118,7 +118,7 @@ export const Hero = ({
         className="text-center mt-6 text-base md:text-xl text-muted font-medium dark:text-muted-dark max-w-3xl mx-auto relative z-10"
       >
         <div className="flex items-center justify-center flex-wrap gap-2">
-          <span className="text-primary">
+          <span className="text-primary font-bold">
             {currentKpis?.product_variants_delivered}{" "}
           </span>
           connections made for{" "}
@@ -134,7 +134,7 @@ export const Hero = ({
                 </Avatar>
               ))}
           </div>
-          <span className="text-primary">{currentKpis?.members}</span> community
+          <span className="text-primary font-bold">{currentKpis?.members}</span> community
           members
         </div>
       </motion.div>

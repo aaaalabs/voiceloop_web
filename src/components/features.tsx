@@ -44,7 +44,7 @@ export const Features = () => {
     <div className="relative z-20 py-10 md:py-40">
       <Heading as="h2">Packed with thousands of features</Heading>
       <Subheading className="text-center ">
-        From Image generation to video generation, Everything AI has APIs for
+        From Image generation to video generation, voiceloop has APIs for
         literally everything. It can even create this website copy for you.
       </Subheading>
 

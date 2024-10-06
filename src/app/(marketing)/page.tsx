@@ -63,7 +63,7 @@ export default async function Home() {
         {/* <FlipWordsDemo /> */}
         {/*  <HeroHighlightDemo /> */}
         <Hero currentKpis={currentKpis} />
-        <Companies />
+        {/*  <Companies /> */}
         {/* <Features /> */}
         <GridFeatures />
         <Testimonials testimonials={testimonials} />

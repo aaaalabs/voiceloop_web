@@ -7,11 +7,12 @@ import { TestimonialColumnContainer } from "./testimonial-column-container";
 import Image from "next/image";
 import { type Testimonial } from "@/db";
 import AvatarCircle from "@p/AvatarCircle.png";
+import { getOptimizedImageUrl } from '@/utils/imageKit';
 
 interface AvatarProps {
   image_url: string | null;
-  logo_url?: string;
-  name: string;
+  logo_url?: string | null;
+  name: string | null;
 }
 
 function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
@@ -19,17 +20,17 @@ function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
     return (
       <div className="relative flex items-center">
         <Image
-          src={logo_url}
+          src={getOptimizedImageUrl(logo_url, 50)}
           width={48}
           height={48}
-          className="rounded-full bg-white"
+          className="rounded-full bg-white border border-black"
           alt="Company logo"
         />
         <Image
-          src={image_url ?? AvatarCircle}
+          src={getOptimizedImageUrl(image_url ?? AvatarCircle, 50)}
           width={48}
           height={48}
-          className="rounded-full border-2 border-white dark:border-neutral-900 -ml-4"
+          className="rounded-full border-2 border-white dark:border-neutral-900 -ml-4 ring-1 ring-black"
           alt={name ?? "Profile picture"}
         />
       </div>
@@ -37,10 +38,10 @@ function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
   } else {
     return (
       <Image
-        src={image_url ?? AvatarCircle}
+        src={getOptimizedImageUrl(image_url ?? AvatarCircle, 50)}
         width={48}
         height={48}
-        className="rounded-full"
+        className="rounded-full border border-black"
         alt={name ?? "Profile picture"}
       />
     );

@@ -2,6 +2,7 @@
 import React from "react";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { Testimonial } from "@/db";
+import { getOptimizedImageUrl } from "@/utils/imageKit";
 
 function mapTestimonialsToAnimatedTooltipItems(testimonials: any) {
   return testimonials
@@ -15,7 +16,7 @@ function mapTestimonialsToAnimatedTooltipItems(testimonials: any) {
       id: index + 1,
       name: `${testimonial.name}_${index}`,
       designation: testimonial.career_stage,
-      image: testimonial.image_url,
+      image: getOptimizedImageUrl(testimonial.image_url, 100),
     }));
 }
 

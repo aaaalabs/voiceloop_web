@@ -14,6 +14,7 @@ import { HeroHighlight, Highlight } from "./ui/hero-highlight";
 import { FlipWords } from "./ui/flip-words";
 import Video from "next-video";
 import PlacerholderVideo from "@v/placerholder_video.mp4";
+import { getOptimizedImageUrl } from "@/utils/imageKit";
 
 export function FlipWordsDemo() {
   const words = ["colleague", "partner", "member", "human"];
@@ -130,12 +131,15 @@ export const Hero = ({
                   key={index}
                   className="border-2 border-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[30px] lg:h-[30px]"
                 >
-                  <AvatarImage src={url} alt={`Avatar ${index + 1}`} />
+                  <AvatarImage
+                    src={getOptimizedImageUrl(url, 50)}
+                    alt={`Avatar ${index + 1}`}
+                  />
                 </Avatar>
               ))}
           </div>
-          <span className="text-primary font-bold">{currentKpis?.members}</span> community
-          members
+          <span className="text-primary font-bold">{currentKpis?.members}</span>{" "}
+          community members
         </div>
       </motion.div>
       <motion.div

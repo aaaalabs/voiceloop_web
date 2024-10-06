@@ -10,7 +10,7 @@ export const Companies = () => {
     [
       {
         title: "netflix",
-        src: "/vl_black.png",
+        src: "/vl_black.svg",
       },
       {
         title: "google",

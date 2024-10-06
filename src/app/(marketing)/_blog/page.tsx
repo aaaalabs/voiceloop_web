@@ -7,7 +7,7 @@ import { type Metadata } from "next";
 // import { BlogCard } from "@/components/blog-card";
 
 export const metadata: Metadata = {
-  title: "VoiceLoop | Cut the Noise, Amplify What Matters in Community Management",
+  title: "voiceloop | amplify what matters",
   description:
     "VoiceLoop empowers community leaders to focus on authentic connections. Our AI filters the noise, delivers key insights, and saves time - amplifying your community's impact without the overwhelm. Experience effortless growth and engagement today.",
   openGraph: {

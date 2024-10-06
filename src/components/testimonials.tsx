@@ -8,6 +8,45 @@ import Image from "next/image";
 import { type Testimonial } from "@/db";
 import AvatarCircle from "@p/AvatarCircle.png";
 
+interface AvatarProps {
+  image_url: string | null;
+  logo_url?: string;
+  name: string;
+}
+
+function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
+  if (logo_url) {
+    return (
+      <div className="relative flex items-center">
+        <Image
+          src={logo_url}
+          width={48}
+          height={48}
+          className="rounded-full bg-white"
+          alt="Company logo"
+        />
+        <Image
+          src={image_url ?? AvatarCircle}
+          width={48}
+          height={48}
+          className="rounded-full border-2 border-white dark:border-neutral-900 -ml-4"
+          alt={name ?? "Profile picture"}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <Image
+        src={image_url ?? AvatarCircle}
+        width={48}
+        height={48}
+        className="rounded-full"
+        alt={name ?? "Profile picture"}
+      />
+    );
+  }
+}
+
 export const Testimonials = ({
   testimonials,
 }: {
@@ -29,6 +68,7 @@ function Testimonial({
   name,
   content,
   image_url,
+  logo_url,
   career_stage,
   className,
   ...props
@@ -60,26 +100,22 @@ function Testimonial({
       {...props}
     >
       <div className="flex flex-col items-start">
-        <div className="flex gap-2">
-          <Image
-            src={image_url ?? AvatarCircle}
-            width={150}
-            height={150}
-            className="h-10 w-10 rounded-full"
-            alt={
-              name ?? "Private account icons created by kmg design - Flaticon"
-            }
+        <div className="flex items-center mb-4">
+          <ConditionalAvatar
+            image_url={image_url}
+            logo_url={logo_url}
+            name={name}
           />
-          <div>
-            <h3 className="text-sm  font-medium text-neutral-500 dark:text-neutral-300">
+          <div className="ml-3">
+            <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-200">
               {name}
             </h3>
-            <p className="text-sm font-normal text-neutral-500 dark:text-neutral-300">
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
               {career_stage}
             </p>
           </div>
         </div>
-        <p className="text-base text-muted mt-4 dark:text-muted-dark">
+        <p className="text-base text-neutral-600 dark:text-neutral-300">
           {content}
         </p>
       </div>
@@ -107,6 +143,7 @@ function TestimonialColumn({
             name={testimonial.name}
             content={testimonial.content}
             image_url={testimonial.image_url}
+            logo_url={testimonial.logo_url}
             career_stage={testimonial.career_stage}
             key={testimonialIndex}
             className={containerClassName?.(

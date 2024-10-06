@@ -937,6 +937,7 @@ export type Database = {
           career_stage: string | null
           content: string | null
           image_url: string | null
+          logo_url: string | null
           name: string | null
         }
         Relationships: []

@@ -52,6 +52,8 @@ export default async function Home() {
   const testimonials = await getTestimonials();
   const currentKpis = await getCurrentKpis();
 
+  console.log(testimonials);
+
   return (
     <div className="relative">
       <div className="absolute inset-0 h-full w-full overflow-hidden ">

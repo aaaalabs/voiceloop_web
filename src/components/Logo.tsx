@@ -10,7 +10,7 @@ export const Logo = () => {
       className="font-normal flex items-center text-sm mr-4 text-black px-2 py-1 relative z-20"
     >
       <Image
-        src="/LogoVoiceloop.png"
+        src="/vl_black.png"
         alt="Voiceloop Logo"
         width={52}
         height={52}

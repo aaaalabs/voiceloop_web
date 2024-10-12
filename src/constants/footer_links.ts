@@ -21,7 +21,7 @@ const links = [
   },
 ];
 const legal = [
-  {
+/*  {
     name: "Privacy Policy",
     href: "#",
   },
@@ -32,7 +32,7 @@ const legal = [
   {
     name: "Refund Policy",
     href: "#",
-  },
+  },*/
 ];
 const socials = [
   {

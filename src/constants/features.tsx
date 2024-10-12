@@ -37,7 +37,7 @@ const features = [
   },
   {
     title: "Spotlight Launcher",
-    description: "Automated LinkedIn Fame Booster: Automated LinkedIn spotlight posts for new members",
+    description: "LinkedIn Reputation Booster: Automated LinkedIn spotlight posts for new members",
     iconLight: icon_SpotLlight,
     iconDark: icon_SpotLdark,
   },

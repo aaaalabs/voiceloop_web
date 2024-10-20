@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { GeistSans } from "geist/font/sans";
 import { cn } from "@/lib/utils";
 import { ViewTransitions } from "next-view-transitions";
 import { ThemeProvider } from "@/context/theme-provider";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
   },
 };
+
 
 export default function RootLayout({
   children,

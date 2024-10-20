@@ -46,6 +46,7 @@ export default function RootLayout({
             defaultTheme="light"
           >
             {children}
+            <SpeedInsights />
           </ThemeProvider>
           <Toaster position="top-right" />
         </body>

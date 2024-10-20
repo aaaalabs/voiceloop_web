@@ -10,7 +10,11 @@ export default function NotFound() {
         Oops! The page you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link href="/" passHref>
-        <Button variant="default" size="lg" className="text-white">
+        <Button
+          variant="default"
+          size="lg"
+          className="text-white bg-black hover:bg-gray-800"
+        >
           Go back to homepage
         </Button>
       </Link>

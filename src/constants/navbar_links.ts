@@ -7,6 +7,10 @@ const navItems = [
     title: "Contact",
     link: "/contact",
   },
+  {
+    title: "Blog",
+    link: "/blog",
+  },
 ];
 
 const actionButtons = [

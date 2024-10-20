@@ -23,15 +23,15 @@ const links = [
 const legal = [
   {
     name: "Privacy Policy",
-    href: "#",
+    href: "/privacy-policy",
   },
   {
     name: "Terms of Service",
-    href: "#",
+    href: "/terms-of-service",
   },
   {
     name: "Refund Policy",
-    href: "#",
+    href: "/refund-policy",
   },
 ];
 const socials = [

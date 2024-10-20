@@ -4,20 +4,20 @@ import { BlurImage } from "./blur-image";
 import { Logo } from "./Logo";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
-import { BlogWithSlug } from "@/lib/blog";
+import { Blog, urlFor } from "@/lib/blog";
 
-export const BlogCard = ({ blog }: { blog: BlogWithSlug }) => {
-  const truncate = (text: string, length: number) => {
-    return text.length > length ? text.slice(0, length) + "..." : text;
-  };
+export const BlogCard = ({ blog }: { blog: Blog }) => {
+  // const truncate = (text: string, length: number) => {
+  //   return text.length > length ? text.slice(0, length) + "..." : text;
+  // };
   return (
     <Link
       className="shadow-derek rounded-3xl border dark:border-neutral-800 w-full bg-white dark:bg-neutral-900  overflow-hidden  hover:scale-[1.02] transition duration-200"
-      href={`/blog/${blog.slug}`}
+      href={`/blog/${blog.currentSlug}`}
     >
-      {blog.image ? (
+      {blog.titleImage ? (
         <BlurImage
-          src={blog.image || ""}
+          src={urlFor(blog.titleImage).url() || ""}
           alt={blog.title}
           height="800"
           width="800"
@@ -31,7 +31,7 @@ export const BlogCard = ({ blog }: { blog: BlogWithSlug }) => {
       <div className="p-4 md:p-8 bg-white dark:bg-neutral-900">
         <div className="flex space-x-2 items-center  mb-2">
           <Image
-            src={blog.author.src}
+            src={urlFor(blog.author.src).url() || ""}
             alt={blog.author.name}
             width={20}
             height={20}
@@ -42,8 +42,8 @@ export const BlogCard = ({ blog }: { blog: BlogWithSlug }) => {
         <p className="text-lg font-bold mb-4">
           <Balancer>{blog.title}</Balancer>
         </p>
-        <p className="text-left text-sm mt-2 text-muted">
-          {truncate(blog.description, 100)}
+        <p className="text-left text-sm mt-2 text-muted truncate">
+          {blog.smallDescription}
         </p>
       </div>
     </Link>

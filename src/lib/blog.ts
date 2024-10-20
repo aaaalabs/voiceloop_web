@@ -1,38 +1,28 @@
-import glob from "fast-glob";
+import { createClient } from "@sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
 
-interface Blog {
+export type Blog = {
   title: string;
-  description: string;
+  smallDescription: string;
+  currentSlug: string;
+  titleImage: any;
+  content: any;
   author: {
     name: string;
-    src: string;
+    src: any;
   };
-  date: string;
-  image?: string;
-}
+  _createdAt: string;
+};
 
-export interface BlogWithSlug extends Blog {
-  slug: string;
-}
+export const client = createClient({
+  projectId: "hcqkmtjj",
+  dataset: "production",
+  apiVersion: "2024-01-01",
+  useCdn: false,
+});
 
-async function importBlog(blogFilename: string): Promise<BlogWithSlug> {
-  const { blog } = (await import(`../app/(marketing)/blog/${blogFilename}`)) as {
-    default: React.ComponentType;
-    blog: Blog;
-  };
+const builder = imageUrlBuilder(client);
 
-  return {
-    slug: blogFilename.replace(/(\/page)?\.mdx$/, ""),
-    ...blog,
-  };
-}
-
-export async function getAllBlogs() {
-  const blogFilenames = await glob("*/page.mdx", {
-    cwd: "./app/(marketing)/blog",
-  });
-
-  const blogs = await Promise.all(blogFilenames.map(importBlog));
-
-  return blogs.sort((a, z) => +new Date(z.date) - +new Date(a.date));
-}
+export const urlFor = (source: any) => {
+  return builder.image(source);
+};

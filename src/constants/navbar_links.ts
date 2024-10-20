@@ -21,7 +21,7 @@ const actionButtons = [
   },
   {
     title: "Sign Up",
-    href: "/signup",
+    href: "https://connect.voiceloop.io",
   },
 ];
 

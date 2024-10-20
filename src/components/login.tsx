@@ -143,7 +143,7 @@ export function LoginForm() {
                     )}
                   >
                     Don&apos; have an account?{" "}
-                    <Link href="/signup" className="text-black dark:text-white">
+                    <Link href="https://connect.voiceloop.io" className="text-black dark:text-white">
                       Sign up
                     </Link>
                   </p>

@@ -1,9 +1,5 @@
 const navItems = [
   {
-    title: "Roadmap",
-    link: "https://voiceloop.canny.io/feature-requests",
-  },
-  {
     title: "Contact",
     link: "/contact",
   },

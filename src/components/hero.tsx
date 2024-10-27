@@ -157,16 +157,8 @@ export const Hero = ({
               frameBorder="0"
               allowFullScreen
               allow="geolocation"
-              src="//umap.openstreetmap.fr/en/map/aaa-matchmaker-map-preview_1124433?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=false&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&attributionControl=false"
+              src="//umap.openstreetmap.fr/en/map/aaa-matchmaker-map-preview_1124433?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&attributionControl=false&locateControl=false"
             />
-            <a
-              href="//umap.openstreetmap.fr/en/map/aaa-matchmaker-map-preview_1124433?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/80 dark:bg-black/80 backdrop-blur-sm text-sm text-muted hover:text-primary transition-colors rounded-full border border-neutral-200 dark:border-neutral-700 hover:bg-white dark:hover:bg-black z-10"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              See full screen
-            </a>
           </div>
         </div>
       </div>

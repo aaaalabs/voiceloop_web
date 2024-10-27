@@ -126,7 +126,6 @@ export const Hero = ({
         }}
         className="flex items-center gap-4 justify-center mt-6 relative z-10"
       >
-        {/* Improved Button Integration */}
         <Button
           as="a"
           href="#"
@@ -152,13 +151,23 @@ export const Hero = ({
       {/* Placeholder Video Section */}
       <div className="p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px] mt-20 relative">
         <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] overflow-hidden">
-          <Video
-            src={DemoVideo}
-            autoPlay
-            muted
-            loop
-            className="w-full h-auto object-cover"
-          />
+          <div className="relative w-full aspect-video">
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              frameBorder="0"
+              allowFullScreen
+              allow="geolocation"
+              src="//umap.openstreetmap.fr/en/map/aaa-matchmaker-map-preview_1124433?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=false&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&attributionControl=false"
+            />
+            <a
+              href="//umap.openstreetmap.fr/en/map/aaa-matchmaker-map-preview_1124433?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"
+              className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/80 dark:bg-black/80 backdrop-blur-sm text-sm text-muted hover:text-primary transition-colors rounded-full border border-neutral-200 dark:border-neutral-700 hover:bg-white dark:hover:bg-black z-10"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              See full screen
+            </a>
+          </div>
         </div>
       </div>
     </div>

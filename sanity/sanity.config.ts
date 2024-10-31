@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'Test',
+  title: 'voiceloop cms',
 
   projectId: 'hcqkmtjj',
   dataset: 'production',

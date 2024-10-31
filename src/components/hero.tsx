@@ -150,10 +150,16 @@ export const Hero = ({
       </motion.div>
       {/* Placeholder Video Section */}
       <div className="p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px] mt-20 relative">
+      <div className="absolute inset-x-0 bottom-0 h-40 w-full bg-gradient-to-b from-transparent via-white to-white dark:via-black/50 dark:to-black scale-[1.1] pointer-events-none" />
+
         <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] overflow-hidden">
           <div className="relative w-full aspect-video">
             <iframe
-              className="absolute inset-0 w-full h-full"
+              //className="absolute inset-0 w-full h-full"
+              width={1920}
+              height={1080}
+              className="rounded-[20px]"
+
               frameBorder="0"
               allowFullScreen
               allow="geolocation"
@@ -161,7 +167,7 @@ export const Hero = ({
             />
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
   );
 };

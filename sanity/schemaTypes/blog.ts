@@ -9,7 +9,7 @@ export default {
       title: 'Title',
     },
     {
-      name: 'published_at',
+      name: 'date',
       type: 'datetime',
       title: 'published at'
     },

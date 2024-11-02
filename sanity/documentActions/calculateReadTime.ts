@@ -6,7 +6,7 @@ const client = sanityClient({
   apiVersion: '2023-01-01', // use a recent date to ensure compatibility
   useCdn: false, // set to true for faster, cached reads in production
 })
-
+/*
 export default function CalculateReadTimeOnPublishAction(props) {
   return {
     label: 'Publish with Read Time',
@@ -31,3 +31,4 @@ export default function CalculateReadTimeOnPublishAction(props) {
     }
   }
 }
+*/

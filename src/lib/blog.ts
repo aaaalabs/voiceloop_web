@@ -26,3 +26,18 @@ const builder = imageUrlBuilder(client);
 export const urlFor = (source: any) => {
   return builder.image(source);
 };
+
+export interface BlogWithSlug {
+  title: string;
+  currentSlug: string;
+  smallDescription: string;
+  image?: { _type: string; asset: { _ref: string } }; // Use 'image' here
+  date: string;
+  readTime: number;
+  topics: string[];
+  content: any;
+  relatedLinks?: { title: string; url: string }[];
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string[];
+}

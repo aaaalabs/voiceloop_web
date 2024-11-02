@@ -8,6 +8,8 @@ import { Logo } from "./Logo";
 import Link from "next/link";
 import { format } from "date-fns";
 import Head from "next/head";
+import { urlFor } from "@/lib/blog"; // Ensure this path matches your project structure
+
 
 // Blog layout component
 export function BlogLayout({
@@ -67,7 +69,7 @@ export function BlogLayout({
         <div className="mt-8 max-w-4xl mx-auto">
           {blog.image ? (
             <Image
-              src={blog.image || "/placeholder-image.jpg"} // Fallback image
+              src={urlFor(blog.image).url() || "/placeholder-image.jpg"} // Use urlFor to get the URL string
               height="800"
               width="800"
               className="h-40 md:h-96 w-full aspect-square object-cover rounded-3xl"

@@ -155,7 +155,7 @@ export default {
       title: 'Approximate Read Time (minutes)',
       description: 'Estimated reading time in minutes',
       validation: (Rule: Rule) => Rule.min(1).integer(),
-      readOnly: true,
+      readOnly: false,
       initialValue: 5, // Default to a minimum read time of 5 minutes
     },
   ],

@@ -61,7 +61,7 @@ export function BlogLayout({
           <time dateTime={blog.date}>
             {format(new Date(blog.date), "dd MMM yyyy")}
           </time>
-          <span>●</span>
+          <span>●-</span>
           <span>{blog.readTime} min read</span>
         </div>
 

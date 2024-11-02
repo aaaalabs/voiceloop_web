@@ -66,8 +66,8 @@ export default {
       of: [{type: 'block'}],
     },
     {
-      name: 'mentionedLinks',
-      title: 'Mentioned Links',
+      name: 'relatedLinks',
+      title: 'Related Links',
       type: 'array',
       of: [
         {

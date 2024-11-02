@@ -67,7 +67,7 @@ export function BlogLayout({
         <div className="mt-8 max-w-4xl mx-auto">
           {blog.image ? (
             <Image
-              src={blog.image}
+              src={blog.image || "/placeholder-image.jpg"} // Fallback image
               height="800"
               width="800"
               className="h-40 md:h-96 w-full aspect-square object-cover rounded-3xl"

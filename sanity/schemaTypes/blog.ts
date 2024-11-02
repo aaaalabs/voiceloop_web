@@ -21,24 +21,31 @@ export default {
       name: 'date',
       type: 'datetime',
       title: 'Published at',
+    },   
+    {
+      name: 'readTime',
+      type: 'number',
+      title: 'Approximate Read Time (minutes)',
+      description: 'Estimated reading time in minutes',
+      validation: Rule => Rule.min(1).integer(),
     },
     {
       name: 'author',
       title: 'Author',
-      type: 'object',
-      fields: [
+      type: 'reference',
+      to: [{ type: 'author' }],
+    },
+    {
+      name: 'topics',
+      title: 'Topics',
+      type: 'array',
+      of: [
         {
-          name: 'name',
-          type: 'string',
-          title: 'Name',
-        },
-        {
-          name: 'src',
-          type: 'image',
-          title: 'Image',
+          type: 'reference',
+          to: [{ type: 'topic' }],
         },
       ],
-    },
+    },  
     {
       name: 'smallDescription',
       type: 'text',
@@ -57,6 +64,36 @@ export default {
       title: 'Content',
       type: 'array',
       of: [{type: 'block'}],
+    },
+    {
+      name: 'mentionedLinks',
+      title: 'Mentioned Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              type: 'string',
+              title: 'Link Title',
+              validation: Rule => Rule.required().min(1).max(100),
+            },
+            {
+              name: 'url',
+              type: 'url',
+              title: 'URL',
+              validation: Rule => Rule.required().uri({ allowRelative: false, scheme: ['http', 'https'] }),
+            },
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'url',
+            },
+          },
+        },
+      ],
     },
   ],
 }

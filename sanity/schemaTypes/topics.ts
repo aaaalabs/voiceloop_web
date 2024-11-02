@@ -5,13 +5,8 @@ export default {
     type: 'document',
     fields: [
       {
-        name: 'community',
-        title: 'Community',
-        type: 'string',
-      },
-      {
-        name: 'innovation',
-        title: 'Innovation',
+        name: 'title',
+        title: 'Title',
         type: 'string',
       },
     ],

@@ -18,6 +18,11 @@ export default {
       },
     },
     {
+      name: 'date',
+      type: 'datetime',
+      title: 'Published at',
+    },
+    {
       name: 'author',
       title: 'Author',
       type: 'object',

@@ -17,9 +17,9 @@ async function getData(slug: string): Promise<Blog> {
     title,
     content,
     titleImage,
-    author {
+    author->{
       name,
-      src
+      profilePicture
     },
     _createdAt
   }`;
@@ -56,7 +56,7 @@ export default async function BlogPost({
 }) {
   const blog = await getData(params.slug);
 
-  console.log(blog);
+  console.log(blog.author);
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
@@ -68,7 +68,7 @@ export default async function BlogPost({
           </Heading>
           <div className="flex items-center justify-center space-x-4 mb-8">
             <Image
-              src={urlFor(blog.author.src).url() || ""}
+              src={urlFor(blog.author.profilePicture).url() || ""}
               alt={blog.author.name}
               width={40}
               height={40}

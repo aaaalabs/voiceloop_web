@@ -154,10 +154,10 @@ export const Hero = ({
         <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] overflow-hidden">
           <div className="relative w-full aspect-video">
             <iframe
-              //className="absolute inset-0 w-full h-full"
-              width={1920}
-              height={1080}
-              className="rounded-[20px]"
+              className="rounded-[20px] absolute inset-0 w-full h-full"
+              //width={1920}
+              //height={1080}
+              //className="rounded-[20px]"
 
               frameBorder="0"
               allowFullScreen

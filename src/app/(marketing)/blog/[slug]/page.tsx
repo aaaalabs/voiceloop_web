@@ -9,7 +9,7 @@ import { urlFor } from "@/lib/blog";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 async function getData(slug: string): Promise<Blog> {
   const query = `

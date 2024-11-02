@@ -7,6 +7,7 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
+      validation: Rule => Rule.required().min(5).max(100),
     },
     {
       name: 'slug',
@@ -16,24 +17,28 @@ export default {
         source: 'title',
         maxLength: 96,
       },
+      validation: Rule => Rule.required(),
     },
     {
       name: 'date',
       type: 'datetime',
       title: 'Published at',
-    },   
+      validation: Rule => Rule.required(),
+    },
     {
       name: 'readTime',
       type: 'number',
       title: 'Approximate Read Time (minutes)',
       description: 'Estimated reading time in minutes',
       validation: Rule => Rule.min(1).integer(),
+      readOnly: true, // Makes the field view-only
     },
     {
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: [{ type: 'author' }],
+      validation: Rule => Rule.required(),
     },
     {
       name: 'topics',
@@ -45,11 +50,12 @@ export default {
           to: [{ type: 'topic' }],
         },
       ],
-    },  
+    },
     {
       name: 'smallDescription',
       type: 'text',
       title: 'Small Description',
+      validation: Rule => Rule.required().min(20).max(200),
     },
     {
       name: 'titleImage',
@@ -63,7 +69,8 @@ export default {
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [{ type: 'block' }],
+      validation: Rule => Rule.required(),
     },
     {
       name: 'relatedLinks',
@@ -95,5 +102,28 @@ export default {
         },
       ],
     },
+    {
+      name: 'metaTitle',
+      type: 'string',
+      title: 'Meta Title (for SEO)',
+      description: 'Optional SEO title for search engines',
+      validation: Rule => Rule.max(60),
+    },
+    {
+      name: 'metaDescription',
+      type: 'text',
+      title: 'Meta Description (for SEO)',
+      description: 'Optional meta description for search engines',
+      validation: Rule => Rule.max(160),
+    },
+    {
+      name: 'keywords',
+      type: 'array',
+      title: 'Keywords (for SEO)',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
+      },
+    },
   ],
-}
+};

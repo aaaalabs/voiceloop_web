@@ -274,9 +274,10 @@ export default {
             select: {
               title: 'title'
             },
-            prepare({ title }: { title: string | undefined }) {
+            prepare({ title = 'Untitled' }) {
               return {
-                title: `Related Links: ${title || 'Untitled'}`
+                title: 'Related Links: ' + title,
+                media: null  // Optional: add if you want an icon
               }
             }
           }

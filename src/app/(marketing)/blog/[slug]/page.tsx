@@ -31,7 +31,7 @@ async function getData(slug: string): Promise<Blog> {
     _createdAt,
     date,
     readTime,
-    topics,
+    "topics": topics[]->title,
     smallDescription,
     metaTitle,
     metaDescription,

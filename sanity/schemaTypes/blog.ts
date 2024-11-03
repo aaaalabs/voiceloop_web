@@ -274,7 +274,7 @@ export default {
             select: {
               title: 'title'
             },
-            prepare({ title }) {
+            prepare({ title }: { title: string | undefined }) {
               return {
                 title: `Related Links: ${title || 'Untitled'}`
               }

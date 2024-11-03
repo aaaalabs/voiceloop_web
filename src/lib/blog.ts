@@ -12,6 +12,13 @@ export type Blog = {
     src: any;
   };
   _createdAt: string;
+  date: string; // Add this if missing
+  readTime: number; // Add readTime field
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: string[];
+  topics: string[]; // Add topics as a string array
+  relatedLinks?: { title: string; url: string }[]; // Add relatedLinks if needed
 };
 
 export const client = createClient({

@@ -95,13 +95,31 @@ export default {
               type: 'string',
               title: 'Video File Name',
               description: 'Enter the name of the video file from your videos folder (e.g., "connect.mp4")',
-              validation: (Rule: Rule) => Rule.required()
+              validation: (Rule: Rule) => Rule.required(),
+              options: {
+                list: [
+                  { title: 'Connect Video', value: 'connect.mp4' },
+                  { title: 'Placeholder Video', value: 'placerholder_video.mp4' }
+                ]
+              }
             },
             {
               name: 'caption',
               type: 'string',
               title: 'Caption',
               description: 'Optional caption for the video'
+            },
+            {
+              name: 'autoPlay',
+              type: 'boolean',
+              title: 'Auto Play',
+              initialValue: false
+            },
+            {
+              name: 'loop',
+              type: 'boolean',
+              title: 'Loop Video',
+              initialValue: false
             }
           ],
           preview: {
@@ -109,10 +127,11 @@ export default {
               title: 'videoFile',
               subtitle: 'caption'
             },
-            prepare({ title, subtitle }: { title: string, subtitle: string }) {
+            prepare({ title, subtitle }: { title: string, subtitle?: string }) {
               return {
-                title: 'Video: ' + title,
-                subtitle: subtitle || ''
+                title: `Video: ${title}`,
+                subtitle: subtitle || '',
+                media: null
               }
             }
           }
@@ -127,8 +146,13 @@ export default {
               type: 'url',
               title: 'Spotify URL',
               description: 'Enter the Spotify URL (track, album, or playlist)',
-              validation: (Rule: Rule) => Rule.required().uri({
-                scheme: ['https']
+              validation: (Rule: Rule) => Rule.required().custom((url: string) => {
+                if (!url) return true;
+                const pattern = /^(https:\/\/open\.spotify\.com\/(track|album|playlist)\/[a-zA-Z0-9]+)$/;
+                if (!pattern.test(url)) {
+                  return 'Please enter a valid Spotify URL';
+                }
+                return true;
               })
             },
             {
@@ -143,6 +167,18 @@ export default {
                 ]
               },
               validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'theme',
+              type: 'string',
+              title: 'Theme',
+              options: {
+                list: [
+                  { title: 'Light', value: 'light' },
+                  { title: 'Dark', value: 'dark' }
+                ]
+              },
+              initialValue: 'light'
             }
           ],
           preview: {
@@ -167,8 +203,13 @@ export default {
               type: 'url',
               title: 'YouTube URL',
               description: 'Enter the YouTube video URL',
-              validation: (Rule: Rule) => Rule.required().uri({
-                scheme: ['https']
+              validation: (Rule: Rule) => Rule.required().custom((url: string) => {
+                if (!url) return true;
+                const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+                if (!pattern.test(url)) {
+                  return 'Please enter a valid YouTube URL';
+                }
+                return true;
               })
             },
             {
@@ -176,6 +217,19 @@ export default {
               type: 'string',
               title: 'Caption',
               description: 'Optional caption for the video'
+            },
+            {
+              name: 'aspectRatio',
+              type: 'string',
+              title: 'Aspect Ratio',
+              options: {
+                list: [
+                  { title: '16:9', value: '16:9' },
+                  { title: '4:3', value: '4:3' },
+                  { title: '1:1', value: '1:1' }
+                ]
+              },
+              initialValue: '16:9'
             }
           ],
           preview: {
@@ -201,7 +255,10 @@ export default {
               type: 'image',
               title: 'Image',
               options: {
-                hotspot: true // Enables hotspot positioning for image
+                hotspot: true,
+                metadata: ['blurhash', 'lqip', 'palette'],
+                storeOriginalFilename: true,
+                accept: '.jpg,.jpeg,.png,.gif,.webp'
               },
               validation: (Rule: Rule) => Rule.required()
             },
@@ -217,6 +274,20 @@ export default {
               type: 'string',
               title: 'Caption',
               description: 'Optional caption for the image'
+            },
+            {
+              name: 'layout',
+              type: 'string',
+              title: 'Layout',
+              options: {
+                list: [
+                  { title: 'Full Width', value: 'full' },
+                  { title: 'Center', value: 'center' },
+                  { title: 'Left', value: 'left' },
+                  { title: 'Right', value: 'right' }
+                ]
+              },
+              initialValue: 'full'
             }
           ],
           preview: {
@@ -310,9 +381,7 @@ export default {
               validation: (Rule: Rule) => Rule.required().uri({ allowRelative: false, scheme: ['http', 'https'] }),
             },
           ],
-          preview: {
-            select: { title: 'title', subtitle: 'url' },
-          },
+          preview: { title: 'title', subtitle: 'url' },
         },
       ],
       initialValue: [], // Default to an empty array

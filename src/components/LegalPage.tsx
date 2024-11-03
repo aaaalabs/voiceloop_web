@@ -25,7 +25,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
 
   if (!content) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-16">
+      <div className="max-w-3xl mx-auto px-8 py-16">
         <div className="animate-pulse">
           <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-8"></div>
           <div className="space-y-4">
@@ -39,7 +39,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-16">
+    <div className="max-w-3xl mx-auto px-8 py-16 mt-8">
       <h1 className="text-3xl font-bold mb-8">{title}</h1>
       <div className="prose dark:prose-invert max-w-none">
         <PortableText value={content} />

@@ -139,16 +139,16 @@ export default {
         {
           type: 'object',
           name: 'spotifyEmbed',
-          title: 'Spotify Embed',
+          title: 'Spotify',
           fields: [
             {
               name: 'url',
               type: 'url',
               title: 'Spotify URL',
-              description: 'Enter the Spotify URL (track, album, or playlist)',
+              description: 'Enter the Spotify URL (track, album, playlist, or episode)',
               validation: (Rule: Rule) => Rule.required().custom((url: string) => {
                 if (!url) return true;
-                const pattern = /^(https:\/\/open\.spotify\.com\/(track|album|playlist)\/[a-zA-Z0-9]+)$/;
+                const pattern = /^https:\/\/open\.spotify\.com\/(track|album|playlist|episode)\/[a-zA-Z0-9]+(\?.*)?$/;
                 if (!pattern.test(url)) {
                   return 'Please enter a valid Spotify URL';
                 }
@@ -196,7 +196,7 @@ export default {
         {
           type: 'object',
           name: 'youtubeEmbed',
-          title: 'YouTube Embed',
+          title: 'YouTube',
           fields: [
             {
               name: 'url',
@@ -248,7 +248,7 @@ export default {
         {
           type: 'object',
           name: 'imageEmbed',
-          title: 'Image Embed',
+          title: 'Img',
           fields: [
             {
               name: 'image',

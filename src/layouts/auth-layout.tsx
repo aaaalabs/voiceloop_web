@@ -19,6 +19,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
               <Video
                 src={placerholderVideo}
                 style={{ width: "100%", height: "100%" }}
+                className="rounded-lg"
                 autoPlay
                 loop
               />

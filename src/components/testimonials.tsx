@@ -27,7 +27,7 @@ function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
           alt="Company logo"
         />
         <Image
-          src={getOptimizedImageUrl(image_url ?? AvatarCircle, 50)}
+          src={getOptimizedImageUrl(image_url ?? AvatarCircle.src, 50)}
           width={48}
           height={48}
           className="rounded-full border-2 border-white dark:border-neutral-900 -ml-4 ring-1 ring-black"
@@ -38,7 +38,7 @@ function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
   } else {
     return (
       <Image
-        src={getOptimizedImageUrl(image_url ?? AvatarCircle, 50)}
+        src={getOptimizedImageUrl(image_url ?? AvatarCircle.src, 50)}
         width={48}
         height={48}
         className="rounded-full border border-black"
@@ -55,7 +55,7 @@ export const Testimonials = ({
 }) => {
   return (
     <div className="relative z-20 py-10 md:py-40">
-      <Heading as="h2">Loved by Community Leaders Worldwide</Heading>
+      <Heading as="h2">Loved by Community Leaders and Members</Heading>
       <Subheading className="text-center max-w-lg mx-auto">
         See how VoiceLoop is transforming community engagement and saving time
         for managers across industries

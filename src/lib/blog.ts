@@ -83,3 +83,26 @@ export interface BlogWithSlug {
   metaDescription?: string;
   keywords?: string[];
 }
+
+export type BlogPost = {
+  title: string;
+  slug: string;
+  publishedAt: string;
+};
+
+export async function getLatestBlogPost(): Promise<BlogPost | null> {
+  try {
+    // Replace this URL with your actual blog API endpoint
+    const response = await fetch('https://www.voiceloop.io/api/blog/latest', {
+      next: { revalidate: 3600 } // Revalidate every hour
+    });
+    
+    if (!response.ok) return null;
+    
+    const post = await response.json();
+    return post;
+  } catch (error) {
+    console.error('Failed to fetch latest blog post:', error);
+    return null;
+  }
+}

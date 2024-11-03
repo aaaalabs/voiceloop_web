@@ -21,7 +21,7 @@ export const MapSection = () => {
           }
         },
         { 
-          rootMargin: '200px' // Start loading when map is 200px from viewport
+          rootMargin: '200px'
         }
       );
 
@@ -31,11 +31,15 @@ export const MapSection = () => {
   }, []);
 
   return (
-    <div ref={mapRef} className="p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px] mt-20 relative">
-      <div className="absolute inset-x-0 bottom-0 h-40 w-full bg-gradient-to-t from-white via-white/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent z-10 pointer-events-none" />
-      <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] overflow-hidden">
-        <div className="relative w-full aspect-video">
-          {shouldLoad && <MapFrame />}
+    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-16 sm:mt-32 mb-8 sm:mb-32">
+      <div className="px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 mx-auto">
+        <div ref={mapRef} className="p-2 sm:p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-2xl sm:rounded-[32px] relative">
+          <div className="absolute inset-x-0 -bottom-[1px] h-32 sm:h-48 w-full bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 dark:to-transparent z-10 pointer-events-none" />
+          <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-xl sm:rounded-[24px] overflow-hidden">
+            <div className="relative w-full aspect-[16/10] sm:aspect-video">
+              {shouldLoad && <MapFrame />}
+            </div>
+          </div>
         </div>
       </div>
     </div>

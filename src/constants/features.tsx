@@ -18,7 +18,7 @@ import icon_engage from "@p/icons/icon_engage.png";
 
 const features = [
   {
-    title: "ConnectionAI",
+    title: "MatchMaker AI",
     description: "Your 24/7 Networking Supercomputer: AI-powered matchmaking based on 50+ data points",
     iconLight: icon_ConAIlight,
     iconDark: icon_ConAIdark,

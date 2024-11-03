@@ -13,7 +13,9 @@ import {
   getCurrentKpis,
   type Testimonial,
   type MvCurrentKpis,
+  getLatestBlogPost,
 } from "@/db";
+import { Suspense } from "react";
 
 // ! This is the best version but NextJS keeps throwing an DynamicServerError
 // async function fetchConcurrently(): Promise<{
@@ -48,21 +50,18 @@ import {
 // }
 
 export default async function Home() {
-  // const { testimonials, currentKpis } = await fetchConcurrently();
-  const testimonials = await getTestimonials();
-  const currentKpis = await getCurrentKpis();
+  const [testimonials, currentKpis] = await Promise.all([
+    getTestimonials(),
+    getCurrentKpis(),
+  ]);
 
   return (
     <div className="relative">
-      <div className="absolute inset-0 h-full w-full overflow-hidden ">
+      <div className="absolute inset-0 h-full w-full overflow-hidden">
         <Background />
       </div>
-      <Container className="flex min-h-screen flex-col items-center justify-between ">
-        {/* <FlipWordsDemo /> */}
-        {/*  <HeroHighlightDemo /> */}
+      <Container className="flex min-h-screen flex-col items-center justify-between">
         <Hero currentKpis={currentKpis} />
-        {/*  <Companies /> */}
-        {/* <Features /> */}
         <GridFeatures />
         <Testimonials testimonials={testimonials} />
       </Container>

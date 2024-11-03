@@ -1,10 +1,16 @@
 import { LegalPage } from '@/components/LegalPage';
+import { getLegalDocument } from '@/lib/legal';
+import { PortableText } from '@portabletext/react';
 
-export default function TermsOfServicePage() {
+export default async function TermsOfServicePage() {
+  const legal = await getLegalDocument('terms-of-service');
+  
   return (
     <LegalPage
-      title="Terms of Service"
-      content="This is the terms of service content. Replace this with your actual terms of service."
+      title={legal.title}
+      content={<PortableText value={legal.content} />}
+      lastUpdated={legal.lastUpdated}
+      version={legal.version}
     />
   );
 }

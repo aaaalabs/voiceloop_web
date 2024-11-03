@@ -1,6 +1,5 @@
 "use client";
 // import { Metadata } from "next";
-import "@fillout/react/style.css";
 import { Logo } from "@/components/Logo";
 
 // const metadata: Metadata = {

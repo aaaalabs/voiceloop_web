@@ -88,7 +88,7 @@ export default {
         {
           type: 'object',
           name: 'videoEmbed',
-          title: 'Video Embed',
+          title: 'Video',
           fields: [
             {
               name: 'videoFile',
@@ -308,7 +308,7 @@ export default {
         {
           type: 'object',
           name: 'relatedLinksSection',
-          title: 'Related Links Section',
+          title: 'Links',
           fields: [
             {
               name: 'title',

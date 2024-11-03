@@ -15,13 +15,28 @@ async function getData(slug: string): Promise<Blog> {
   const query = `
   *[_type == "blog" && slug.current == $slug][0] {
     title,
-    content,
+    content[] {
+      ...,
+      _type == "videoEmbed" => {
+        _type,
+        videoFile,
+        caption
+      }
+    },
     titleImage,
     author->{
       name,
-      profilePicture
+      src
     },
-    _createdAt
+    _createdAt,
+    date,
+    readTime,
+    topics,
+    smallDescription,
+    metaTitle,
+    metaDescription,
+    keywords,
+    relatedLinks
   }`;
 
   const data = await client.fetch(query, { slug });
@@ -56,8 +71,6 @@ export default async function BlogPost({
 }) {
   const blog = await getData(params.slug);
 
-  console.log(blog.author);
-
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
       <Background />
@@ -67,17 +80,9 @@ export default async function BlogPost({
             {blog.title}
           </Heading>
           <div className="flex items-center justify-center space-x-4 mb-8">
-            <Image
-              src={urlFor(blog.author.profilePicture).url() || ""}
-              alt={blog.author.name}
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <div>
-              <p className="text-sm font-semibold">{blog.author.name}</p>
+            <div className="text-center">
               <p className="text-sm text-muted">
-                {new Date(blog._createdAt).toLocaleDateString()}
+                {new Date(blog._createdAt).toLocaleDateString()} • {blog.readTime} min read
               </p>
             </div>
           </div>

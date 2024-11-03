@@ -1,24 +1,35 @@
 import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 
+type VideoEmbed = {
+  _type: 'videoEmbed';
+  videoFile: string;
+  caption?: string;
+};
+
+type BlockContent = {
+  _type: 'block';
+  // ... other block properties
+};
+
 export type Blog = {
   title: string;
   smallDescription: string;
   currentSlug: string;
   titleImage: any;
-  content: any;
+  content: Array<BlockContent | VideoEmbed>;
   author: {
     name: string;
     src: any;
   };
   _createdAt: string;
-  date: string; // Add this if missing
-  readTime: number; // Add readTime field
+  date: string;
+  readTime: number;
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string[];
-  topics: string[]; // Add topics as a string array
-  relatedLinks?: { title: string; url: string }[]; // Add relatedLinks if needed
+  topics: string[];
+  relatedLinks?: { title: string; url: string }[];
 };
 
 export const client = createClient({
@@ -38,11 +49,11 @@ export interface BlogWithSlug {
   title: string;
   currentSlug: string;
   smallDescription: string;
-  image?: { _type: string; asset: { _ref: string } }; // Use 'image' here
+  image?: { _type: string; asset: { _ref: string } };
   date: string;
   readTime: number;
   topics: string[];
-  content: any;
+  content: Array<BlockContent | VideoEmbed>;
   relatedLinks?: { title: string; url: string }[];
   metaTitle?: string;
   metaDescription?: string;

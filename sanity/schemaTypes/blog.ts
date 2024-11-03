@@ -83,8 +83,116 @@ export default {
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }],
-      validation: (Rule: Rule) => Rule.required(),
+      of: [
+        { type: 'block' },
+        {
+          type: 'object',
+          name: 'videoEmbed',
+          title: 'Video Embed',
+          fields: [
+            {
+              name: 'videoFile',
+              type: 'string',
+              title: 'Video File Name',
+              description: 'Enter the name of the video file from your videos folder (e.g., "connect.mp4")',
+              validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the video'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'videoFile',
+              subtitle: 'caption'
+            },
+            prepare({ title, subtitle }: { title: string, subtitle: string }) {
+              return {
+                title: 'Video: ' + title,
+                subtitle: subtitle || ''
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'spotifyEmbed',
+          title: 'Spotify Embed',
+          fields: [
+            {
+              name: 'url',
+              type: 'url',
+              title: 'Spotify URL',
+              description: 'Enter the Spotify URL (track, album, or playlist)',
+              validation: (Rule: Rule) => Rule.required().uri({
+                scheme: ['https']
+              })
+            },
+            {
+              name: 'type',
+              type: 'string',
+              title: 'Embed Type',
+              options: {
+                list: [
+                  { title: 'Track', value: 'track' },
+                  { title: 'Album', value: 'album' },
+                  { title: 'Playlist', value: 'playlist' }
+                ]
+              },
+              validation: (Rule: Rule) => Rule.required()
+            }
+          ],
+          preview: {
+            select: {
+              title: 'url'
+            },
+            prepare({ title }: { title: string }) {
+              return {
+                title: 'Spotify Embed',
+                subtitle: title
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'youtubeEmbed',
+          title: 'YouTube Embed',
+          fields: [
+            {
+              name: 'url',
+              type: 'url',
+              title: 'YouTube URL',
+              description: 'Enter the YouTube video URL',
+              validation: (Rule: Rule) => Rule.required().uri({
+                scheme: ['https']
+              })
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the video'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'url',
+              subtitle: 'caption'
+            },
+            prepare({ title, subtitle }: { title: string, subtitle: string }) {
+              return {
+                title: 'YouTube Video',
+                subtitle: subtitle || title
+              }
+            }
+          }
+        }
+      ],
+      validation: (Rule: Rule) => Rule.required()
     },
 
     // Related Links

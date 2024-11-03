@@ -4,8 +4,8 @@ import { format } from 'date-fns';
 interface LegalPageProps {
   title: string;
   content: any;
-  lastUpdated: string;
-  version: string;
+  lastUpdated?: string;
+  version?: string;
 }
 
 export const LegalPage: React.FC<LegalPageProps> = ({
@@ -14,6 +14,15 @@ export const LegalPage: React.FC<LegalPageProps> = ({
   lastUpdated,
   version
 }) => {
+  const formatDate = (date: string | undefined) => {
+    if (!date) return 'Not specified';
+    try {
+      return format(new Date(date), 'MMMM d, yyyy');
+    } catch (error) {
+      return 'Invalid date';
+    }
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold mb-8">{title}</h1>
@@ -21,8 +30,8 @@ export const LegalPage: React.FC<LegalPageProps> = ({
         <PortableText value={content} />
       </div>
       <div className="mt-8 text-sm text-gray-500 dark:text-gray-400">
-        <p>Version: {version}</p>
-        <p>Last Updated: {format(new Date(lastUpdated), 'MMMM d, yyyy')}</p>
+        {version && <p>Version: {version}</p>}
+        {lastUpdated && <p>Last Updated: {formatDate(lastUpdated)}</p>}
       </div>
     </div>
   );

@@ -190,6 +190,96 @@ export default {
               }
             }
           }
+        },
+        {
+          type: 'object',
+          name: 'imageEmbed',
+          title: 'Image Embed',
+          fields: [
+            {
+              name: 'image',
+              type: 'image',
+              title: 'Image',
+              options: {
+                hotspot: true // Enables hotspot positioning for image
+              },
+              validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Alternative text for accessibility',
+              validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the image'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'alt',
+              subtitle: 'caption',
+              media: 'image'
+            },
+            prepare({ title, subtitle, media }: { title: string | undefined, subtitle: string | undefined, media: any }) {
+              return {
+                title: 'Image: ' + (title || 'Untitled'),
+                subtitle: subtitle || '',
+                media: media
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'relatedLinksSection',
+          title: 'Related Links Section',
+          fields: [
+            {
+              name: 'title',
+              type: 'string',
+              title: 'Section Title',
+              initialValue: 'Related Links'
+            },
+            {
+              name: 'links',
+              type: 'array',
+              title: 'Links',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'string',
+                      title: 'Link Title',
+                      validation: (Rule: Rule) => Rule.required()
+                    },
+                    {
+                      name: 'url',
+                      type: 'url',
+                      title: 'URL',
+                      validation: (Rule: Rule) => Rule.required()
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          preview: {
+            select: {
+              title: 'title'
+            },
+            prepare({ title }) {
+              return {
+                title: `Related Links: ${title || 'Untitled'}`
+              }
+            }
+          }
         }
       ],
       validation: (Rule: Rule) => Rule.required()

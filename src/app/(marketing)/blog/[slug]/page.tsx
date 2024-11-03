@@ -76,6 +76,18 @@ export default async function BlogPost({
       <Background />
       <Container className="flex flex-col items-center justify-between pb-20">
         <div className="relative z-20 py-10 md:pt-40 w-full max-w-3xl">
+          {blog.topics && blog.topics.length > 0 && (
+            <div className="flex flex-wrap gap-2 justify-center mb-6">
+              {blog.topics.map((topic: string) => (
+                <span
+                  key={topic}
+                  className="inline-flex px-3 py-1 rounded-full text-sm bg-primary/10 text-primary"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          )}
           <Heading as="h1" className="text-center mb-8">
             {blog.title}
           </Heading>
@@ -98,6 +110,26 @@ export default async function BlogPost({
           <div className="prose prose-xl dark:prose-invert max-w-none">
             <PortableText value={blog.content} />
           </div>
+          {blog.relatedLinks && blog.relatedLinks.length > 0 && (
+            <div className="mt-16 not-prose border-t dark:border-neutral-800 pt-8">
+              <h2 className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 mb-6">
+                Related Links
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {blog.relatedLinks.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex px-4 py-2 rounded-full text-sm bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors text-neutral-800 dark:text-neutral-200"
+                  >
+                    {link.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </div>

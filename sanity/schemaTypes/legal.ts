@@ -2,14 +2,14 @@ import { Rule } from 'sanity';
 
 export default {
   name: 'legal',
-  title: 'Legal',
+  title: 'Legal Documents',
   type: 'document',
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (rule: Rule) => rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -19,26 +19,26 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-      validation: (rule: Rule) => rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'content',
       title: 'Content',
       type: 'array',
       of: [{ type: 'block' }],
-      validation: (rule: Rule) => rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'lastUpdated',
       title: 'Last Updated',
       type: 'datetime',
-      validation: (rule: Rule) => rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'version',
       title: 'Version',
       type: 'string',
-      validation: (rule: Rule) => rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     }
   ]
-} 
+}; 

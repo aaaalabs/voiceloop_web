@@ -1,6 +1,5 @@
 "use client";
 // import { Metadata } from "next";
-import { FilloutStandardEmbed } from "@fillout/react";
 import "@fillout/react/style.css";
 import { Logo } from "@/components/Logo";
 
@@ -25,7 +24,7 @@ export default function SignupPage() {
         </h2>
       </div>
       <div className="w-full h-[600px] sm:mt-0 lg:mt-4">
-        <FilloutStandardEmbed filloutId="79oPkgvSZGus" dynamicResize={true} />
+
       </div>
     </div>
   );

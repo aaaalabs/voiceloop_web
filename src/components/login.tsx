@@ -177,7 +177,7 @@ export function LoginForm() {
               <p className="text-neutral-600 dark:text-neutral-400 text-sm text-center mt-8">
                 By clicking on sign in, you agree to our{" "}
                 <Link
-                  href="#"
+                  href="/legal/terms-of-service"
                   className="text-neutral-500 dark:text-neutral-300"
                 >
                   Terms of Service

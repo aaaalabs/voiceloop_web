@@ -38,7 +38,7 @@ export const Hero = ({
         }}
         className="flex justify-center"
       >
-        <Badge onClick={() => router.push("https://www.aaaaccelerator.com/")}>
+        <Badge onClick={() => router.push("https://www.voiceloop.io/blog/matchmaker-pre-beta-connections-start-here")}>
           First Case Study started in the AAA Accelerator
         </Badge>
       </motion.div>

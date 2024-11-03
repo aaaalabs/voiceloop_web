@@ -10,6 +10,7 @@ export default async function LegalDocumentPage({
   const legal = await getLegalDocument(params.slug);
   
   if (!legal) {
+    console.log(`Legal document not found for slug: ${params.slug}`);
     notFound();
   }
 
@@ -21,4 +22,11 @@ export default async function LegalDocumentPage({
       version={legal.version}
     />
   );
+}
+
+// Add error handling
+export function generateMetadata({ params }: { params: { slug: string } }) {
+  return {
+    title: `${params.slug.charAt(0).toUpperCase() + params.slug.slice(1).replace(/-/g, ' ')} - voiceloop`,
+  };
 } 

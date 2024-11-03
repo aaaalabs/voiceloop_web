@@ -8,6 +8,10 @@ import { BlurImage } from "@/components/blur-image";
 import { urlFor } from "@/lib/blog";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+import { VideoEmbed } from '@/components/embeds/video-embed';
+import { SpotifyEmbed } from '@/components/embeds/spotify-embed';
+import { YouTubeEmbed } from '@/components/embeds/youtube-embed';
+import { ImageEmbed } from '@/components/embeds/image-embed';
 
 export const revalidate = 60;
 
@@ -20,7 +24,28 @@ async function getData(slug: string): Promise<Blog> {
       _type == "videoEmbed" => {
         _type,
         videoFile,
-        caption
+        caption,
+        autoPlay,
+        loop
+      },
+      _type == "spotifyEmbed" => {
+        _type,
+        url,
+        type,
+        theme
+      },
+      _type == "youtubeEmbed" => {
+        _type,
+        url,
+        caption,
+        aspectRatio
+      },
+      _type == "imageEmbed" => {
+        _type,
+        image,
+        alt,
+        caption,
+        layout
       }
     },
     titleImage,
@@ -71,6 +96,15 @@ export default async function BlogPost({
 }) {
   const blog = await getData(params.slug);
 
+  const components = {
+    types: {
+      videoEmbed: VideoEmbed,
+      spotifyEmbed: SpotifyEmbed,
+      youtubeEmbed: YouTubeEmbed,
+      imageEmbed: ImageEmbed,
+    },
+  };
+
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
       <Background />
@@ -108,7 +142,10 @@ export default async function BlogPost({
             />
           )}
           <div className="prose prose-xl dark:prose-invert max-w-none">
-            <PortableText value={blog.content} />
+            <PortableText 
+              value={blog.content} 
+              components={components}
+            />
           </div>
           {blog.relatedLinks && blog.relatedLinks.length > 0 && (
             <div className="mt-16 not-prose border-t dark:border-neutral-800 pt-8">

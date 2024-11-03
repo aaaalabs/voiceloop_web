@@ -5,6 +5,30 @@ type VideoEmbed = {
   _type: 'videoEmbed';
   videoFile: string;
   caption?: string;
+  autoPlay?: boolean;
+  loop?: boolean;
+};
+
+type SpotifyEmbed = {
+  _type: 'spotifyEmbed';
+  url: string;
+  type: string;
+  theme: string;
+};
+
+type YouTubeEmbed = {
+  _type: 'youtubeEmbed';
+  url: string;
+  caption?: string;
+  aspectRatio: string;
+};
+
+type ImageEmbed = {
+  _type: 'imageEmbed';
+  image: any;
+  alt: string;
+  caption?: string;
+  layout: string;
 };
 
 type BlockContent = {
@@ -17,7 +41,7 @@ export type Blog = {
   smallDescription: string;
   currentSlug: string;
   titleImage: any;
-  content: Array<BlockContent | VideoEmbed>;
+  content: Array<BlockContent | VideoEmbed | SpotifyEmbed | YouTubeEmbed | ImageEmbed>;
   author: {
     name: string;
     src: any;
@@ -53,7 +77,7 @@ export interface BlogWithSlug {
   date: string;
   readTime: number;
   topics: string[];
-  content: Array<BlockContent | VideoEmbed>;
+  content: Array<BlockContent | VideoEmbed | SpotifyEmbed | YouTubeEmbed | ImageEmbed>;
   relatedLinks?: { title: string; url: string }[];
   metaTitle?: string;
   metaDescription?: string;

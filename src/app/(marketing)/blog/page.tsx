@@ -36,7 +36,6 @@ async function getData(): Promise<Blog[]> {
 export default async function ArticlesIndex() {
   let blogs: Blog[] = await getData();
 
-  console.log(blogs);
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
       <Background />

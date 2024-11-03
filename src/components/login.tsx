@@ -46,7 +46,6 @@ export function LoginForm() {
 
   async function onSubmit(values: LoginUser) {
     try {
-      console.log("submitted form", values);
     } catch (e) {}
   }
 

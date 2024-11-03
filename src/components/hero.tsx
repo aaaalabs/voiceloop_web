@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Balancer from "react-wrap-balancer";
 import { Button } from "./button";
 import { HiArrowRight } from "react-icons/hi2";
@@ -11,8 +11,8 @@ import { Link } from "next-view-transitions";
 import { MvCurrentKpis } from "@/db";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { getOptimizedImageUrl } from "@/utils/imageKit";
-import Video from "next-video";
-import DemoVideo from "@v/connect.mp4";
+import { FilloutButton } from "./fillout-button";
+import { MapSection } from './map-section';
 
 export const Hero = ({
   currentKpis,
@@ -20,17 +20,6 @@ export const Hero = ({
   currentKpis: MvCurrentKpis | null;
 }) => {
   const router = useRouter();
-
-  // Add the Fillout script using useEffect
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://server.fillout.com/embed/v1/";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <div className="flex flex-col min-h-screen pt-20 md:pt-40 relative overflow-hidden">
@@ -126,18 +115,7 @@ export const Hero = ({
         }}
         className="flex items-center gap-4 justify-center mt-6 relative z-10"
       >
-        <Button
-          as="a"
-          href="#"
-          className="fillout-popup-button"
-          data-fillout-id="xearkoux1Xus"
-          data-fillout-embed-type="popup"
-          data-fillout-dynamic-resize
-          data-fillout-inherit-parameters
-          data-fillout-popup-size="medium"
-        >
-          Book a Demo
-        </Button>
+        <FilloutButton />
         <Button
           variant="simple"
           as={Link}
@@ -148,21 +126,7 @@ export const Hero = ({
           <HiArrowRight className="text-muted group-hover:translate-x-1 stroke-[1px] h-3 w-3 transition-transform duration-200 dark:text-muted-dark" />
         </Button>
       </motion.div>
-      {/* Placeholder Video Section */}
-      <div className="p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px] mt-20 relative">
-        <div className="absolute inset-x-0 bottom-0 h-40 w-full bg-gradient-to-t from-white via-white/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent z-10 pointer-events-none" />
-        <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] overflow-hidden">
-          <div className="relative w-full aspect-video">
-            <iframe
-              className="rounded-[20px] absolute inset-0 w-full h-full"
-              frameBorder="0"
-              allowFullScreen
-              allow="geolocation"
-              src="//umap.openstreetmap.fr/en/map/aaa-matchmaker-map-preview_1124433?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=false&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=false&onLoadPanel=none&captionBar=false&captionMenus=false&fullscreenControl=false&attributionControl=false&locateControl=false"
-            />
-          </div>
-        </div>
-      </div>
+      <MapSection />
     </div>
   );
 };

@@ -69,7 +69,14 @@ export function BlogLayout({
         <div className="mt-8 max-w-4xl mx-auto">
           {blog.image ? (
             <Image
-              src={urlFor(blog.image).url() || "/placeholder-image.jpg"} // Use urlFor to get the URL string
+              src={
+                urlFor(blog.image)
+                  .width(800)        // Sets image width to 800px
+                  .height(800)       // Sets image height to 800px
+                  .quality(80)       // Sets image quality to 80
+                  .format("webp")    // Converts image format to WebP if supported
+                  .url() || "/placeholder-image.jpg" // Use url() to get the URL string
+              }
               height="800"
               width="800"
               className="h-40 md:h-96 w-full aspect-square object-cover rounded-3xl"

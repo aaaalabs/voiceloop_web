@@ -83,8 +83,278 @@ export default {
       name: 'content',
       title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }],
-      validation: (Rule: Rule) => Rule.required(),
+      of: [
+        { type: 'block' },
+        {
+          type: 'object',
+          name: 'videoEmbed',
+          title: 'Video Embed',
+          fields: [
+            {
+              name: 'videoFile',
+              type: 'string',
+              title: 'Video File Name',
+              description: 'Enter the name of the video file from your videos folder (e.g., "connect.mp4")',
+              validation: (Rule: Rule) => Rule.required(),
+              options: {
+                list: [
+                  { title: 'Connect Video', value: 'connect.mp4' },
+                  { title: 'Placeholder Video', value: 'placerholder_video.mp4' }
+                ]
+              }
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the video'
+            },
+            {
+              name: 'autoPlay',
+              type: 'boolean',
+              title: 'Auto Play',
+              initialValue: false
+            },
+            {
+              name: 'loop',
+              type: 'boolean',
+              title: 'Loop Video',
+              initialValue: false
+            }
+          ],
+          preview: {
+            select: {
+              title: 'videoFile',
+              subtitle: 'caption'
+            },
+            prepare({ title, subtitle }: { title: string, subtitle?: string }) {
+              return {
+                title: `Video: ${title}`,
+                subtitle: subtitle || '',
+                media: null
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'spotifyEmbed',
+          title: 'Spotify',
+          fields: [
+            {
+              name: 'url',
+              type: 'url',
+              title: 'Spotify URL',
+              description: 'Enter the Spotify URL (track, album, playlist, or episode)',
+              validation: (Rule: Rule) => Rule.required().custom((url: string) => {
+                if (!url) return true;
+                const pattern = /^https:\/\/open\.spotify\.com\/(track|album|playlist|episode)\/[a-zA-Z0-9]+(\?.*)?$/;
+                if (!pattern.test(url)) {
+                  return 'Please enter a valid Spotify URL';
+                }
+                return true;
+              })
+            },
+            {
+              name: 'type',
+              type: 'string',
+              title: 'Embed Type',
+              options: {
+                list: [
+                  { title: 'Track', value: 'track' },
+                  { title: 'Album', value: 'album' },
+                  { title: 'Playlist', value: 'playlist' }
+                ]
+              },
+              validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'theme',
+              type: 'string',
+              title: 'Theme',
+              options: {
+                list: [
+                  { title: 'Light', value: 'light' },
+                  { title: 'Dark', value: 'dark' }
+                ]
+              },
+              initialValue: 'light'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'url'
+            },
+            prepare({ title }: { title: string }) {
+              return {
+                title: 'Spotify Embed',
+                subtitle: title
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'youtubeEmbed',
+          title: 'YouTube',
+          fields: [
+            {
+              name: 'url',
+              type: 'url',
+              title: 'YouTube URL',
+              description: 'Enter the YouTube video URL',
+              validation: (Rule: Rule) => Rule.required().custom((url: string) => {
+                if (!url) return true;
+                const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+                if (!pattern.test(url)) {
+                  return 'Please enter a valid YouTube URL';
+                }
+                return true;
+              })
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the video'
+            },
+            {
+              name: 'aspectRatio',
+              type: 'string',
+              title: 'Aspect Ratio',
+              options: {
+                list: [
+                  { title: '16:9', value: '16:9' },
+                  { title: '4:3', value: '4:3' },
+                  { title: '1:1', value: '1:1' }
+                ]
+              },
+              initialValue: '16:9'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'url',
+              subtitle: 'caption'
+            },
+            prepare({ title, subtitle }: { title: string, subtitle: string }) {
+              return {
+                title: 'YouTube Video',
+                subtitle: subtitle || title
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'imageEmbed',
+          title: 'Img',
+          fields: [
+            {
+              name: 'image',
+              type: 'image',
+              title: 'Image',
+              options: {
+                hotspot: true,
+                metadata: ['blurhash', 'lqip', 'palette'],
+                storeOriginalFilename: true,
+                accept: '.jpg,.jpeg,.png,.gif,.webp'
+              },
+              validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alt Text',
+              description: 'Alternative text for accessibility',
+              validation: (Rule: Rule) => Rule.required()
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the image'
+            },
+            {
+              name: 'layout',
+              type: 'string',
+              title: 'Layout',
+              options: {
+                list: [
+                  { title: 'Full Width', value: 'full' },
+                  { title: 'Center', value: 'center' },
+                  { title: 'Left', value: 'left' },
+                  { title: 'Right', value: 'right' }
+                ]
+              },
+              initialValue: 'full'
+            }
+          ],
+          preview: {
+            select: {
+              title: 'alt',
+              subtitle: 'caption',
+              media: 'image'
+            },
+            prepare({ title, subtitle, media }: { title: string | undefined, subtitle: string | undefined, media: any }) {
+              return {
+                title: 'Image: ' + (title || 'Untitled'),
+                subtitle: subtitle || '',
+                media: media
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'relatedLinksSection',
+          title: 'Related Links Section',
+          fields: [
+            {
+              name: 'title',
+              type: 'string',
+              title: 'Section Title',
+              initialValue: 'Related Links'
+            },
+            {
+              name: 'links',
+              type: 'array',
+              title: 'Links',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    {
+                      name: 'title',
+                      type: 'string',
+                      title: 'Link Title',
+                      validation: (Rule: Rule) => Rule.required()
+                    },
+                    {
+                      name: 'url',
+                      type: 'url',
+                      title: 'URL',
+                      validation: (Rule: Rule) => Rule.required()
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          preview: {
+            select: {
+              title: 'title'
+            },
+            prepare({ title = 'Untitled' }) {
+              return {
+                title: 'Related Links: ' + title,
+                media: null  // Optional: add if you want an icon
+              }
+            }
+          }
+        }
+      ],
+      validation: (Rule: Rule) => Rule.required()
     },
 
     // Related Links
@@ -111,9 +381,7 @@ export default {
               validation: (Rule: Rule) => Rule.required().uri({ allowRelative: false, scheme: ['http', 'https'] }),
             },
           ],
-          preview: {
-            select: { title: 'title', subtitle: 'url' },
-          },
+          preview: { title: 'title', subtitle: 'url' },
         },
       ],
       initialValue: [], // Default to an empty array

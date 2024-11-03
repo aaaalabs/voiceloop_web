@@ -17,14 +17,19 @@ export const metadata: Metadata = {
 
 async function getData(): Promise<Blog[]> {
   const query = `
-  *[_type == 'blog'] | order(_createdAt desc) {
-  title, smallDescription, "currentSlug": slug.current, titleImage, author {
-    name, src
-  }
-} `;
+  *[_type == 'blog'] | order(date desc) {
+    title, 
+    smallDescription, 
+    "currentSlug": slug.current, 
+    titleImage,
+    date,
+    author {
+      name, 
+      src
+    }
+  }`;
 
   const data = await client.fetch(query);
-
   return data;
 }
 

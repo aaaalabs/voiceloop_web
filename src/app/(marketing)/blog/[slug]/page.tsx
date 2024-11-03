@@ -8,6 +8,10 @@ import { BlurImage } from "@/components/blur-image";
 import { urlFor } from "@/lib/blog";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
+import { VideoEmbed } from '@/components/embeds/video-embed';
+import { SpotifyEmbed } from '@/components/embeds/spotify-embed';
+import { YouTubeEmbed } from '@/components/embeds/youtube-embed';
+import { ImageEmbed } from '@/components/embeds/image-embed';
 
 export const revalidate = 30;
 
@@ -15,13 +19,49 @@ async function getData(slug: string): Promise<Blog> {
   const query = `
   *[_type == "blog" && slug.current == $slug][0] {
     title,
-    content,
+    content[] {
+      ...,
+      _type == "videoEmbed" => {
+        _type,
+        videoFile,
+        caption,
+        autoPlay,
+        loop
+      },
+      _type == "spotifyEmbed" => {
+        _type,
+        url,
+        type,
+        theme
+      },
+      _type == "youtubeEmbed" => {
+        _type,
+        url,
+        caption,
+        aspectRatio
+      },
+      _type == "imageEmbed" => {
+        _type,
+        image,
+        alt,
+        caption,
+        layout
+      }
+    },
     titleImage,
     author->{
       name,
-      profilePicture
+      src
     },
-    _createdAt
+    _createdAt,
+    date,
+    readTime,
+    "topics": topics[]->title,
+    smallDescription,
+    metaTitle,
+    metaDescription,
+    keywords,
+    relatedLinks
   }`;
 
   const data = await client.fetch(query, { slug });
@@ -56,28 +96,39 @@ export default async function BlogPost({
 }) {
   const blog = await getData(params.slug);
 
-  console.log(blog.author);
+  const components = {
+    types: {
+      videoEmbed: VideoEmbed,
+      spotifyEmbed: SpotifyEmbed,
+      youtubeEmbed: YouTubeEmbed,
+      imageEmbed: ImageEmbed,
+    },
+  };
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">
       <Background />
       <Container className="flex flex-col items-center justify-between pb-20">
         <div className="relative z-20 py-10 md:pt-40 w-full max-w-3xl">
+          {blog.topics && blog.topics.length > 0 && (
+            <div className="flex flex-wrap gap-2 justify-center mb-6">
+              {blog.topics.map((topic: string) => (
+                <span
+                  key={topic}
+                  className="inline-flex px-3 py-1 rounded-full text-sm bg-primary/10 text-primary"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          )}
           <Heading as="h1" className="text-center mb-8">
             {blog.title}
           </Heading>
           <div className="flex items-center justify-center space-x-4 mb-8">
-            <Image
-              src={urlFor(blog.author.profilePicture).url() || ""}
-              alt={blog.author.name}
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <div>
-              <p className="text-sm font-semibold">{blog.author.name}</p>
+            <div className="text-center">
               <p className="text-sm text-muted">
-                {new Date(blog._createdAt).toLocaleDateString()}
+                {new Date(blog._createdAt).toLocaleDateString()} • {blog.readTime} min read
               </p>
             </div>
           </div>
@@ -91,8 +142,31 @@ export default async function BlogPost({
             />
           )}
           <div className="prose prose-xl dark:prose-invert max-w-none">
-            <PortableText value={blog.content} />
+            <PortableText 
+              value={blog.content} 
+              components={components}
+            />
           </div>
+          {blog.relatedLinks && blog.relatedLinks.length > 0 && (
+            <div className="mt-16 not-prose border-t dark:border-neutral-800 pt-8">
+              <h2 className="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 mb-6">
+                Related Links
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {blog.relatedLinks.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex px-4 py-2 rounded-full text-sm bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors text-neutral-800 dark:text-neutral-200"
+                  >
+                    {link.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </Container>
     </div>

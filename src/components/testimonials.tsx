@@ -7,7 +7,7 @@ import { TestimonialColumnContainer } from "./testimonial-column-container";
 import Image from "next/image";
 import { type Testimonial } from "@/db";
 import AvatarCircle from "@p/AvatarCircle.png";
-import { getOptimizedImageUrl } from '@/utils/imageKit';
+import { getOptimizedImageUrl } from "@/utils/imageKit";
 
 interface AvatarProps {
   image_url: string | null;
@@ -93,7 +93,7 @@ function Testimonial({
     <figure
       className={cn(
         "animate-fade-in rounded-3xl bg-transparent p-8 opacity-0 shadow-derek dark:bg-neutral-900",
-        className
+        className,
       )}
       style={{
         animationDelay,
@@ -148,7 +148,7 @@ function TestimonialColumn({
             career_stage={testimonial.career_stage}
             key={testimonialIndex}
             className={containerClassName?.(
-              testimonialIndex % testimonials.length
+              testimonialIndex % testimonials.length,
             )}
           />
         ))}
@@ -180,7 +180,7 @@ function TestimonialGrid({ testimonials }: { testimonials: Testimonial[] }) {
         containerClassName={(tIndex) =>
           cn(
             tIndex >= column1.length + column3[0].length && "md:hidden",
-            tIndex >= column1.length && "lg:hidden"
+            tIndex >= column1.length && "lg:hidden",
           )
         }
         shift={10}

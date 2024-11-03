@@ -1,5 +1,3 @@
-// grid-features.tsx
-
 "use client";
 import React from "react";
 import { useTheme } from "next-themes";
@@ -14,12 +12,20 @@ export const GridFeatures = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
         {features.map((feature, index) => {
           // Select the correct icon for each feature based on the theme
-          const icon = feature.iconLight && feature.iconDark
-            ? (theme === "dark" ? feature.iconDark : feature.iconLight)
-            : feature.icon;
+          const icon =
+            feature.iconLight && feature.iconDark
+              ? theme === "dark"
+                ? feature.iconDark
+                : feature.iconLight
+              : feature.icon;
 
           return (
-            <Feature key={feature.title} {...feature} index={index} icon={icon} />
+            <Feature
+              key={feature.title}
+              {...feature}
+              index={index}
+              icon={icon}
+            />
           );
         })}
       </div>
@@ -44,12 +50,14 @@ const Feature = ({
   const hasColon = colonIndex !== -1;
 
   const boldText = hasColon ? description.substring(0, colonIndex + 1) : "";
-  const restOfDescription = hasColon ? description.substring(colonIndex + 2) : description;
+  const restOfDescription = hasColon
+    ? description.substring(colonIndex + 2)
+    : description;
 
   return (
     <div
       className={`flex flex-col lg:border-r py-10 relative group dark:border-neutral-800 ${
-        (index === 0 || index === 4) ? "lg:border-l dark:border-neutral-800" : ""
+        index === 0 || index === 4 ? "lg:border-l dark:border-neutral-800" : ""
       } ${index < 4 ? "lg:border-b dark:border-neutral-800" : ""}`}
     >
       {index < 4 && (

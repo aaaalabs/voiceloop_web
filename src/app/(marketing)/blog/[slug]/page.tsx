@@ -13,7 +13,7 @@ import { SpotifyEmbed } from '@/components/embeds/spotify-embed';
 import { YouTubeEmbed } from '@/components/embeds/youtube-embed';
 import { ImageEmbed } from '@/components/embeds/image-embed';
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 async function getData(slug: string): Promise<Blog> {
   const query = `

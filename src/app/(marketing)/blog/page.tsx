@@ -23,6 +23,7 @@ async function getData(): Promise<Blog[]> {
     "currentSlug": slug.current, 
     titleImage,
     date,
+    "topics": topics[]->title,
     author {
       name, 
       src

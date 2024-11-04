@@ -115,7 +115,10 @@ export default async function BlogPost({
               {blog.topics.map((topic: string) => (
                 <span
                   key={topic}
-                  className="inline-flex px-3 py-1 rounded-full text-sm bg-primary/10 text-primary"
+                  className="inline-flex px-3 py-1 rounded-full text-sm font-medium transition-colors
+                    bg-[#FFE8E2] text-[#FF6B6B] border border-[#FF6B6B]/20
+                    dark:bg-[#F5F1EE] dark:text-[#1F2937] dark:border-[#1F2937]/20
+                    hover:bg-opacity-90 dark:hover:bg-opacity-90"
                 >
                   {topic}
                 </span>

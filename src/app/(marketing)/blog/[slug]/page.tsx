@@ -17,59 +17,23 @@ export const revalidate = 60;
 
 async function getData(slug: string): Promise<Blog> {
   const query = `
-  *[_type == "blog" && slug.current == $slug][0] {
-    title,
-    content[] {
-      ...,
-      _type == "videoEmbed" => {
-        _type,
-        videoFile,
-        caption,
-        autoPlay,
-        loop
-      },
-      _type == "spotifyEmbed" => {
-        _type,
-        url,
-        type,
-        theme
-      },
-      _type == "youtubeEmbed" => {
-        _type,
-        url,
-        caption,
-        aspectRatio
-      },
-      _type == "imageEmbed" => {
-        _type,
-        image,
-        alt,
-        caption,
-        layout
-      }
-    },
+  *[_type == 'blog' && slug.current == $slug][0] {
+    title, 
+    smallDescription, 
+    "currentSlug": slug.current, 
     titleImage,
-    author->{
-      name,
-      src
-    },
-    _createdAt,
+    content,
     date,
     readTime,
+    relatedLinks,
     "topics": topics[]->title,
-    smallDescription,
-    metaTitle,
-    metaDescription,
-    keywords,
-    relatedLinks
+    author {
+      name, 
+      src
+    }
   }`;
 
   const data = await client.fetch(query, { slug });
-
-  if (!data) {
-    notFound();
-  }
-
   return data;
 }
 
@@ -131,18 +95,20 @@ export default async function BlogPost({
           <div className="flex items-center justify-center space-x-4 mb-8">
             <div className="text-center">
               <p className="text-sm text-muted">
-                {new Date(blog._createdAt).toLocaleDateString()} • {blog.readTime} min read
+                {new Date(blog.date).toLocaleDateString()} • {blog.readTime} min read
               </p>
             </div>
           </div>
           {blog.titleImage && (
-            <BlurImage
-              src={urlFor(blog.titleImage).url() || ""}
-              alt={blog.title}
-              width={800}
-              height={400}
-              className="rounded-lg mb-8 w-full"
-            />
+            <div className="relative -mx-[10%] mb-8">
+              <BlurImage
+                src={urlFor(blog.titleImage).url() || ""}
+                alt={blog.title}
+                width={800}
+                height={400}
+                className="rounded-lg w-full"
+              />
+            </div>
           )}
           <div className="prose prose-xl dark:prose-invert max-w-none">
             <PortableText 

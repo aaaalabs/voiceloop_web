@@ -9,9 +9,9 @@ import { BlogCard } from "@/components/blog-card";
 export const metadata: Metadata = {
   title: "voiceloop | amplify what matters",
   description:
-    "VoiceLoop empowers community leaders to focus on authentic connections. Our AI filters the noise, delivers key insights, and saves time - amplifying your community's impact without the overwhelm. Experience effortless growth and engagement today.",
+    "Re-humanize your community with VoiceLoop. We use AI to cut the noise and amplify what matters - genuine human connections.",
   openGraph: {
-    images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
+    images: ["/social.webp"],
   },
 };
 

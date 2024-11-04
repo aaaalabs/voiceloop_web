@@ -31,7 +31,7 @@ export const BlogCard = ({ blog }: { blog: Blog }) => {
       </div>
       <div className="p-4 md:p-8 bg-white dark:bg-neutral-900">
         {/* Date and First Topic */}
-        <div className="flex items-center space-x-2 text-xs text-[#1d333b] mb-2">
+        <div className="flex items-center space-x-2 text-xs text-[#1d333b] mb-1">
           <span>{format(new Date(blog.date), "MMM d, yyyy")}</span>
           <span>●</span>
           {blog.topics?.[0] && <span>{blog.topics[0]}</span>}

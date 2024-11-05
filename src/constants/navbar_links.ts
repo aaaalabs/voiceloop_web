@@ -4,6 +4,10 @@ const navItems = [
     link: "/blog",
   },
   {
+    title: "Podcast",
+    link: "/podcast",
+  },
+  {
     title: "Contact",
     link: "/contact",
   },

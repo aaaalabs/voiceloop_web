@@ -954,6 +954,16 @@ export type Database = {
         }
         Relationships: []
       }
+      spotlights_view: {
+        Row: {
+          name: string | null
+          career_stage: string | null
+          spotlight_text: string | null
+          spotlight_image_url: string | null
+          spotlight_date: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_profile_to_scrape: {

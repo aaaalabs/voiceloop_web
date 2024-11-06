@@ -8,6 +8,10 @@ const navItems = [
     link: "/podcast",
   },
   {
+    title: "Spotlight",
+    link: "/spotlight",
+  },
+  {
     title: "Contact",
     link: "/contact",
   },

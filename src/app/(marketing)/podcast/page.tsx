@@ -20,7 +20,7 @@ export default function PodcastPage({ episodes }: { episodes: PodcastEpisode[] }
         <div className="relative z-20 py-10 md:pt-40">
           <Heading as="h1">Podcast</Heading>
           <Subheading className="text-center">
-            Join us as we explore community building and human connections
+            Join us as we explore Community Building and Human Connections
           </Subheading>
         </div>
 

@@ -43,8 +43,8 @@ export function SpotlightGrid({ spotlights }: { spotlights: Spotlight[] }) {
       <AnimatePresence mode="popLayout">
         {sortedSpotlights.map((spotlight, index) => (
           <motion.div
-            key={spotlight.name}
-            layoutId={spotlight.name}
+            key={spotlight.name ?? ""}
+            layoutId={spotlight.name ?? ""}
             custom={index}
             variants={variants}
             onClick={() => handleSpotlightClick(index)}

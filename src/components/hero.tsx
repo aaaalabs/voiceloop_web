@@ -25,7 +25,7 @@ export const Hero = ({
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ ease: "easeOut", duration: 0.5 }}
+        transition={{ ease: "easeOut", duration: 0.9 }}
         className="text-center mb-6"
       >
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block">
@@ -43,8 +43,22 @@ export const Hero = ({
       >
         <Balancer>
           Re&#8209;humanize<br />
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Digital Communities
+          <span className="relative">
+            <motion.span
+              initial={{ backgroundPosition: "0% 50%" }}
+              animate={{ 
+                backgroundPosition: ["0% 50%", "200% 50%", "0% 50%"],
+              }}
+              transition={{ 
+                duration: 15,
+                repeat: Infinity,
+                ease: "easeOut"
+              }}
+              className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 
+              bg-[size:300%] bg-clip-text text-transparent"
+            >
+              Digital Communities
+            </motion.span>
           </span>
         </Balancer>
       </motion.h1>

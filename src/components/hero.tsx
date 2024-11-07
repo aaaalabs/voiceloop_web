@@ -22,35 +22,53 @@ export const Hero = ({
 
   return (
     <div className="max-w-[1200px] mx-auto px-3 xxs:px-4 sm:px-8 flex flex-col min-h-screen pt-32 xxs:pt-30 sm:pt-32 md:pt-48 relative">
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeOut", duration: 0.5 }}
+        className="text-center mb-6"
+      >
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block">
+          <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+            Join the re-humanization movement • First case study results in
+          </p>
+        </div>
+      </motion.div>
+
       <motion.h1
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
-        className="text-5xl xxs:text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-11xl font-black tracking-[-0.01em] leading-[0.9] sm:leading-none max-w-6xl mx-auto text-center relative z-10 antialiased px-2 xxs:px-4"
+        className="text-3xl xxs:text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[-0.01em] leading-[1.1] sm:leading-tight max-w-6xl mx-auto text-center relative z-10 antialiased"
       >
-        <Balancer>Re&#8209;humanize.</Balancer>
+        <Balancer>
+          Re&#8209;humanize<br />
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Digital Communities
+          </span>
+        </Balancer>
       </motion.h1>
-      
-      <motion.h2
+
+      <motion.p
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
-        className="text-xl xs:text-2xl sm:text-3xl md:text-[2.75rem] lg:text-[3rem] font-medium tracking-[-0.02em] max-w-6xl mx-auto text-center mt-8 sm:mt-[10vh] relative z-10 text-muted dark:text-muted-dark px-4"
+        className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-center mt-8 mb-12"
       >
         <Balancer>
-          <div className="mb-2 sm:mb-3">Cut Noise.</div>
-          <div>Find Signal.</div>
+          We're building a future where AI enhances human connection, not replaces it. 
+          Where digital communities foster real relationships, not just engagement metrics.
         </Balancer>
-      </motion.h2>
+      </motion.p>
 
       <motion.div
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 0.5, delay: 0.2 }}
-        className="text-center mt-8 sm:mt-12 md:mt-14 text-sm sm:text-base md:text-lg text-muted dark:text-muted-dark max-w-3xl mx-auto relative z-10 px-4"
+        className="text-center mt-8 sm:mt-12 md:mt-14 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto relative z-10 px-4"
       >
         <div className="flex items-center justify-center flex-wrap gap-2">
-          <span className="text-primary-600 dark:text-primary-400 text-xl font-medium">
+          <span className="text-blue-600 dark:text-blue-400 text-2xl font-semibold">
             {currentKpis?.product_variants_delivered}{" "}
           </span>
           connections made for{" "}
@@ -69,8 +87,12 @@ export const Hero = ({
                 </Avatar>
               ))}
           </div>
-          <span className="text-primary-600 dark:text-primary-400 text-xl font-medium">{currentKpis?.members}</span>{" "}
-          community members
+          <span className="whitespace-nowrap">
+            <span className="text-blue-600 dark:text-blue-400 text-2xl font-semibold">
+              {currentKpis?.members}
+            </span>{" "}
+            community members
+          </span>
         </div>
       </motion.div>
 
@@ -84,7 +106,7 @@ export const Hero = ({
           variant="primary"
           as="a"
           href="https://voiceloop.fillout.com/t/jwmqMMXUsnus"
-          className="w-full sm:w-auto text-lg sm:text-xl px-8 sm:px-14 py-5 sm:py-6 transition-all duration-200 hover:scale-[1.02]"
+          className="w-full sm:w-auto text-xl sm:text-2xl px-8 sm:px-14 py-5 sm:py-6 font-semibold transition-all duration-200 hover:scale-[1.02]"
         >
           Book a Demo
         </Button>
@@ -92,10 +114,10 @@ export const Hero = ({
           variant="simple"
           as={Link}
           href="https://connect.voiceloop.io/"
-          className="w-full sm:w-auto flex items-center justify-center group text-lg sm:text-xl px-8 sm:px-14 py-5 sm:py-6 transition-all duration-200 text-muted/80 dark:text-muted-dark/80"
+          className="w-full sm:w-auto flex items-center justify-center group text-xl sm:text-2xl px-8 sm:px-14 py-5 sm:py-6 font-semibold transition-all duration-200 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
         >
           <span>See AAA Case Study</span>
-          <HiArrowRight className="text-muted/70 group-hover:translate-x-1 stroke-[1px] h-5 w-5 transition-transform duration-200 dark:text-muted-dark/70 ml-2 relative top-[1px]" />
+          <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-6 w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
         </Button>
       </motion.div>
       <MapSection />

@@ -54,7 +54,7 @@ export const Testimonials = ({
   testimonials: Testimonial[];
 }) => {
   return (
-    <div className="relative z-20 py-10 md:py-40">
+    <div className="relative z-20 py-10 md:py-40" id="testimonials">
       <Heading as="h2">Loved by Community Leaders and Members</Heading>
       <Subheading className="text-center max-w-lg mx-auto">
         See how VoiceLoop is transforming community engagement and saving time

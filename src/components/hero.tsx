@@ -12,6 +12,7 @@ import { MvCurrentKpis } from "@/db";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { getOptimizedImageUrl } from "@/utils/imageKit";
 import { MapSection } from './map-section';
+import { GradientButton } from "./ui/gradient-button";
 
 export const Hero = ({
   currentKpis,
@@ -28,11 +29,11 @@ export const Hero = ({
         transition={{ ease: "easeOut", duration: 0.9 }}
         className="text-center mb-6"
       >
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block">
+    <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block">
           <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-            Join the re-humanization movement • First case study results in
+          Be Part of the Re-humanization Movement – See Our First Case Study Results
           </p>
-        </div>
+        </div> 
       </motion.div>
 
       <motion.h1
@@ -42,7 +43,7 @@ export const Hero = ({
         className="text-3xl xxs:text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[-0.01em] leading-[1.1] sm:leading-tight max-w-6xl mx-auto text-center relative z-10 antialiased"
       >
         <Balancer>
-          Re&#8209;humanize<br />
+          Stop Losing Members<br />
           <span className="relative">
             <motion.span
               initial={{ backgroundPosition: "0% 50%" }}
@@ -57,7 +58,7 @@ export const Hero = ({
               className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 
               bg-[size:300%] bg-clip-text text-transparent"
             >
-              Digital Communities
+              Start Growing Revenue
             </motion.span>
           </span>
         </Balancer>
@@ -67,11 +68,10 @@ export const Hero = ({
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
-        className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-center mt-8 mb-12"
+        className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 max-w-2xl mx-auto text-center mt-8 mb-12"
       >
         <Balancer>
-          We're building a future where AI enhances human connection, not replaces it. 
-          Where digital communities foster real relationships, not just engagement metrics.
+          Harness AI to Build Lasting Connections, Not Just Numbers.
         </Balancer>
       </motion.p>
 
@@ -85,7 +85,7 @@ export const Hero = ({
           <span className="text-blue-600 dark:text-blue-400 text-2xl font-semibold">
             {currentKpis?.product_variants_delivered}{" "}
           </span>
-          connections made for{" "}
+          Matches in 3 Month for{" "}
           <div className="flex -space-x-2 sm:-space-x-3 mx-2">
             {currentKpis?.random_image_urls
               ?.filter((url) => url && url.trim() !== "")
@@ -105,7 +105,7 @@ export const Hero = ({
             <span className="text-blue-600 dark:text-blue-400 text-2xl font-semibold">
               {currentKpis?.members}
             </span>{" "}
-            community members
+            Thriving Entrepeneurs Worldwide
           </span>
         </div>
       </motion.div>
@@ -116,21 +116,27 @@ export const Hero = ({
         transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
         className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 justify-center mt-8 sm:mt-12 md:mt-16 relative z-10 px-4"
       >
-        <Button
-          variant="primary"
-          as="a"
-          href="https://voiceloop.fillout.com/t/jwmqMMXUsnus"
-          className="w-full sm:w-auto text-xl sm:text-2xl px-8 sm:px-14 py-5 sm:py-6 font-semibold transition-all duration-200 hover:scale-[1.02]"
+        <GradientButton
+          containerClassName="w-full sm:w-auto"
+          className="w-full sm:w-auto font-medium"
+          onClick={() => {
+            window.location.href = "https://voiceloop.fillout.com/t/jwmqMMXUsnus";
+          }}
         >
-          Book a Demo
-        </Button>
+          Unlock Your Retention Strategy
+        </GradientButton>
+        
         <Button
           variant="simple"
-          as={Link}
-          href="https://connect.voiceloop.io/"
-          className="w-full sm:w-auto flex items-center justify-center group text-xl sm:text-2xl px-8 sm:px-14 py-5 sm:py-6 font-semibold transition-all duration-200 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+          onClick={() => {
+            const element = document.getElementById('testimonials');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className="w-full sm:w-auto flex items-center justify-center group text-xl px-8 sm:px-14 py-5 sm:py-6 font-medium transition-all duration-200 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
         >
-          <span>See AAA Case Study</span>
+          <span>Success Stories</span>
           <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-6 w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
         </Button>
       </motion.div>

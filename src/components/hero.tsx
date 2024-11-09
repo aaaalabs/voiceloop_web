@@ -11,7 +11,7 @@ import { Link } from "next-view-transitions";
 import { MvCurrentKpis } from "@/db";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { getOptimizedImageUrl } from "@/utils/imageKit";
-import { MapSection } from './map-section';
+import { FlowchartEmbed } from './flowchart-embed';
 import { GradientButton } from "./ui/gradient-button";
 
 export const Hero = ({
@@ -140,7 +140,7 @@ export const Hero = ({
           <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-6 w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
         </Button>
       </motion.div>
-      <MapSection />
+      <FlowchartEmbed />
     </div>
   );
 };

@@ -16,6 +16,8 @@ import {
   getLatestBlogPost,
 } from "@/db";
 import { Suspense } from "react";
+import { FlowchartEmbed } from "@/components/flowchart-embed";
+import { MapSection } from "@/components/map-section";
 
 // ! This is the best version but NextJS keeps throwing an DynamicServerError
 // async function fetchConcurrently(): Promise<{
@@ -63,6 +65,7 @@ export default async function Home() {
       <Container className="flex min-h-screen flex-col items-center justify-between">
         <Hero currentKpis={currentKpis} />
         <GridFeatures />
+        <MapSection />
         <Testimonials testimonials={testimonials} />
       </Container>
       <div className="relative">

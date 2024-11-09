@@ -17,7 +17,7 @@ export const GridFeatures = () => {
               ? theme === "dark"
                 ? feature.iconDark
                 : feature.iconLight
-              : feature.icon;
+              : feature.iconLight;
 
           return (
             <Feature

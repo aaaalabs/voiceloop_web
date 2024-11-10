@@ -5,7 +5,7 @@ import { Button } from "./button";
 
 export const CTA = () => {
   return (
-    <section className="py-60 w-full overflow-hidden relative z-30">
+    <section id="aaa-cta-section" className="py-60 w-full overflow-hidden relative z-30">
       <div className="bg-white dark:bg-black">
         <div className="mx-auto w-full relative z-20 sm:max-w-[40rem] md:max-w-[48rem] lg:max-w-[64rem] xl:max-w-[80rem] bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-[24px] overflow-hidden">
           {/* Decorative elements */}

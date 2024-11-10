@@ -1,16 +1,4 @@
 const links = [
-  // {
-  //   name: "Pricing",
-  //   href: "/pricing",
-  // },
-  // {
-  //   name: "Contact",
-  //   href: "/contact",
-  // },
-  // {
-  //   name: "Blog",
-  //   href: "/blog",
-  // },
   {
     name: "Roadmap",
     href: "https://voiceloop.canny.io/feature-requests",
@@ -20,6 +8,26 @@ const links = [
     href: "/contact",
   },
 ];
+
+const content = [
+  {
+    name: "Blog",
+    href: "/blog",
+  },
+  {
+    name: "Podcast",
+    href: "/podcast",
+  },
+  {
+    name: "Spotlight",
+    href: "/spotlight",
+  },
+  {
+    name: "Map",
+    href: "/map",
+  },
+];
+
 const legal = [
   {
     name: "Privacy Policy",
@@ -34,6 +42,7 @@ const legal = [
     href: "/legal/disclaimer",
   },
 ];
+
 const socials = [
   {
     name: "LinkedIn",
@@ -43,14 +52,6 @@ const socials = [
     name: "Youtube",
     href: "https://www.youtube.com/@voiceloop",
   },
-  // {
-  //   name: "Twitter",
-  //   href: "https://twitter.com/mannupaaji",
-  // },
-  // {
-  //   name: "GitHub",
-  //   href: "https://github.com/manuarora700",
-  // },
 ];
 
-export { links, legal, socials };
+export { links, content, legal, socials };

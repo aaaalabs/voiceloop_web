@@ -18,6 +18,8 @@ import {
 import { Suspense } from "react";
 import { FlowchartEmbed } from "@/components/flowchart-embed";
 import { MapSection } from "@/components/map-section";
+import { FilloutEmbed } from "@/components/fillout-embed";
+import { CalendarSection } from "@/components/calendar-section";
 
 // ! This is the best version but NextJS keeps throwing an DynamicServerError
 // async function fetchConcurrently(): Promise<{
@@ -64,8 +66,23 @@ export default async function Home() {
       </div>
       <Container className="flex min-h-screen flex-col items-center justify-between">
         <Hero currentKpis={currentKpis} />
+        <div className="mt-24 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            The Perfect Blend of AI & Human Touch
+          </h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            Six powerful tools working in harmony to transform new members into engaged community champions
+          </p>
+        </div>
         <GridFeatures />
-        <MapSection />
+        <div className="mt-24 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Trusted by teams worldwide
+          </h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            See what others are saying about their experience
+          </p>
+        </div>
         <Testimonials testimonials={testimonials} />
       </Container>
       <div className="relative">
@@ -73,6 +90,7 @@ export default async function Home() {
           <Background />
         </div>
         <CTA />
+        <CalendarSection />
       </div>
     </div>
   );

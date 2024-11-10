@@ -1,23 +1,30 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { features } from "@/constants/features";
 import Image from "next/image";
 
 export const GridFeatures = () => {
-  const { theme } = useTheme(); // Get the current theme ("light" or "dark")
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center w-full relative z-10 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
         {features.map((feature, index) => {
-          // Select the correct icon for each feature based on the theme
-          const icon =
-            feature.iconLight && feature.iconDark
-              ? theme === "dark"
-                ? feature.iconDark
-                : feature.iconLight
-              : feature.iconLight;
+          const icon = feature.iconLight && feature.iconDark
+            ? (resolvedTheme === "dark" || theme === "dark")
+              ? feature.iconDark
+              : feature.iconLight
+            : feature.iconLight;
 
           return (
             <Feature

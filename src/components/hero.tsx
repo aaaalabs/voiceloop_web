@@ -21,6 +21,23 @@ export const Hero = ({
 }) => {
   const router = useRouter();
 
+  const scrollToCalendar = () => {
+    const element = document.getElementById('calendar-section');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const scrollToCTA = () => {
+    const element = document.getElementById('aaa-cta-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="max-w-[1200px] mx-auto px-3 xxs:px-4 sm:px-8 flex flex-col min-h-screen pt-32 xxs:pt-30 sm:pt-32 md:pt-48 relative">
       <motion.div
@@ -118,26 +135,19 @@ export const Hero = ({
       >
         <GradientButton
           containerClassName="w-full sm:w-auto"
-          className="w-full sm:w-auto font-medium"
-          onClick={() => {
-            window.location.href = "https://voiceloop.fillout.com/t/jwmqMMXUsnus";
-          }}
+          className="w-full sm:w-auto text-base sm:text-lg py-5 sm:py-6 px-8 sm:px-14 font-medium"
+          onClick={scrollToCalendar}
         >
-          Unlock Your Retention Strategy
+          Book Free Strategy Call
         </GradientButton>
         
         <Button
           variant="simple"
-          onClick={() => {
-            const element = document.getElementById('testimonials');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="w-full sm:w-auto flex items-center justify-center group text-xl px-8 sm:px-14 py-5 sm:py-6 font-medium transition-all duration-200 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+          onClick={scrollToCTA}
+          className="w-full sm:w-auto flex items-center justify-center group text-base sm:text-lg px-8 sm:px-14 py-5 sm:py-6 font-medium transition-all duration-200 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700"
         >
-          <span>Success Stories</span>
-          <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-6 w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
+          <span>Join AAA Beta</span>
+          <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
         </Button>
       </motion.div>
       <FlowchartEmbed />

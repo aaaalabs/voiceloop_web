@@ -12,6 +12,10 @@ const navItems = [
     link: "/spotlight",
   },
   {
+    title: "Map",
+    link: "/map",
+  },
+  {
     title: "Contact",
     link: "/contact",
   },

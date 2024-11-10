@@ -1,0 +1,475 @@
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import { ChevronRight, ChevronLeft, Sparkles, Clock, Target, Users, LinkedinIcon, MessageCircle, Loader2, PenLine } from "lucide-react";
+import Balancer from "react-wrap-balancer";
+import { Button } from "@/components/button";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocalStorage } from '@/hooks/use-local-storage';
+import { Analytics } from '@/lib/analytics';
+import { toast } from 'sonner';
+import { z } from 'zod';
+import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
+import ErrorBoundary from '@/components/error-boundary';
+import { Testimonials } from '@/components/testimonials';
+import { MinimalFooter } from '@/components/minimal-footer';
+import { getCurrentKpis, type MvCurrentKpis } from "@/db";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import confetti from 'canvas-confetti';
+
+interface FormData {
+  name: string;
+  email: string;
+  linkedin: string;
+  aaaProfile: string;
+  preferredContact: 'email' | 'linkedin' | 'aaa';
+}
+
+interface Challenge {
+  id: string;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}
+
+interface Testimonial {
+  id: string;
+  name: string | null;
+  career_stage: string | null;
+  content: string | null;
+  image_url: string | null;
+  logo_url: string | null;
+}
+
+// Form validation schema
+const formSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Please enter a valid email'),
+  linkedin: z.string().url().optional(),
+  aaaProfile: z.string().url().optional(),
+  preferredContact: z.enum(['email', 'linkedin', 'aaa'])
+});
+
+interface SurveyPageProps {
+  currentKpis: MvCurrentKpis | null;
+  testimonials: Testimonial[];
+  userName: string;
+  userId: string;
+}
+
+export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: SurveyPageProps) => {
+  const [step, setStep] = useState(0);
+  const [choice, setChoice] = useState<string | null>(null);
+  const [stayLonger, setStayLonger] = useState<string | null>(null);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [customChallenge, setCustomChallenge] = useState<string>('');
+  const [showCustomModal, setShowCustomModal] = useState(false);
+  const startTime = useRef(performance.now());
+
+  const challenges: Challenge[] = [
+    {
+      id: 'networking',
+      icon: Users,
+      title: 'Meaningful Connections',
+      description: 'Find and connect with the right people for collaborations and growth opportunities'
+    },
+    {
+      id: 'accountability',
+      icon: Target,
+      title: 'Staying Accountable',
+      description: 'Having someone to share progress and challenges with'
+    },
+    {
+      id: 'time',
+      icon: Clock,
+      title: 'Time Management',
+      description: 'Making the most of my limited time in the program'
+    },
+    {
+      id: 'custom',
+      icon: PenLine,
+      title: 'Something Else',
+      description: 'Share your specific challenge...'
+    }
+  ];
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const response = await fetch('https://hook.eu1.make.com/pfpw4duxtcysfdtg60sei97s8t507pj7', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: userId,
+          name: userName,
+          selectedChallenge: choice,
+          customChallenge: choice === 'custom' ? customChallenge : null,
+          stayLongerResponse: stayLonger,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) throw new Error('Submission failed');
+
+      // Track successful submission
+      Analytics.track('form_submitted', { 
+        timeToComplete: performance.now() - startTime.current,
+      });
+
+      await new Promise(resolve => setTimeout(resolve, 800));
+      confetti();
+      toast.success('Survey submitted successfully!');
+      setShowThankYou(true);
+    } catch (error) {
+      setError('Something went wrong. Please try again.');
+      toast.error('Failed to submit survey');
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Render thank you page with personalized message
+  const renderThankYou = () => (
+    <motion.div 
+      className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 text-center max-w-xl mx-auto"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ type: "spring", duration: 0.6 }}
+    >
+      <motion.div 
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", duration: 0.6, delay: 0.2 }}
+        className="inline-flex items-center justify-center w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full mb-6"
+      >
+        <Sparkles className="w-10 h-10 text-green-600 dark:text-green-400" />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <motion.h3
+          initial={{ backgroundPosition: "0% 50%" }}
+          animate={{ 
+            backgroundPosition: ["0% 50%", "200% 50%", "0% 50%"],
+          }}
+          transition={{ 
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeOut"
+          }}
+          className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 
+          bg-[size:300%] bg-clip-text text-transparent"
+        >
+          Thank you, {userName}!
+        </motion.h3>
+        <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300">
+          We appreciate your valuable feedback<br />
+          and will be in touch soon with updates about new features.
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+
+  // Modified step 2 to include submit button
+  const renderStep2 = () => (
+    <div className="space-y-6">
+      <h4 className="text-lg font-semibold text-center mb-6 dark:text-white">
+        Your biggest challenge:
+      </h4>
+      
+      {/* Summary Box */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-8 
+        border-2 border-orange-400/70 dark:border-orange-500/50
+        shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]
+        ring-1 ring-orange-400/20 dark:ring-orange-500/20">
+        <div className="flex items-start gap-3">
+          {choice && challenges.find(c => c.id === choice)?.icon && (
+            <div className="p-2.5 rounded-lg bg-orange-100 dark:bg-orange-900/30">
+              {React.createElement(challenges.find(c => c.id === choice)?.icon || Users, {
+                className: "w-6 h-6 text-orange-600 dark:text-orange-400"
+              })}
+            </div>
+          )}
+          <div>
+            <div className="font-semibold text-lg text-gray-900 dark:text-white">
+              {choice === 'custom' 
+                ? 'Custom Challenge'
+                : challenges.find(c => c.id === choice)?.title}
+            </div>
+            <div className="text-base text-gray-600 dark:text-gray-300 mt-1">
+              {choice === 'custom' 
+                ? customChallenge
+                : challenges.find(c => c.id === choice)?.description}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h4 className="text-lg font-semibold text-center mb-6 dark:text-white">
+        If we solved this for you, would you stay longer in AAA?
+      </h4>
+      <div className="space-y-4">
+        {['Absolutely!', 'Maybe', 'Not really'].map((option, index) => (
+          <motion.button
+            key={option}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              setStayLonger(option);
+              handleSubmit();
+            }}
+            disabled={isSubmitting}
+            className={`w-full p-6 rounded-xl border-2 transition-all duration-200 bg-white dark:bg-gray-800 shadow-md hover:shadow-xl ${
+              stayLonger === option 
+                ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-900/50 shadow-blue-100 dark:shadow-blue-900/20' 
+                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
+            }`}
+          >
+            <span className="text-lg font-medium dark:text-white">{option}</span>
+          </motion.button>
+        ))}
+      </div>
+      
+      {/* Back Button */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        onClick={() => setStep(0)}
+        className="mx-auto mt-8 flex items-center gap-2 px-4 py-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        Back to previous question
+      </motion.button>
+    </div>
+  );
+
+  // Add renderStep1 function
+  const renderStep1 = () => (
+    <div className="space-y-4">
+      <h4 className="text-lg font-semibold text-center mb-6 dark:text-white">
+        Which challenge, if solved, would make everything else easier?
+      </h4>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {challenges.map((item, index) => (
+          <motion.button
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(0,0,0,0.12)" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              if (item.id === 'custom') {
+                setShowCustomModal(true);
+              } else {
+                setChoice(item.id);
+                setStep(1); // Immediately advance to step 2 for non-custom choices
+              }
+            }}
+            className={`p-6 rounded-xl border-2 transition-all duration-200 text-left bg-white dark:bg-gray-800 shadow-md hover:shadow-xl ${
+              choice === item.id 
+                ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-900/50 shadow-blue-100 dark:shadow-blue-900/20' 
+                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
+            }`}
+          >
+            <div className="flex items-start gap-3">
+              <div className={`p-2 rounded-lg ${
+                choice === item.id ? 'bg-blue-100 dark:bg-blue-900' : 'bg-gray-100 dark:bg-gray-800'
+              }`}>
+                <item.icon className={`w-5 h-5 ${
+                  choice === item.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'
+                }`} />
+              </div>
+              <div>
+                <div className="font-medium dark:text-white">{item.title}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  {item.description}
+                </div>
+              </div>
+            </div>
+          </motion.button>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <ErrorBoundary fallback={<ErrorFallback />}>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black">
+        <Head>
+          <title>AAA Community Survey</title>
+          <meta name="description" content="Help shape the future of AAA Community by sharing your insights" />
+          <meta name="keywords" content="AAA, community, survey, feedback" />
+          <meta property="og:title" content="AAA Community Survey" />
+          <meta property="og:description" content="Share your insights to help us build exactly what you need" />
+        </Head>
+
+        {/* Only show header if not showing thank you message */}
+        {!showThankYou && (
+          <div className="pt-12 pb-8 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Hi {userName}!
+              <br />
+              Help Shape the Future of
+              <br />
+              <motion.span
+                initial={{ backgroundPosition: "0% 50%" }}
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "200% 50%", "0% 50%"],
+                }}
+                transition={{ 
+                  duration: 15,
+                  repeat: Infinity,
+                  ease: "easeOut"
+                }}
+                className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 
+                bg-[size:300%] bg-clip-text text-transparent"
+              >
+                our AAA Accelerator
+              </motion.span>
+            </h1>
+          </div>
+        )}
+
+        {/* Main survey content */}
+        <AnimatePresence mode="sync">
+          {showThankYou ? (
+            <div className="h-screen flex items-center justify-center px-4">
+              {renderThankYou()}
+            </div>
+          ) : (
+            <div className="max-w-2xl mx-auto px-4 mb-20 min-h-[500px] flex items-center justify-center">
+              {step === 0 && renderStep1()}
+              {step === 1 && renderStep2()}
+            </div>
+          )}
+        </AnimatePresence>
+
+        {/* Only show testimonials and CTA if not in thank you state */}
+        {!showThankYou && (
+          <>
+            {/* Social Proof Section */}
+            <div className="bg-white dark:bg-black py-20">
+              <div className="max-w-6xl mx-auto px-4 text-center">
+                <h3 className="text-2xl font-bold mb-8 dark:text-white">
+                  Join these AAA members in shaping the future
+                </h3>
+                <Testimonials testimonials={testimonials}/>
+              </div>
+            </div>
+
+            {/* CTA Banner */}
+            <div className="bg-white dark:bg-black py-24">
+              <div className="mx-auto w-full relative z-20 sm:max-w-[40rem] md:max-w-[48rem] lg:max-w-[64rem] xl:max-w-[80rem] bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-[24px] overflow-hidden">
+                {/* Decorative elements */}
+                <div className="absolute inset-0 w-full h-full">
+                  <div className="absolute -right-20 -top-20 w-60 h-60 rounded-full bg-blue-400 dark:bg-blue-500 opacity-10 mix-blend-multiply" />
+                  <div className="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-purple-400 dark:bg-purple-500 opacity-10 mix-blend-multiply" />
+                </div>
+
+                {/* Content container */}
+                <div className="relative px-6 py-16 sm:py-20 sm:px-12 text-center">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">
+                    Ready to help shape the future of our Community?
+                  </h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Your insights will directly influence the features we build next.
+                  </p>
+                  <div className="flex justify-center">
+                    <Button 
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="group relative px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300 rounded-full shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-0.5"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        Take the Survey
+                        <svg 
+                          className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          />
+                        </svg>
+                      </span>
+                      <div className="absolute inset-0 rounded-full bg-white/20 blur-sm group-hover:blur-md transition-all duration-300" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Footer */}
+        <MinimalFooter />
+
+        {/* Toast notifications container */}
+        <Toaster position="bottom-right" />
+
+        {/* Custom Challenge Modal */}
+        <Dialog open={showCustomModal} onOpenChange={setShowCustomModal}>
+          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl">
+            <DialogHeader className="border-b border-gray-100 dark:border-gray-800 pb-4">
+              <DialogTitle className="text-xl font-semibold dark:text-white">Describe Your Challenge</DialogTitle>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="space-y-2">
+                <textarea
+                  placeholder="What's your biggest challenge in AAA?"
+                  className="w-full p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors"
+                  rows={3}
+                  value={customChallenge}
+                  onChange={(e) => setCustomChallenge(e.target.value)}
+                />
+                {customChallenge.length <= 1 && (
+                  <p className="text-sm text-red-500">Please provide more detail about your challenge</p>
+                )}
+              </div>
+              <Button
+                onClick={() => {
+                  if (customChallenge.length > 1) {
+                    setShowCustomModal(false);
+                    setStep(1);
+                  }
+                }}
+                className="w-full"
+                disabled={customChallenge.length <= 1}
+              >
+                Confirm
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </ErrorBoundary>
+  );
+};
+
+// Error Fallback Component
+const ErrorFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="text-center">
+      <h2 className="text-2xl font-bold mb-4">Something went wrong</h2>
+      <Button onClick={() => window.location.reload()}>
+        Try again
+      </Button>
+    </div>
+  </div>
+); 

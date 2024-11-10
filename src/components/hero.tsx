@@ -48,7 +48,7 @@ export const Hero = ({
       >
     <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block">
           <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-          Be Part of the Re-humanization Movement – See Our First Case Study Results
+          AAA Beta Study: First 60 Days Results
           </p>
         </div> 
       </motion.div>
@@ -131,7 +131,7 @@ export const Hero = ({
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
-        className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 justify-center mt-8 sm:mt-12 md:mt-16 relative z-10 px-4"
+        className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 justify-center mt-8 sm:mt-12 md:mt-16 relative z-20 px-4"
       >
         <GradientButton
           containerClassName="w-full sm:w-auto"
@@ -150,7 +150,7 @@ export const Hero = ({
           <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
         </Button>
       </motion.div>
-      <FlowchartEmbed />
+      <FlowchartEmbed className="z-10" />
     </div>
   );
 };

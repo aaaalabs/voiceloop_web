@@ -27,10 +27,8 @@ export default function MapPage() {
         <div className="w-full max-w-[1400px] mx-auto">
           <div className="px-4 sm:px-8">
             <div className="p-2 sm:p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-2xl sm:rounded-[32px] relative">
-              <div className="absolute inset-x-0 -top-[1px] h-32 sm:h-48 w-full bg-gradient-to-b from-white via-white/60 to-transparent dark:from-black dark:via-black/60 dark:to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-x-0 -bottom-[1px] h-32 sm:h-48 w-full bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 dark:to-transparent z-10 pointer-events-none" />
               <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-xl sm:rounded-[24px] overflow-hidden">
-                <div className="relative w-full aspect-[16/10] sm:aspect-video">
+                <div className="relative w-full aspect-[2/3] sm:aspect-video">
                   <MapFrame />
                 </div>
               </div>

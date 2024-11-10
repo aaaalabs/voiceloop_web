@@ -64,7 +64,6 @@ function Testimonial({
   name,
   content,
   image_url,
-  logo_url,
   career_stage,
   className,
   ...props
@@ -99,7 +98,6 @@ function Testimonial({
         <div className="flex items-center mb-4">
           <ConditionalAvatar
             image_url={image_url}
-            logo_url={logo_url}
             name={name}
           />
           <div className="ml-3">
@@ -139,8 +137,8 @@ function TestimonialColumn({
             name={testimonial.name}
             content={testimonial.content}
             image_url={testimonial.image_url}
-            logo_url={testimonial.logo_url}
             career_stage={testimonial.career_stage}
+            logo_url={testimonial.logo_url}
             key={testimonialIndex}
             className={containerClassName?.(
               testimonialIndex % testimonials.length,

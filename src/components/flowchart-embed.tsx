@@ -1,7 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export const FlowchartEmbed = () => {
+interface FlowchartEmbedProps {
+  className?: string;
+}
+
+export const FlowchartEmbed: React.FC<FlowchartEmbedProps> = ({ className }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -16,7 +20,7 @@ export const FlowchartEmbed = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-5xl mx-auto mt-16 sm:mt-32 mb-8 sm:mb-32">
+    <div className={`w-full max-w-5xl mx-auto mt-16 sm:mt-32 mb-8 sm:mb-32 ${className}`}>
       <div className="px-0 sm:px-8">
         <div className={`p-0 sm:p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-none sm:rounded-[32px] relative`}>
           <div className="relative bg-white dark:bg-white dark:border-neutral-700 border-0 sm:border border-neutral-200 rounded-none sm:rounded-[24px] overflow-hidden">

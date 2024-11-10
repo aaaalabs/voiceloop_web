@@ -83,7 +83,11 @@ export default async function Home() {
             See what others are saying about their experience
           </p>
         </div>
-        <Testimonials testimonials={testimonials} />
+        {testimonials.length > 0 ? (
+          <Testimonials testimonials={testimonials} />
+        ) : (
+          <div className="text-center text-gray-600">No testimonials available at the moment.</div>
+        )}
       </Container>
       <div className="relative">
         <div className="absolute inset-0 h-full w-full overflow-hidden">

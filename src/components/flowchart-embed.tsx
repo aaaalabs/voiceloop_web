@@ -6,7 +6,7 @@ export const FlowchartEmbed = () => {
           <div className="relative bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-xl sm:rounded-[24px] overflow-hidden">
             <div className="relative w-full" style={{ paddingBottom: "calc(56.67% + 60px)" }}>
               <iframe
-                src="/flowcharts/mm_003.html"
+                src="/flowcharts/mm_004.html?link_target=parent"
                 className="absolute inset-0 w-full h-full rounded-xl border border-neutral-200 dark:border-neutral-800 sm:py-7.5 sm:px-10"
                 frameBorder="0"
                 allowFullScreen

@@ -13,7 +13,7 @@ import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
 import ErrorBoundary from '@/components/error-boundary';
 import { Testimonials } from '@/components/testimonials';
-import { MinimalFooter } from '@/components/minimal-footer';
+import { MinimalFooter } from '@/components/MinimalFooter';
 import { getCurrentKpis, type MvCurrentKpis } from "@/db";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import confetti from 'canvas-confetti';
@@ -307,41 +307,26 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
 
   return (
     <ErrorBoundary fallback={<ErrorFallback />}>
+      {/* Header outside of any loading states or animations */}
+      {!showThankYou && (
+        <header className="pt-8 sm:pt-12 pb-6 sm:pb-8 text-center px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+            Hi {userName}! Help Shape{' '}
+            <br className="hidden sm:block" />
+            the Future of{' '}
+            <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-clip-text text-transparent whitespace-nowrap">
+              our AAA Accelerator
+            </span>
+          </h1>
+        </header>
+      )}
+
+      {/* Rest of the content */}
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black">
         <Head>
           <title>AAA Community Survey</title>
           <meta name="description" content="Help shape the future of AAA Community by sharing your insights" />
-          <meta name="keywords" content="AAA, community, survey, feedback" />
-          <meta property="og:title" content="AAA Community Survey" />
-          <meta property="og:description" content="Share your insights to help us build exactly what you need" />
         </Head>
-
-        {/* Only show header if not showing thank you message */}
-        {!showThankYou && (
-          <div className="pt-12 pb-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Hi {userName}!
-              <br />
-              Help Shape the Future of
-              <br />
-              <motion.span
-                initial={{ backgroundPosition: "0% 50%" }}
-                animate={{ 
-                  backgroundPosition: ["0% 50%", "200% 50%", "0% 50%"],
-                }}
-                transition={{ 
-                  duration: 15,
-                  repeat: Infinity,
-                  ease: "easeOut"
-                }}
-                className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 
-                bg-[size:300%] bg-clip-text text-transparent"
-              >
-                our AAA Accelerator
-              </motion.span>
-            </h1>
-          </div>
-        )}
 
         {/* Main survey content */}
         <AnimatePresence mode="sync">
@@ -423,13 +408,13 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         {/* Toast notifications container */}
         <Toaster position="bottom-right" />
 
-        {/* Custom Challenge Modal */}
+        {/* Custom Challenge Modal with mobile-friendly padding */}
         <Dialog open={showCustomModal} onOpenChange={setShowCustomModal}>
-          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl">
-            <DialogHeader className="border-b border-gray-100 dark:border-gray-800 pb-4">
+          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-0 sm:p-6 h-[100dvh] sm:h-auto">
+            <DialogHeader className="border-b border-gray-100 dark:border-gray-800 p-4 sm:pb-4">
               <DialogTitle className="text-xl font-semibold dark:text-white">Describe Your Challenge</DialogTitle>
             </DialogHeader>
-            <div className="grid gap-4 py-4">
+            <div className="p-4 sm:py-4">
               <div className="space-y-2">
                 <textarea
                   placeholder="What's your biggest challenge in AAA?"
@@ -446,10 +431,11 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                 onClick={() => {
                   if (customChallenge.length > 1) {
                     setShowCustomModal(false);
+                    setChoice('custom');
                     setStep(1);
                   }
                 }}
-                className="w-full"
+                className="w-full mt-4"
                 disabled={customChallenge.length <= 1}
               >
                 Confirm

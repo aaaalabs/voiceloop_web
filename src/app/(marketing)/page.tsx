@@ -77,7 +77,7 @@ export default async function Home() {
         <GridFeatures />
         <div className="mt-24 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Trusted by teams worldwide
+            Trusted by members worldwide
           </h2>
           <p className="mt-2 text-lg leading-8 text-gray-600">
             See what others are saying about their experience

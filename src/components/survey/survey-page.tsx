@@ -183,10 +183,16 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         >
           Thank you, {userName}!
         </motion.h3>
-        <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300">
+        <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-8">
           We appreciate your valuable feedback<br />
           and will be in touch soon with updates about new features.
         </p>
+        <Button
+          onClick={() => router.push('https://voiceloop.io')}
+          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+        >
+          Return to Homepage
+        </Button>
       </motion.div>
     </motion.div>
   );
@@ -366,6 +372,17 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
     </Dialog>
   );
 
+  // Add useEffect for auto-redirect after thank you
+  useEffect(() => {
+    let redirectTimer: NodeJS.Timeout;
+    if (showThankYou) {
+      redirectTimer = setTimeout(() => {
+        router.push('https://voiceloop.io');
+      }, 6000);
+    }
+    return () => clearTimeout(redirectTimer);
+  }, [showThankYou, router]);
+
   return (
     <ErrorBoundary fallback={<ErrorFallback />}>
       {/* Header outside of any loading states or animations */}
@@ -471,11 +488,13 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
 
         {/* Custom Challenge Modal with mobile-friendly padding */}
         <Dialog open={showCustomModal} onOpenChange={setShowCustomModal}>
-          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-0 sm:p-6 h-[100dvh] sm:h-auto">
+          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-0 sm:p-6 h-[100dvh] sm:h-auto flex flex-col">
             <DialogHeader className="border-b border-gray-100 dark:border-gray-800 p-4 sm:pb-4">
               <DialogTitle className="text-xl font-semibold dark:text-white">Describe Your Challenge</DialogTitle>
             </DialogHeader>
-            <div className="p-4 sm:py-4">
+            
+            {/* Make the content area flex-grow to push button to bottom */}
+            <div className="flex-grow p-4 sm:py-4 overflow-y-auto">
               <div className="space-y-2">
                 <textarea
                   placeholder="What's your biggest challenge in AAA?"
@@ -488,6 +507,10 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                   <p className="text-sm text-red-500">Please provide more detail about your challenge</p>
                 )}
               </div>
+            </div>
+
+            {/* Fixed button at bottom */}
+            <div className="border-t border-gray-100 dark:border-gray-800 p-4 mt-auto">
               <Button
                 onClick={() => {
                   if (customChallenge.length > 1) {
@@ -496,7 +519,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                     setStep(1);
                   }
                 }}
-                className="w-full mt-4"
+                className="w-full"
                 disabled={customChallenge.length <= 1}
               >
                 Confirm

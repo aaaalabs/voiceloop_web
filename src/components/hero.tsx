@@ -46,11 +46,14 @@ export const Hero = ({
         transition={{ ease: "easeOut", duration: 0.9 }}
         className="text-center mb-6"
       >
-    <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block">
+        <Link 
+          href="/blog/voiceloop-beta-review-5-weeks-community-impact"
+          className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+        >
           <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-          AAA Beta Study: First 60 Days Results
+            AAA Beta Study: First 5 Weeks Results
           </p>
-        </div> 
+        </Link>
       </motion.div>
 
       <motion.h1

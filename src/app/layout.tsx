@@ -17,9 +17,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "voiceloop | amplify what matters.",
   description:
-    "voiceloop is a platform that provides a wide range of AI tools and services to help you stay on top of your business. Generate images, text and everything else that you need to get your business off the ground.",
+    "voiceloop is a platform that provides a wide Re-humanize your community with VoiceLoop. We use AI to cut the noise and amplify what matters - genuine human connections.",
   openGraph: {
-    images: ["https://ai-saas-template-aceternity.vercel.app/banner.png"],
+    images: ["https://ik.imagekit.io/libralab/VoiceLoop/social"],
   },
 };
 

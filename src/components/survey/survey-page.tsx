@@ -17,6 +17,7 @@ import { MinimalFooter } from '@/components/MinimalFooter';
 import { getCurrentKpis, type MvCurrentKpis } from "@/db";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import confetti from 'canvas-confetti';
+import { useRouter } from 'next/navigation';
 
 interface FormData {
   name: string;
@@ -40,6 +41,10 @@ interface Testimonial {
   content: string | null;
   image_url: string | null;
   logo_url: string | null;
+}
+
+interface ErrorResponse {
+  response?: string;
 }
 
 // Form validation schema
@@ -68,6 +73,9 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
   const [customChallenge, setCustomChallenge] = useState<string>('');
   const [showCustomModal, setShowCustomModal] = useState(false);
   const startTime = useRef(performance.now());
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
 
   const challenges: Challenge[] = [
     {
@@ -114,20 +122,25 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         }),
       });
 
-      if (!response.ok) throw new Error('Submission failed');
+      const data: ErrorResponse = await response.json();
 
-      // Track successful submission
-      Analytics.track('form_submitted', { 
-        timeToComplete: performance.now() - startTime.current,
-      });
+      if (response.ok) {
+        // Track successful submission
+        Analytics.track('form_submitted', { 
+          timeToComplete: performance.now() - startTime.current,
+        });
 
-      await new Promise(resolve => setTimeout(resolve, 800));
-      confetti();
-      toast.success('Survey submitted successfully!');
-      setShowThankYou(true);
+        await new Promise(resolve => setTimeout(resolve, 800));
+        confetti();
+        toast.success('Survey submitted successfully!');
+        setShowThankYou(true);
+      } else {
+        setErrorMessage(data.response || 'Something went wrong. Please try again.');
+        setShowErrorModal(true);
+      }
     } catch (error) {
-      setError('Something went wrong. Please try again.');
-      toast.error('Failed to submit survey');
+      setErrorMessage('Something went wrong. Please try again.');
+      setShowErrorModal(true);
       console.error('Error submitting form:', error);
     } finally {
       setIsSubmitting(false);
@@ -311,6 +324,48 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
     }
   }, [stayLonger]);
 
+  const renderErrorModal = () => (
+    <Dialog open={showErrorModal} onOpenChange={setShowErrorModal}>
+      <DialogContent className="sm:max-w-[525px] bg-white dark:bg-gray-900">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+            <div className="p-2 rounded-full bg-orange-100 dark:bg-orange-900/30">
+              <MessageCircle className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+            </div>
+            One Quick Note
+          </DialogTitle>
+        </DialogHeader>
+        <div className="py-6">
+          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+            Thanks for sharing your thoughts! We couldn't process your last response because:
+          </p>
+          <div className="mt-4 p-4 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
+            <p className="text-orange-800 dark:text-orange-200 font-medium">
+              {errorMessage}
+            </p>
+          </div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">
+            No worries though! You can try again later or reach out to our team for assistance.
+          </p>
+        </div>
+        <div className="flex justify-end gap-3">
+          <Button
+            onClick={() => {
+              setShowErrorModal(false);
+              router.push('https://voiceloop.io');
+            }}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2.5 rounded-full font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+          >
+            <span className="flex items-center gap-2">
+              Return to Homepage
+              <ChevronRight className="w-4 h-4" />
+            </span>
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+
   return (
     <ErrorBoundary fallback={<ErrorFallback />}>
       {/* Header outside of any loading states or animations */}
@@ -449,6 +504,8 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
             </div>
           </DialogContent>
         </Dialog>
+
+        {renderErrorModal()}
       </div>
     </ErrorBoundary>
   );

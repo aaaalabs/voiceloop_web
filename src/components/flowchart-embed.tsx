@@ -26,7 +26,7 @@ export const FlowchartEmbed: React.FC<FlowchartEmbedProps> = ({ className }) => 
           How it works
         </h2>
         <p className="mt-2 text-lg leading-8 text-gray-600">
-          See how our tools work together seamlessly
+          See how our tools work together seamlessly (click through)
         </p>
       </div>
       <div className="px-0 sm:px-8 mt-8">

@@ -227,7 +227,6 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
             whileTap={{ scale: 0.98 }}
             onClick={() => {
               setStayLonger(option);
-              handleSubmit();
             }}
             disabled={isSubmitting}
             className={`w-full p-6 rounded-xl border-2 transition-all duration-200 bg-white dark:bg-gray-800 shadow-md hover:shadow-xl ${
@@ -304,6 +303,13 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
       </div>
     </div>
   );
+
+  // Add this useEffect to handle the submission after stayLonger is updated
+  useEffect(() => {
+    if (stayLonger && step === 1) {
+      handleSubmit();
+    }
+  }, [stayLonger]);
 
   return (
     <ErrorBoundary fallback={<ErrorFallback />}>

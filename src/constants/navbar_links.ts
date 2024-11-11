@@ -23,12 +23,12 @@ const navItems = [
 
 const actionButtons = [
   {
-    title: "Login",
+    title: "AAA Login",
     href: "https://aaa.voiceloop.io/",
     variant: "simple" as const,
   },
   {
-    title: "Sign Up",
+    title: "AAA Sign Up",
     href: "https://connect.voiceloop.io",
   },
 ];

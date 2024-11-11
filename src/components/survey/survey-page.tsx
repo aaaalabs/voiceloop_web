@@ -488,29 +488,24 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
 
         {/* Custom Challenge Modal with mobile-friendly padding */}
         <Dialog open={showCustomModal} onOpenChange={setShowCustomModal}>
-          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-0 sm:p-6 h-[100dvh] sm:h-auto flex flex-col">
-            <DialogHeader className="border-b border-gray-100 dark:border-gray-800 p-4 sm:pb-4">
+          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-4 sm:p-6">
+            <DialogHeader className="border-b border-gray-100 dark:border-gray-800 pb-4">
               <DialogTitle className="text-xl font-semibold dark:text-white">Describe Your Challenge</DialogTitle>
             </DialogHeader>
             
-            {/* Make the content area flex-grow to push button to bottom */}
-            <div className="flex-grow p-4 sm:py-4 overflow-y-auto">
-              <div className="space-y-2">
-                <textarea
-                  placeholder="What's your biggest challenge in AAA?"
-                  className="w-full p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors"
-                  rows={3}
-                  value={customChallenge}
-                  onChange={(e) => setCustomChallenge(e.target.value)}
-                />
-                {customChallenge.length <= 1 && (
-                  <p className="text-sm text-red-500">Please provide more detail about your challenge</p>
-                )}
-              </div>
-            </div>
-
-            {/* Fixed button at bottom */}
-            <div className="border-t border-gray-100 dark:border-gray-800 p-4 mt-auto">
+            <div className="space-y-4 py-4">
+              <textarea
+                placeholder="What's your biggest challenge in AAA?"
+                className="w-full p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors"
+                rows={3}
+                value={customChallenge}
+                onChange={(e) => setCustomChallenge(e.target.value)}
+              />
+              {customChallenge.length <= 1 && (
+                <p className="text-sm text-red-500">Please provide more detail about your challenge</p>
+              )}
+              
+              {/* Button directly below input */}
               <Button
                 onClick={() => {
                   if (customChallenge.length > 1) {
@@ -519,10 +514,10 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                     setStep(1);
                   }
                 }}
-                className="w-full"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                 disabled={customChallenge.length <= 1}
               >
-                Confirm
+                Continue
               </Button>
             </div>
           </DialogContent>

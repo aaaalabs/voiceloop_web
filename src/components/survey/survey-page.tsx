@@ -489,7 +489,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         {/* Custom Challenge Modal with mobile-friendly padding */}
         <Dialog open={showCustomModal} onOpenChange={setShowCustomModal}>
           <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-4 sm:p-6 
-            !top-[100px] !block !translate-y-0 !h-auto" // Override default centering
+            !top-[100px] !block !translate-y-0 !h-auto"
           >
             <DialogHeader className="border-b border-gray-100 dark:border-gray-800 pb-4">
               <DialogTitle className="text-xl font-semibold dark:text-white">Describe Your Challenge</DialogTitle>
@@ -504,7 +504,9 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                 onChange={(e) => setCustomChallenge(e.target.value)}
               />
               {customChallenge.length <= 1 && (
-                <p className="text-sm text-red-500">Please provide more detail about your challenge</p>
+                <p className="text-center text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  Please provide more detail about your challenge
+                </p>
               )}
               
               <Button

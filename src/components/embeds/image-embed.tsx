@@ -18,13 +18,16 @@ export function ImageEmbed({ value }: {
 
   return (
     <figure className={`my-8 ${layoutClasses}`}>
-      <Image
-        src={urlFor(value.image).width(800).height(800).url()}
-        alt={value.alt}
-        width={800}
-        height={800}
-        className="rounded-lg w-full"
-      />
+      <div className="relative w-full">
+        <Image
+          src={urlFor(value.image).url()}
+          alt={value.alt}
+          width={1200}
+          height={800}
+          className="rounded-lg w-full h-auto"
+          style={{ aspectRatio: 'auto' }}
+        />
+      </div>
       {value.caption && (
         <figcaption className="text-sm text-gray-500 mt-2 text-center">
           {value.caption}

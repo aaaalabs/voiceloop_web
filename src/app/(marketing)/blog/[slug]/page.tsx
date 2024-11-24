@@ -101,13 +101,17 @@ export default async function BlogPost({
           </div>
           {blog.titleImage && (
             <div className="relative -mx-[10%] mb-8">
-              <BlurImage
-                src={urlFor(blog.titleImage).url() || ""}
-                alt={blog.title}
-                width={800}
-                height={400}
-                className="rounded-lg w-full"
-              />
+              <div className="relative w-full">
+                <Image
+                  src={urlFor(blog.titleImage).url() || ""}
+                  alt={blog.title}
+                  width={1200}
+                  height={800}
+                  className="rounded-lg w-full h-auto"
+                  style={{ aspectRatio: 'auto' }}
+                  priority
+                />
+              </div>
             </div>
           )}
           <div className="prose prose-xl dark:prose-invert max-w-none">

@@ -47,11 +47,11 @@ export const Hero = ({
         className="text-center mb-6"
       >
         <Link 
-          href="/blog/voiceloop-beta-review-5-weeks-community-impact"
-          className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+          href="/blog/the-hidden-power-of-retention"
+          className="group bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block hover:bg-[#3D4F4F]/10 dark:hover:bg-[#3D4F4F]/20 transition-colors"
         >
-          <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-          The Hidden Formula Behind Explosive Membership Growth 📊
+          <p className="text-sm text-blue-600 dark:text-blue-400 font-medium group-hover:text-[#3D4F4F] transition-colors">
+            The Hidden Power of Retention: Why Reducing Churn Beats Acquisition 📊
           </p>
         </Link>
       </motion.div>

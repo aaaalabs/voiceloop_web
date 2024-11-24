@@ -89,6 +89,9 @@ export default {
           type: 'object',
           name: 'table',
           title: 'Table',
+          components: {
+            input: '../components/MarkdownTableInput'
+          },
           fields: [
             {
               name: 'rows',
@@ -103,38 +106,23 @@ export default {
                       name: 'cells',
                       type: 'array',
                       title: 'Cells',
-                      of: [{ type: 'text' }]
+                      of: [{ type: 'string' }]
                     }
-                  ],
-                  preview: {
-                    select: {
-                      cells: 'cells'
-                    },
-                    prepare({ cells }: { cells?: string[] }) {
-                      return {
-                        title: cells?.join(' | ') || 'Empty row'
-                      }
-                    }
-                  }
+                  ]
                 }
               ]
-            },
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-              description: 'Optional caption for the table'
             }
           ],
           preview: {
             select: {
               rows: 'rows'
             },
-            prepare({ rows }: { rows?: { cells?: string[] }[] }) {
+            prepare(value) {
+              const { rows } = value;
               return {
                 title: 'Table',
                 subtitle: `${rows?.length || 0} rows`
-              }
+              };
             }
           }
         },

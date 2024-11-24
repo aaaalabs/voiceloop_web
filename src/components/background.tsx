@@ -1,130 +1,126 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import React, { useId } from "react";
-// import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
 export const Background = () => {
-  return (
-    <div className="absolute inset-0 h-full w-full pointer-events-none z-0">
-      <div className="absolute inset-0 h-full w-full bg-white dark:bg-black pointer-events-none [mask-image:radial-gradient(ellipse_at_center,transparent,white)]" />
-      {Array.from({ length: 6 }).map((_, index) => (
-        <div className="flex" key={"grid-column" + index}>
-          {Array.from({ length: 10 }).map((_, index) => (
-            <GridBlock key={`grid-row` + index} />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-};
+  const interactiveRef = useRef<HTMLDivElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [curX, setCurX] = useState(0);
+  const [curY, setCurY] = useState(0);
+  const [tgX, setTgX] = useState(0);
+  const [tgY, setTgY] = useState(0);
 
-const GridBlock = () => {
+  // Colors from our palette
+  const colors = {
+    gradientBackgroundStart: "#F2E2CE",
+    gradientBackgroundEnd: "#1D3640",
+    firstColor: "233, 184, 147", // #E9B893
+    secondColor: "249, 157, 124", // #F99D7C
+    thirdColor: "163, 166, 146", // #A3A692
+    fourthColor: "61, 79, 79",   // #3D4F4F
+    fifthColor: "242, 226, 206", // #F2E2CE
+    pointerColor: "233, 184, 147", // #E9B893
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Set CSS variables for colors
+    Object.entries(colors).forEach(([key, value]) => {
+      document.body.style.setProperty(`--${key}`, value);
+    });
+    document.body.style.setProperty("--size", "100%");
+    document.body.style.setProperty("--blending-value", "soft-light");
+  }, []);
+
+  useEffect(() => {
+    function move() {
+      if (!interactiveRef.current) return;
+      setCurX(curX + (tgX - curX) / 20);
+      setCurY(curY + (tgY - curY) / 20);
+      interactiveRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+    }
+    move();
+  }, [tgX, tgY]);
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (interactiveRef.current) {
+      const rect = interactiveRef.current.getBoundingClientRect();
+      setTgX(event.clientX - rect.left);
+      setTgY(event.clientY - rect.top);
+    }
+  };
+
+  // Calculate opacity based on scroll position
+  const opacity = Math.max(0, Math.min(1, (400 - scrollY) / 300));
+
+  const [isSafari, setIsSafari] = useState(false);
+  useEffect(() => {
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+  }, []);
+
   return (
-    <div className="flex flex-col items-start justify-center  w-60">
-      <div className="flex items-center justify-center">
-        <Dot />
-        <SVG />
-        {/* <Dot /> */}
+    <div 
+      className="fixed top-0 left-0 right-0 h-screen pointer-events-none -z-10"
+      style={{ opacity }}
+    >
+      <svg className="hidden">
+        <defs>
+          <filter id="blurMe">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div
+        className={cn(
+          "gradients-container h-full w-full blur-lg",
+          isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+        )}
+      >
+        {[
+          "first",
+          "second",
+          "third",
+          "fourth",
+          "fifth"
+        ].map((variant, index) => (
+          <div
+            key={variant}
+            className={cn(
+              `absolute [background:radial-gradient(circle_at_center,_rgba(var(--${variant}-color),_0.8)_0,_rgba(var(--${variant}-color),_0)_50%)_no-repeat]`,
+              `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+              `[transform-origin:${index % 2 ? 'calc(50%-400px)' : 'center_center'}]`,
+              `animate-${variant}`,
+              `opacity-${index === 3 ? '70' : '100'}`
+            )}
+          />
+        ))}
+
+        <div
+          ref={interactiveRef}
+          onMouseMove={handleMouseMove}
+          className={cn(
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.8)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
+            `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
+            `opacity-70`
+          )}
+        />
       </div>
-      <SVGVertical className="ml-3" />
     </div>
   );
 };
-
-const Dot = () => {
-  return (
-    <div className="h-6 w-6 bg-white dark:bg-neutral-900 flex items-center justify-center rounded-full">
-      <div className="h-2 w-2 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
-    </div>
-  );
-};
-
-const SVGVertical = ({ className }: { className?: string }) => {
-  const width = 1;
-  const height = 140;
-
-  const id = useId();
-  return (
-    <motion.svg
-      width={width}
-      height={height}
-      viewBox={`0 0 ${width} ${height}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn("text-neutral-100 dark:text-neutral-800", className)}
-    >
-      <path d="M0.5 0.5V479" stroke="currentColor" strokeWidth={2} />
-      <motion.path
-        d="M0.5 0.5V479"
-        stroke={`url(#gradient-${id})`}
-        strokeWidth={2}
-      />
-
-      <defs>
-        <motion.linearGradient
-          id={`gradient-${id}`}
-          initial={{ x1: 2, y1: -200, x2: 2, y2: -100 }}
-          animate={{ x1: 2, y1: 400, x2: 2, y2: 600 }}
-          transition={{
-            repeat: Infinity,
-            duration: Math.random() * 2 + 1,
-            delay: Math.floor(Math.random() * 6) + 5,
-          }}
-          gradientUnits="userSpaceOnUse"
-        >
-          <motion.stop offset="0%" stopColor="transparent" />
-          <motion.stop offset="50%" stopColor="var(--neutral-200)" />
-          <motion.stop offset="100%" stopColor="transparent" />
-        </motion.linearGradient>
-      </defs>
-    </motion.svg>
-  );
-};
-
-const SVG = ({ className }: { className?: string }) => {
-  const width = 300;
-  const height = 1;
-
-  const id = useId();
-  return (
-    <motion.svg
-      width={width}
-      height={height}
-      viewBox={`0 0 ${width} ${height}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn("text-neutral-100 dark:text-neutral-800", className)}
-    >
-      <path d="M0.5 0.5H479" stroke="currentColor" />
-      <motion.path
-        d="M0.5 0.5H479"
-        stroke={`url(#gradient-${id})`}
-        strokeWidth={1}
-      />
-
-      <defs>
-        <motion.linearGradient
-          id={`gradient-${id}`}
-          initial={{ x1: -200, y1: 0, x2: -100, y2: 0 }}
-          animate={{ x1: 400, y1: 0, x2: 600, y2: 0 }}
-          transition={{
-            repeat: Infinity,
-            duration: Math.random() * 2 + 1,
-            delay: Math.floor(Math.random() * 6) + 5,
-          }}
-          gradientUnits="userSpaceOnUse"
-        >
-          <motion.stop offset="0%" stopColor="transparent" />
-          <motion.stop offset="50%" stopColor="var(--neutral-200)" />
-          <motion.stop offset="100%" stopColor="transparent" />
-        </motion.linearGradient>
-      </defs>
-    </motion.svg>
-  );
-};
-
-// Use the below rect to debug linear gradient
-{
-  /* <motion.rect width={width} height={width} fill={`url(#gradient-${id})`} /> */
-}

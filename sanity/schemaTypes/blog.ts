@@ -87,6 +87,99 @@ export default {
         { type: 'block' },
         {
           type: 'object',
+          name: 'table',
+          title: 'Table',
+          fields: [
+            {
+              name: 'rows',
+              type: 'array',
+              title: 'Rows',
+              of: [
+                {
+                  type: 'object',
+                  name: 'row',
+                  fields: [
+                    {
+                      name: 'cells',
+                      type: 'array',
+                      title: 'Cells',
+                      of: [{ type: 'text' }]
+                    }
+                  ],
+                  preview: {
+                    select: {
+                      cells: 'cells'
+                    },
+                    prepare({ cells }: { cells?: string[] }) {
+                      return {
+                        title: cells?.join(' | ') || 'Empty row'
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              description: 'Optional caption for the table'
+            }
+          ],
+          preview: {
+            select: {
+              rows: 'rows'
+            },
+            prepare({ rows }: { rows?: { cells?: string[] }[] }) {
+              return {
+                title: 'Table',
+                subtitle: `${rows?.length || 0} rows`
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
+          name: 'horizontalRule',
+          title: 'Horizontal Rule',
+          fields: [
+            {
+              name: 'style',
+              type: 'string',
+              title: 'Style',
+              options: {
+                list: [
+                  { title: 'Solid', value: 'solid' },
+                  { title: 'Dashed', value: 'dashed' },
+                  { title: 'Dotted', value: 'dotted' }
+                ]
+              },
+              initialValue: 'solid'
+            },
+            {
+              name: 'spacing',
+              type: 'string',
+              title: 'Spacing',
+              options: {
+                list: [
+                  { title: 'Small', value: 'sm' },
+                  { title: 'Medium', value: 'md' },
+                  { title: 'Large', value: 'lg' }
+                ]
+              },
+              initialValue: 'md'
+            }
+          ],
+          preview: {
+            prepare() {
+              return {
+                title: 'Horizontal Rule'
+              }
+            }
+          }
+        },
+        {
+          type: 'object',
           name: 'videoEmbed',
           title: 'Video Embed',
           fields: [

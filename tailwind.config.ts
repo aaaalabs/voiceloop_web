@@ -44,6 +44,11 @@ const config: Config = {
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         marquee: "marquee var(--marquee-duration) linear infinite",
         "fade-in": "fade-in 0.5s linear forwards",
+        first: "first 10s infinite",
+        second: "second 12s infinite",
+        third: "third 15s infinite",
+        fourth: "fourth 18s infinite",
+        fifth: "fifth 20s infinite"
       },
       boxShadow: {
         derek: `0px 0px 0px 1px rgb(0 0 0 / 0.06),
@@ -73,6 +78,31 @@ const config: Config = {
             opacity: "1",
           },
         },
+        first: {
+          "0%": { transform: "rotate(0deg) scale(1)" },
+          "50%": { transform: "rotate(180deg) scale(1.2)" },
+          "100%": { transform: "rotate(360deg) scale(1)" }
+        },
+        second: {
+          "0%": { transform: "rotate(0deg) scale(1.2)" },
+          "50%": { transform: "rotate(-180deg) scale(0.8)" },
+          "100%": { transform: "rotate(-360deg) scale(1.2)" }
+        },
+        third: {
+          "0%": { transform: "rotate(0deg) scale(0.8)" },
+          "50%": { transform: "rotate(180deg) scale(1.2)" },
+          "100%": { transform: "rotate(360deg) scale(0.8)" }
+        },
+        fourth: {
+          "0%": { transform: "rotate(0deg) scale(1.2)" },
+          "50%": { transform: "rotate(-180deg) scale(0.8)" },
+          "100%": { transform: "rotate(-360deg) scale(1.2)" }
+        },
+        fifth: {
+          "0%": { transform: "rotate(0deg) scale(0.8)" },
+          "50%": { transform: "rotate(180deg) scale(1.2)" },
+          "100%": { transform: "rotate(360deg) scale(0.8)" }
+        }
       },
     },
   },

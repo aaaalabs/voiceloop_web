@@ -10,6 +10,24 @@ import { format } from "date-fns";
 import Head from "next/head";
 import { urlFor } from "@/lib/blog"; // Ensure this path matches your project structure
 
+type TableContent = {
+  _type: 'table';
+  rows: Array<{
+    cells: string[];
+  }>;
+  caption?: string;
+};
+
+type HorizontalRuleContent = {
+  _type: 'horizontalRule';
+  style: 'solid' | 'dashed' | 'dotted';
+  spacing: 'sm' | 'md' | 'lg';
+};
+
+type BlockContent = {
+  _type: 'block';
+  // ... existing block properties
+} | TableContent | HorizontalRuleContent;
 
 // Blog layout component
 export function BlogLayout({
@@ -19,6 +37,62 @@ export function BlogLayout({
   blog: BlogWithSlug;
   children: React.ReactNode;
 }) {
+  const components = {
+    types: {
+      // ... existing components ...
+      table: ({ value }) => (
+        <div className="my-8 overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {value.rows.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.cells.map((cell, cellIndex) => (
+                    <td 
+                      key={cellIndex}
+                      className="px-6 py-4 whitespace-nowrap text-sm"
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {value.caption && (
+            <p className="mt-2 text-sm text-center text-gray-500">
+              {value.caption}
+            </p>
+          )}
+        </div>
+      ),
+      horizontalRule: ({ value }) => {
+        const spacing = {
+          sm: 'my-4',
+          md: 'my-8',
+          lg: 'my-12'
+        }[value.spacing];
+        
+        const style = {
+          solid: 'border-solid',
+          dashed: 'border-dashed',
+          dotted: 'border-dotted'
+        }[value.style];
+
+        return (
+          <hr 
+            className={`
+              ${spacing} 
+              ${style} 
+              border-t 
+              border-gray-200 
+              dark:border-gray-700
+            `}
+          />
+        );
+      }
+    }
+  };
+
   return (
     <>
       {/* SEO Meta Information */}

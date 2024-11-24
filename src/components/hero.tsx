@@ -40,8 +40,6 @@ export const Hero = ({
 
   return (
     <div className="max-w-[1200px] mx-auto px-3 xxs:px-4 sm:px-8 flex flex-col min-h-screen pt-32 xxs:pt-30 sm:pt-32 md:pt-48 relative">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F2E2CE] dark:from-[#1D3640]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F2E2CE] dark:from-[#1D3640]" />
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

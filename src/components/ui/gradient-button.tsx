@@ -58,8 +58,8 @@ export const GradientButton = React.forwardRef<
         }}
         className="absolute inset-0 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300"
         style={{
-          background: "linear-gradient(to right, #2563eb, #9333ea, #2563eb)",
-          backgroundSize: "300%",
+          background: "linear-gradient(to right, #3D4F4F, #3D4F4F)",
+          backgroundSize: "100%",
         }}
       />
       <button

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Stack, TextArea } from '@sanity/ui'
 
-export const MarkdownTableInput = React.forwardRef((props: any, ref) => {
+export const MarkdownTableInput = React.forwardRef<HTMLTextAreaElement, any>((props: any, ref) => {
   const { onChange, value } = props
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

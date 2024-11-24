@@ -117,7 +117,7 @@ export default {
             select: {
               rows: 'rows'
             },
-            prepare(value) {
+            prepare(value: { rows?: { cells: string[] }[] }) {
               const { rows } = value;
               return {
                 title: 'Table',

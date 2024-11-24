@@ -18,7 +18,7 @@ export const GridFeatures = () => {
 
   return (
     <div className="flex justify-center w-full relative z-10 py-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-[#F3EDE5] dark:bg-[#3D4F4F] rounded-2xl overflow-hidden">
         {features.map((feature, index) => {
           const icon = feature.iconLight && feature.iconDark
             ? (resolvedTheme === "dark" || theme === "dark")
@@ -77,7 +77,7 @@ const Feature = ({
         <Image src={icon} alt={title} width={48} height={48} />
       </div>
       <div className="text-lg font-bold mb-2 relative z-10 px-10">
-        <div className="absolute left-0 inset-y-0 h-6 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover:bg-blue-500 transition duration-200" />
+        <div className="absolute left-0 inset-y-0 h-6 w-1 rounded-tr-full rounded-br-full bg-[#A3A692] dark:bg-[#3D4F4F] group-hover:bg-[#F99D7C] transition duration-200" />
         <span className="group-hover:translate-x-2 transition duration-200 inline-block">
           {title}
         </span>

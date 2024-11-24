@@ -10,7 +10,7 @@ import { format } from "date-fns";
 export const BlogCard = ({ blog }: { blog: Blog }) => {
   return (
     <Link
-      className="shadow-derek rounded-3xl border dark:border-neutral-800 w-full bg-white dark:bg-neutral-900 overflow-hidden hover:scale-[1.02] transition duration-200"
+      className="shadow-derek rounded-3xl border dark:border-[#3D4F4F] w-full bg-[#F3EDE5] dark:bg-[#3D4F4F] overflow-hidden hover:scale-[1.02] transition duration-200"
       href={`/blog/${blog.currentSlug}`}
     >
       {/* Image section */}

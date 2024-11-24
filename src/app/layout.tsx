@@ -26,31 +26,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <body
-          className={cn(
-            // GeistSans.className,
-            poppins.className,
-            "bg-white dark:bg-black antialiased h-full w-full"
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            enableSystem
-            disableTransitionOnChange
-            defaultTheme="light"
-          >
-            {children}
-            <SpeedInsights />
-          </ThemeProvider>
-          <Toaster position="top-right" />
-        </body>
-      </html>
-    </ViewTransitions>
-  );
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  )
 }

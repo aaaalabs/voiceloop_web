@@ -14,37 +14,16 @@ export function Pricing() {
   ];
 
   return (
-    <div className="relative">
-      <div className="flex items-center justify-center bg-neutral-100 dark:bg-neutral-800  w-fit mx-auto mb-12 rounded-md overflow-hidden">
-        {tabs.map((tab) => (
-          <button
-            key={tab.value}
-            className={cn(
-              "text-sm font-medium text-gray-500 dark:text-muted-dark p-4  rounded-md relative",
-              active === tab.value ? " text-white dark:text-black" : ""
-            )}
-            onClick={() => setActive(tab.value)}
-          >
-            {active === tab.value && (
-              <motion.span
-                layoutId="moving-div"
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                className="absolute inset-0 bg-black dark:bg-white"
-              />
-            )}
-            <span className="relative z-10">{tab.name}</span>
-          </button>
-        ))}
-      </div>
-      <div className="mx-auto mt-4 md:mt-20   grid relative z-20 grid-cols-1 gap-4 items-center  md:grid-cols-2 xl:grid-cols-4">
-        {tiers.map((tier, tierIdx) => (
+    <div className="relative mx-auto max-w-7xl px-4">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        {tiers.map((tier) => (
           <div
             key={tier.id}
             className={cn(
               tier.featured
-                ? "relative bg-[radial-gradient(164.75%_100%_at_50%_0%,#334155_0%,#0F172A_48.73%)]  shadow-2xl"
-                : " bg-white dark:bg-black",
-              "rounded-lg px-6 py-8 sm:mx-8 lg:mx-0  h-full flex flex-col justify-between"
+                ? "bg-[#F3EDE5] dark:bg-[#3D4F4F] ring-2 ring-[#E9B893]"
+                : "bg-[#F3EDE5] dark:bg-[#3D4F4F] ring-1 ring-[#A3A692]",
+              "rounded-3xl p-8 xl:p-10"
             )}
           >
             <div className="">

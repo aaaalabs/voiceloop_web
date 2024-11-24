@@ -66,7 +66,7 @@ export const Companies = () => {
   }, [isAnimating]);
 
   return (
-    <div className="relative z-20 py-10 md:py-40">
+    <div className="relative z-20 py-10 md:py-40 bg-[#F3EDE5] dark:bg-[#3D4F4F] rounded-2xl px-8">
       <Heading as="h2">Trusted by the best companies</Heading>
       <Subheading className="text-center ">
         voiceloop is the choice of all the fortune 500 companies.
@@ -115,6 +115,8 @@ export const Companies = () => {
           ))}
         </AnimatePresence>
       </div>
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F2E2CE] dark:from-[#1D3640]" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F2E2CE] dark:from-[#1D3640]" />
     </div>
   );
 };

@@ -4,6 +4,10 @@ const links = [
     href: "https://voiceloop.canny.io/feature-requests",
   },
   {
+    name: "ChurnCalc",
+    href: "/churncalc",
+  },
+  {
     name: "Contact",
     href: "/contact",
   },

@@ -19,10 +19,25 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "#A062F9",
-        secondary: "#1A77DA",
-        muted: "var(--neutral-600)",
-        "muted-dark": "var(--neutral-300)",
+        primary: "#1D3640",
+        secondary: "#3D4F4F",
+        tertiary: "#A3A692",
+        accent: {
+          primary: "#E9B893",
+          secondary: "#F99D7C",
+        },
+        blue: {
+          400: "#E9B893",
+          500: "#F99D7C",
+          600: "#E9B893",
+          900: "#1D3640",
+        },
+        purple: {
+          400: "#F99D7C",
+          500: "#E9B893",
+          600: "#F99D7C",
+          900: "#3D4F4F",
+        },
       },
       animation: {
         scroll:

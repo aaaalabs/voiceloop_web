@@ -4,17 +4,42 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-primary: 242, 226, 206;    /* Champagne #F2E2CE */
+  --background-secondary: 243, 237, 229;  /* Ivory Cream #F3EDE5 */
+  --text-primary: 29, 54, 64;            /* Limed Spruce #1D3640 */
+  --text-secondary: 61, 79, 79;          /* Deep Teal Gray #3D4F4F */
+  --text-tertiary: 163, 166, 146;        /* Bud #A3A692 */
+  --accent-primary: 233, 184, 147;       /* Gold Sand #E9B893 */
+  --accent-secondary: 249, 157, 124;     /* Geraldine #F99D7C */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Base styles */
+body {
+  background-color: rgb(var(--background-primary));
+  color: rgb(var(--text-primary));
+}
+
+.dark body {
+  background-color: rgb(var(--text-primary));
+  color: rgb(var(--background-primary));
+}
+
+/* Override default white/black backgrounds */
+.bg-white {
+  background-color: rgb(var(--background-primary)) !important;
+}
+
+.dark .bg-black {
+  background-color: rgb(var(--text-primary)) !important;
+}
+
+/* Update text colors */
+.text-black {
+  color: rgb(var(--text-primary)) !important;
+}
+
+.dark .text-white {
+  color: rgb(var(--background-primary)) !important;
 }
 
 html {

@@ -40,6 +40,8 @@ export const Hero = ({
 
   return (
     <div className="max-w-[1200px] mx-auto px-3 xxs:px-4 sm:px-8 flex flex-col min-h-screen pt-32 xxs:pt-30 sm:pt-32 md:pt-48 relative">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F2E2CE] dark:from-[#1D3640]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F2E2CE] dark:from-[#1D3640]" />
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -51,7 +53,7 @@ export const Hero = ({
           className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-full px-4 py-2 inline-block hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
         >
           <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-            AAA Beta Study: First 5 Weeks Results
+          The Hidden Formula Behind Explosive Membership Growth 📊
           </p>
         </Link>
       </motion.div>
@@ -75,7 +77,7 @@ export const Hero = ({
                 repeat: Infinity,
                 ease: "easeOut"
               }}
-              className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 
+              className="bg-gradient-to-r from-[#E9B893] via-[#F99D7C] to-[#E9B893] 
               bg-[size:300%] bg-clip-text text-transparent"
             >
               Start Growing Revenue
@@ -88,10 +90,12 @@ export const Hero = ({
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeOut", duration: 0.5 }}
-        className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 max-w-2xl mx-auto text-center mt-8 mb-12"
+        className="text-2xl sm:text-3xl font-semibold text-[#A3A692] max-w-2xl mx-auto text-center mt-8 mb-12"
       >
         <Balancer>
-          Harness AI to Build Lasting Connections, Not Just Numbers.
+          Boost Your Revenue by{" "}
+          <span className="text-blue-600 dark:text-blue-400">88%</span> in Just{" "}
+          <span className="whitespace-nowrap">One Year</span> with 2% Monthly Churn Reduction.
         </Balancer>
       </motion.p>
 

@@ -86,7 +86,7 @@ function Testimonial({
   return (
     <figure
       className={cn(
-        "animate-fade-in rounded-3xl bg-transparent p-8 opacity-0 shadow-derek dark:bg-neutral-900",
+        "animate-fade-in rounded-3xl bg-[#F3EDE5] dark:bg-[#3D4F4F] p-8 opacity-0 shadow-derek",
         className,
       )}
       style={{
@@ -101,15 +101,15 @@ function Testimonial({
             name={name}
           />
           <div className="ml-3">
-            <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-200">
+            <h3 className="text-lg font-medium text-[#1D3640] dark:text-[#F3EDE5]">
               {name}
             </h3>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-sm text-[#A3A692]">
               {career_stage}
             </p>
           </div>
         </div>
-        <p className="text-base text-neutral-600 dark:text-neutral-300">
+        <p className="text-base text-[#3D4F4F] dark:text-[#F2E2CE]">
           {content}
         </p>
       </div>
@@ -191,8 +191,8 @@ function TestimonialGrid({ testimonials }: { testimonials: Testimonial[] }) {
         className="hidden lg:block"
         shift={10}
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-black" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-black" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F2E2CE] dark:from-[#1D3640]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F2E2CE] dark:from-[#1D3640]" />
     </InViewDiv>
   );
 }

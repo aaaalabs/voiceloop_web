@@ -13,22 +13,23 @@ export const Logo = () => {
   }, []);
 
   if (!mounted) {
-    return null; // Prevent flash of incorrect logo
+    return null;
   }
 
   return (
     <Link
       href="/"
-      className="font-normal flex items-center text-sm mr-4 text-black px-2 py-1 relative z-20"
+      className="font-normal flex items-center text-sm mr-4 px-2 py-1 relative z-20"
     >
       <Image
         src={(resolvedTheme === "dark" || theme === "dark") ? "/vl_white.svg" : "/vl_black.svg"}
         alt="voiceloop | amplify what matters."
         width={24}
         height={24}
-        className=""
       />
-      <span className="font-medium text-black dark:text-white"> &nbsp;voiceloop</span>
+      <span className="font-medium text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]">
+        &nbsp;voiceloop
+      </span>
     </Link>
   );
 };

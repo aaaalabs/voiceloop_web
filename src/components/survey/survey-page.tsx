@@ -199,40 +199,8 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
 
   // Modified step 2 to include submit button
   const renderStep2 = () => (
-    <div className="space-y-6">
-      <h4 className="text-lg font-semibold text-center mb-6 dark:text-white">
-        Your biggest challenge:
-      </h4>
-      
-      {/* Summary Box */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 mb-8 
-        border-2 border-orange-400/70 dark:border-orange-500/50
-        shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)]
-        ring-1 ring-orange-400/20 dark:ring-orange-500/20">
-        <div className="flex items-start gap-3">
-          {choice && challenges.find(c => c.id === choice)?.icon && (
-            <div className="p-2.5 rounded-lg bg-orange-100 dark:bg-orange-900/30">
-              {React.createElement(challenges.find(c => c.id === choice)?.icon || Users, {
-                className: "w-6 h-6 text-orange-600 dark:text-orange-400"
-              })}
-            </div>
-          )}
-          <div>
-            <div className="font-semibold text-lg text-gray-900 dark:text-white">
-              {choice === 'custom' 
-                ? 'Custom Challenge'
-                : challenges.find(c => c.id === choice)?.title}
-            </div>
-            <div className="text-base text-gray-600 dark:text-gray-300 mt-1">
-              {choice === 'custom' 
-                ? customChallenge
-                : challenges.find(c => c.id === choice)?.description}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h4 className="text-lg font-semibold text-center mb-6 dark:text-white">
+    <div className="space-y-4">
+      <h4 className="text-lg font-semibold text-center mb-6 text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]">
         If we solved this for you, would you stay longer in AAA?
       </h4>
       <div className="space-y-4">
@@ -248,13 +216,16 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
               setStayLonger(option);
             }}
             disabled={isSubmitting}
-            className={`w-full p-6 rounded-xl border-2 transition-all duration-200 bg-white dark:bg-gray-800 shadow-md hover:shadow-xl ${
+            className={`w-full p-6 rounded-xl border-2 transition-all duration-200 
+              bg-[rgb(var(--background-tertiary))] dark:bg-[rgb(var(--text-tertiary))] 
+              text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]
+              shadow-md hover:shadow-xl ${
               stayLonger === option 
-                ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-900/50 shadow-blue-100 dark:shadow-blue-900/20' 
-                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
+                ? 'border-[rgb(var(--accent-primary))] bg-[rgb(var(--background-secondary))]/50 dark:bg-[rgb(var(--text-secondary))]/50' 
+                : 'border-[rgb(var(--background-secondary))] dark:border-[rgb(var(--text-secondary))] hover:border-[rgb(var(--accent-primary))]'
             }`}
           >
-            <span className="text-lg font-medium dark:text-white">{option}</span>
+            <span className="text-lg font-medium">{option}</span>
           </motion.button>
         ))}
       </div>
@@ -265,7 +236,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
         onClick={() => setStep(0)}
-        className="mx-auto mt-8 flex items-center gap-2 px-4 py-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+        className="mx-auto mt-8 flex items-center gap-2 px-4 py-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors rounded-lg hover:bg-[#F3EDE5] dark:hover:bg-[#1D3640]"
       >
         <ChevronLeft className="w-4 h-4" />
         Back to previous question
@@ -296,18 +267,25 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                 setStep(1); // Immediately advance to step 2 for non-custom choices
               }
             }}
-            className={`p-6 rounded-xl border-2 transition-all duration-200 text-left bg-white dark:bg-gray-800 shadow-md hover:shadow-xl ${
+            className={`p-6 rounded-xl border-2 transition-all duration-200 text-left 
+              bg-[rgb(var(--background-tertiary))] dark:bg-[rgb(var(--text-tertiary))]
+              text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]
+              shadow-md hover:shadow-xl ${
               choice === item.id 
-                ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-900/50 shadow-blue-100 dark:shadow-blue-900/20' 
-                : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
+                ? 'border-[rgb(var(--accent-primary))] bg-[rgb(var(--background-secondary))]/50 dark:bg-[rgb(var(--text-secondary))]/50' 
+                : 'border-[rgb(var(--background-secondary))] dark:border-[rgb(var(--text-secondary))] hover:border-[rgb(var(--accent-primary))]'
             }`}
           >
             <div className="flex items-start gap-3">
               <div className={`p-2 rounded-lg ${
-                choice === item.id ? 'bg-blue-100 dark:bg-blue-900' : 'bg-gray-100 dark:bg-gray-800'
+                choice === item.id 
+                  ? 'bg-[rgb(var(--background-secondary))] dark:bg-[rgb(var(--text-secondary))]' 
+                  : 'bg-[rgb(var(--background-secondary))] dark:bg-[rgb(var(--text-secondary))]'
               }`}>
                 <item.icon className={`w-5 h-5 ${
-                  choice === item.id ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'
+                  choice === item.id 
+                    ? 'text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]' 
+                    : 'text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]'
                 }`} />
               </div>
               <div>
@@ -387,7 +365,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
     <ErrorBoundary fallback={<ErrorFallback />}>
       {/* Header outside of any loading states or animations */}
       {!showThankYou && (
-        <header className="pt-8 sm:pt-12 pb-6 sm:pb-8 text-center px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black">
+        <header className="pt-8 sm:pt-12 pb-6 sm:pb-8 text-center px-4 bg-[rgb(var(--background-primary))] dark:bg-[rgb(var(--text-primary))]">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Hi {userName}! Help Shape{' '}
             <br className="hidden sm:block" />
@@ -400,7 +378,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
       )}
 
       {/* Rest of the content */}
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-black">
+      <div className="min-h-screen bg-[rgb(var(--background-primary))] dark:bg-[rgb(var(--text-primary))]">
         <Head>
           <title>AAA Community Survey</title>
           <meta name="description" content="Help shape the future of AAA Community by sharing your insights" />
@@ -424,7 +402,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         {!showThankYou && (
           <>
             {/* Social Proof Section */}
-            <div className="bg-white dark:bg-black py-20">
+            <div className="bg-[#F3EDE5] dark:bg-[#1D3640] py-20">
               <div className="max-w-6xl mx-auto px-4 text-center">
                 <h3 className="text-2xl font-bold mb-8 dark:text-white">
                   Join these AAA members in shaping the future
@@ -434,7 +412,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
             </div>
 
             {/* CTA Banner */}
-            <div className="bg-white dark:bg-black py-24">
+            <div className="bg-[#F3EDE5] dark:bg-[#1D3640] py-24">
               <div className="mx-auto w-full relative z-20 sm:max-w-[40rem] md:max-w-[48rem] lg:max-w-[64rem] xl:max-w-[80rem] bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-[24px] overflow-hidden">
                 {/* Decorative elements */}
                 <div className="absolute inset-0 w-full h-full">

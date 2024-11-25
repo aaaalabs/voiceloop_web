@@ -68,10 +68,10 @@ const Feature = ({
       } ${index < 4 ? "lg:border-b dark:border-neutral-800" : ""}`}
     >
       {index < 4 && (
-        <div className="opacity-0 group-hover:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-[#F3EDE5] dark:from-[#1D3640] to-transparent pointer-events-none" />
       )}
       {index >= 4 && (
-        <div className="opacity-0 group-hover:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-[#F3EDE5] dark:from-[#1D3640] to-transparent pointer-events-none" />
       )}
       <div className="mb-4 relative z-10 px-10">
         <Image src={icon} alt={title} width={48} height={48} />

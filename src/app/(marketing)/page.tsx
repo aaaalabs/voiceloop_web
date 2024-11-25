@@ -3,7 +3,7 @@ import { Hero } from "@/components/hero";
 import { Background } from "@/components/background";
 // import { HeroHighlightDemo } from "@/components/hero";
 // import { FlipWordsDemo } from "@/components/hero";
-// import { Features } from "@/components/features";
+ import { Features } from "@/components/features";
 import { Companies } from "@/components/companies";
 import { GridFeatures } from "@/components/grid-features";
 import { Testimonials } from "@/components/testimonials";
@@ -74,6 +74,7 @@ export default async function Home() {
             Six powerful tools working in harmony to transform new members into engaged community champions
           </p>
         </div>
+        <Features />
         <GridFeatures />
         <div className="mt-24 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">

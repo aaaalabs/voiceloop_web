@@ -6,7 +6,7 @@ import { links, content, legal, socials } from "@/constants/footer_links";
 export const Footer = () => {
   return (
     <div className="relative">
-      <div className="border-t border-neutral-100 dark:border-neutral-800 px-8 pt-20 pb-32 relative bg-white dark:bg-black">
+      <div className="border-t border-neutral-100 dark:border-neutral-800 px-8 pt-20 pb-32 relative bg-[rgb(var(--background-primary))] dark:bg-[rgb(var(--text-primary))]">
         <div className="max-w-7xl mx-auto text-sm text-neutral-500 dark:text-neutral-400 flex sm:flex-row flex-col justify-between items-start ">
           <div>
             <div className="mr-4  md:flex mb-4">
@@ -63,7 +63,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-center text-5xl md:text-9xl lg:text-[18rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-[#F2E2CE] via-[#E9B893] to-[#F99D7C] dark:from-[#1D3640] dark:via-[#3D4F4F] dark:to-[#A3A692] inset-x-0">
+      <p className="text-center text-5xl md:text-9xl lg:text-[18rem] font-bold bg-clip-text text-transparent bg-gradient-to-b from-[rgb(var(--background-secondary))] via-[rgb(var(--accent-primary))] to-[rgb(var(--accent-secondary))] dark:from-[rgb(var(--text-primary))] dark:via-[rgb(var(--text-secondary))] dark:to-[rgb(var(--text-tertiary))]">
         CONNECT
       </p>
     </div>

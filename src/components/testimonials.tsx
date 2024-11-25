@@ -23,14 +23,14 @@ function ConditionalAvatar({ image_url, logo_url, name }: AvatarProps) {
           src={getOptimizedImageUrl(logo_url, 50)}
           width={48}
           height={48}
-          className="rounded-full bg-white border border-black"
+          className="rounded-full bg-[rgb(var(--background-tertiary))] border border-black"
           alt="Company logo"
         />
         <Image
           src={getOptimizedImageUrl(image_url ?? AvatarCircle.src, 50)}
           width={48}
           height={48}
-          className="rounded-full border-2 border-white dark:border-neutral-900 -ml-4 ring-1 ring-black"
+          className="rounded-full border-2 border-[rgb(var(--background-tertiary))] dark:border-neutral-900 -ml-4 ring-1 ring-black"
           alt={name ?? "Profile picture"}
         />
       </div>
@@ -86,7 +86,7 @@ function Testimonial({
   return (
     <figure
       className={cn(
-        "animate-fade-in rounded-3xl bg-[#F3EDE5] dark:bg-[#3D4F4F] p-8 opacity-0 shadow-derek",
+        "animate-fade-in rounded-3xl bg-[rgb(var(--background-tertiary))] dark:bg-[#3D4F4F] p-8 opacity-0 shadow-derek",
         className,
       )}
       style={{
@@ -191,8 +191,8 @@ function TestimonialGrid({ testimonials }: { testimonials: Testimonial[] }) {
         className="hidden lg:block"
         shift={10}
       />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F2E2CE] dark:from-[#1D3640]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F2E2CE] dark:from-[#1D3640]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#F3EDE5] dark:from-[#1D3640]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F3EDE5] dark:from-[#1D3640]" />
     </InViewDiv>
   );
 }

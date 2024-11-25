@@ -39,10 +39,10 @@ export const HorizontalGradient = ({
           y2="1.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="white" stopOpacity="0" />
-          <stop offset="0.2" stopColor="var(--neutral-400)" />
-          <stop offset="0.8" stopColor="var(--neutral-400)" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
+          <stop stopColor="rgb(var(--background-primary))" stopOpacity="0" />
+          <stop offset="0.2" stopColor="var(--text-primary)" />
+          <stop offset="0.8" stopColor="var(--text-primary)" />
+          <stop offset="1" stopColor="rgb(var(--background-primary))" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>

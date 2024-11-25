@@ -188,10 +188,19 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
           and will be in touch soon with updates about new features.
         </p>
         <Button
-          onClick={() => router.push('https://voiceloop.io')}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 hover:shadow-lg hover:scale-105"
+          onClick={() => {
+            setShowThankYou(false);
+            router.push('https://voiceloop.io');
+          }}
+          className="px-6 py-2.5 rounded-full font-medium transition-all duration-200
+            bg-black hover:bg-neutral-800
+            dark:bg-white dark:hover:bg-neutral-200
+            text-white dark:text-black"
         >
-          Return to Homepage
+          <span className="flex items-center gap-2">
+            Return to Homepage
+            <ChevronRight className="w-4 h-4" />
+          </span>
         </Button>
       </motion.div>
     </motion.div>

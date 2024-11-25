@@ -4,6 +4,7 @@ import React from "react";
 import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 import { Button } from "./button";
+import { ChevronRight } from "lucide-react";
 
 export const CTA = () => {
   return (
@@ -19,7 +20,8 @@ export const CTA = () => {
         <div className="relative overflow-hidden px-6 md:px-8">
           <div className="relative px-6 pb-14 pt-20 sm:px-10 sm:pb-20 lg:px-[4.5rem]">
             <div className="flex justify-center mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium 
+                bg-[rgb(var(--background-secondary))] text-[rgb(var(--text-primary))]">
                 ⭐ LIMITED TIME AAA CASE STUDY PROJECT
               </span>
             </div>
@@ -37,25 +39,16 @@ export const CTA = () => {
               <Button 
                 href="https://connect.voiceloop.io" 
                 as={Link}
-                className="group relative px-10 py-4 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transition-all duration-300 rounded-full shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-0.5"
+                className="group relative px-10 py-4 text-lg font-semibold
+                  bg-[rgb(var(--text-primary))] hover:bg-[rgb(var(--text-secondary))]
+                  dark:bg-[rgb(var(--background-primary))] dark:hover:bg-[rgb(var(--background-secondary))]
+                  text-[rgb(var(--background-primary))] dark:text-[rgb(var(--text-primary))]
+                  transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Start Growing Now
-                  <svg 
-                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
+                  <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
-                <div className="absolute inset-0 rounded-full bg-white/20 blur-sm group-hover:blur-md transition-all duration-300" />
               </Button>
             </div>
           </div>

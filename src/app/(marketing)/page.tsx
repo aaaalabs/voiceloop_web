@@ -74,7 +74,7 @@ export default async function Home() {
             Six powerful tools working in harmony to transform new members into engaged community champions
           </p>
         </div>
-        <Features />
+       
         <GridFeatures />
         <div className="mt-24 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">

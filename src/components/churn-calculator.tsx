@@ -251,8 +251,11 @@ export function ChurnCalculator() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleFirstCalculation}
-            className="w-full mt-8 px-4 py-2 bg-[#E9B893] hover:bg-[#F99D7C] text-gray-900 
-                     rounded-lg transition-colors duration-200 font-medium"
+            className="w-full mt-8 px-4 py-2 
+              bg-[rgb(var(--background-secondary))] hover:bg-[rgb(var(--background-tertiary))]
+              dark:bg-[rgb(var(--text-secondary))] dark:hover:bg-[rgb(var(--text-tertiary))]
+              text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]
+              rounded-lg transition-colors duration-200 font-medium"
           >
             Calculate Impact
           </motion.button>

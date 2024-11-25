@@ -6,13 +6,13 @@ import { cn } from "../../lib/utils";
 type ActionButtonProps = {
   title: string;
   href: string;
-  variant?: "default" | "simple";
+  variant?: "primary" | "simple";
 };
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
   title,
   href,
-  variant = "default",
+  variant = "primary",
 }) => (
   <Button variant={variant} as={Link} href={href}>
     {title}

@@ -299,7 +299,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
               </div>
               <div>
                 <div className="font-medium dark:text-white">{item.title}</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-gray-600 dark:text-[rgb(var(--background-secondary))]">
                   {item.description}
                 </div>
               </div>

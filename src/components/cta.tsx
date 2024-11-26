@@ -9,7 +9,8 @@ import { ChevronRight } from "lucide-react";
 export const CTA = () => {
   return (
     <section id="aaa-cta-section" className="py-60 w-full overflow-hidden relative z-30">
-      <div className="mx-auto w-full relative z-20 sm:max-w-[40rem] md:max-w-[48rem] lg:max-w-[64rem] xl:max-w-[80rem] bg-[#FFFFFF] dark:bg-[#1D3640] rounded-[24px] overflow-hidden">
+      <div className="mx-auto w-full relative z-20 sm:max-w-[40rem] md:max-w-[48rem] lg:max-w-[64rem] xl:max-w-[80rem] 
+        bg-[#FFFFFF] dark:bg-[rgb(var(--text-secondary))] rounded-[24px] overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute -right-20 -top-20 w-60 h-60 rounded-full bg-[#E9B893] dark:bg-[#F99D7C] opacity-10 mix-blend-multiply" />

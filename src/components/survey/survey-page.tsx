@@ -475,23 +475,31 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
 
         {/* Custom Challenge Modal with mobile-friendly padding */}
         <Dialog open={showCustomModal} onOpenChange={setShowCustomModal}>
-          <DialogContent className="sm:max-w-[425px] bg-white dark:bg-gray-900 shadow-xl p-4 sm:p-6 
-            !top-[100px] !block !translate-y-0 !h-auto"
+          <DialogContent className="sm:max-w-[425px] bg-[rgb(var(--background-primary))] dark:bg-[rgb(var(--text-primary))] shadow-xl p-4 sm:p-6 
+            !top-[100px] !block !translate-y-0 !h-auto border dark:border-[rgb(var(--background-secondary))]"
           >
-            <DialogHeader className="border-b border-gray-100 dark:border-gray-800 pb-4">
-              <DialogTitle className="text-xl font-semibold dark:text-white">Describe Your Challenge</DialogTitle>
+            <DialogHeader className="border-b border-[rgb(var(--background-secondary))] dark:border-[rgb(var(--background-tertiary))] pb-4">
+              <DialogTitle className="text-xl font-semibold text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]">
+                Describe Your Challenge
+              </DialogTitle>
             </DialogHeader>
             
             <div className="space-y-4 py-4">
               <textarea
                 placeholder="What's your biggest challenge in AAA?"
-                className="w-full p-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors"
+                className="w-full p-3 rounded-lg border-2 border-[rgb(var(--background-secondary))] 
+                  dark:border-[rgb(var(--background-tertiary))] 
+                  bg-[rgb(var(--background-primary))] dark:bg-[rgb(var(--text-secondary))]
+                  text-[rgb(var(--text-primary))] dark:text-[rgb(var(--background-primary))]
+                  focus:border-[rgb(var(--accent-primary))] focus:ring-2 focus:ring-[rgb(var(--accent-primary))] 
+                  placeholder:text-gray-500 dark:placeholder:text-[rgb(var(--background-tertiary))]
+                  transition-colors"
                 rows={3}
                 value={customChallenge}
                 onChange={(e) => setCustomChallenge(e.target.value)}
               />
               {customChallenge.length <= 1 && (
-                <p className="text-center text-sm text-gray-500 dark:text-gray-400 font-medium">
+                <p className="text-center text-sm text-[rgb(var(--text-secondary))] dark:text-[rgb(var(--background-secondary))] font-medium">
                   Please provide more detail about your challenge
                 </p>
               )}
@@ -504,7 +512,8 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
                     setStep(1);
                   }
                 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
+                  text-white font-medium"
                 disabled={customChallenge.length <= 1}
               >
                 Continue

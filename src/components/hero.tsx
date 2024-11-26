@@ -12,7 +12,6 @@ import { MvCurrentKpis } from "@/db";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { getOptimizedImageUrl } from "@/utils/imageKit";
 import { FlowchartEmbed } from './flowchart-embed';
-import { GradientButton } from "./ui/gradient-button";
 
 export const Hero = ({
   currentKpis,
@@ -138,21 +137,33 @@ export const Hero = ({
         transition={{ ease: "easeOut", duration: 0.5, delay: 0.4 }}
         className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 justify-center mt-8 sm:mt-12 md:mt-16 relative z-20 px-4"
       >
-        <GradientButton
-          containerClassName="w-full sm:w-auto"
-          className="w-full sm:w-auto text-base sm:text-lg py-5 sm:py-6 px-8 sm:px-14 font-medium"
+        <Button
+          variant="primary"
           onClick={scrollToCalendar}
+          className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-14 py-5 sm:py-6 
+            font-medium transition-all duration-300
+            bg-[rgb(var(--text-primary))] hover:bg-[rgb(var(--text-secondary))]
+            text-[rgb(var(--background-primary))]
+            dark:bg-[rgb(var(--background-primary))] dark:hover:bg-[rgb(var(--background-secondary))]
+            dark:text-[rgb(var(--text-primary))]
+            shadow-lg hover:shadow-xl rounded-full border-0"
         >
           Book Free Strategy Call
-        </GradientButton>
+        </Button>
         
         <Button
           variant="simple"
           onClick={scrollToCTA}
-          className="w-full sm:w-auto flex items-center justify-center group text-base sm:text-lg px-8 sm:px-14 py-5 sm:py-6 font-medium transition-all duration-200 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700"
+          className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-14 py-5 sm:py-6 
+            font-medium transition-all duration-200
+            bg-white/50 hover:bg-white/80
+            text-neutral-900 border border-neutral-200
+            dark:bg-white/10 dark:hover:bg-white/20
+            dark:text-white dark:border-white/20
+            backdrop-blur-sm"
         >
           <span>Join AAA Beta</span>
-          <HiArrowRight className="group-hover:translate-x-1 stroke-[1px] h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-200 ml-2 relative top-[1px]" />
+          <HiArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </motion.div>
       <FlowchartEmbed className="z-10" />

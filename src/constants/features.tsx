@@ -60,7 +60,7 @@ const features = [
   },
   {
     title: "TalentTracker",
-    description: "Your Community Hiring Engine: Powerful search connecting recruiters and members with ideal candidates and partners",
+    description: "Your Opportunity Compass: Discover perfect collaborators and partners already in your network",
     iconLight: icon_TalentTracker_light,
     iconDark: icon_TalentTracker_dark,
   },

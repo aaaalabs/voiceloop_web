@@ -52,14 +52,10 @@ const Feature = ({
   icon: string;
   index: number;
 }) => {
-  // Find the first colon to bold the initial part of the description
   const colonIndex = description.indexOf(": ");
   const hasColon = colonIndex !== -1;
-
   const boldText = hasColon ? description.substring(0, colonIndex + 1) : "";
-  const restOfDescription = hasColon
-    ? description.substring(colonIndex + 2)
-    : description;
+  const restOfDescription = hasColon ? description.substring(colonIndex + 2) : description;
 
   return (
     <div
@@ -73,8 +69,14 @@ const Feature = ({
       {index >= 4 && (
         <div className="opacity-0 group-hover:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-[#F3EDE5] dark:from-[#1D3640] to-transparent pointer-events-none" />
       )}
-      <div className="mb-4 relative z-10 px-10">
-        <Image src={icon} alt={title} width={48} height={48} />
+      <div className="h-12 mb-4 relative z-10 px-10 flex items-center">
+        <Image 
+          src={icon} 
+          alt={title} 
+          width={48} 
+          height={48}
+          className="h-12 w-auto object-contain"
+        />
       </div>
       <div className="text-lg font-bold mb-2 relative z-10 px-10">
         <div className="absolute left-0 inset-y-0 h-6 w-1 rounded-tr-full rounded-br-full bg-[#A3A692] dark:bg-[#3D4F4F] group-hover:bg-[#F99D7C] transition duration-200" />

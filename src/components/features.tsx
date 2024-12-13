@@ -11,41 +11,41 @@ import { SkeletonThree } from "./skeletons/third";
 export const Features = () => {
   const features = [
     {
-      title: "Generate images with text",
+      title: "Interactive Global Member Map",
       description:
-        "Generate images from a text prompt, a video, or a video segment in bulk at the speed of light.",
+        "Watch your community come alive with our real-time global visualization. See where members are located and discover potential connections nearby.",
       skeleton: <SkeletonOne />,
       className:
         "col-span-1 md:col-span-4 border-b border-r dark:border-neutral-800",
     },
     {
-      title: "Create stupid simple chatbots",
+      title: "Automated Member Spotlights",
       description:
-        "Create Chatbots with a single button click. Customize as per your requirements and the AI will take care of the rest.",
+        "Celebrate new members with AI-generated LinkedIn posts. Showcase their expertise and help them connect with the right people.",
       skeleton: <SkeletonTwo />,
       className: "border-b col-span-1 md:col-span-2 dark:border-neutral-800",
     },
     {
-      title: "We support every single LLM",
+      title: "Community Podcast Hub",
       description:
-        "Whether it's OpenAI, GroQ or Your Mom's Basement LLM, we support everything.",
+        "Turn member stories into engaging podcast content. Our AI helps create show notes, highlights, and social snippets automatically.",
       skeleton: <SkeletonThree />,
       className: "col-span-1 md:col-span-3 border-r dark:border-neutral-800",
     },
     {
-      title: "Deploy in seconds",
+      title: "Health & Analytics Dashboard",
       description:
-        "With our blazing fast, state of the art, cutting edge, we are so back cloud servies (read AWS) - you can deploy your model in seconds.",
+        "Track engagement, retention, and growth with our comprehensive analytics. Identify trends and take action before issues arise.",
       skeleton: <SkeletonFour />,
       className: "col-span-1 md:col-span-3",
     },
   ];
   return (
     <div className="relative z-20 py-10 md:py-40">
-      <Heading as="h2">Packed with thousands of features</Heading>
-      <Subheading className="text-center ">
-        From Image generation to video generation, voiceloop has APIs for
-        literally everything. It can even create this website copy for you.
+      <Heading as="h2">Community Management, Supercharged</Heading>
+      <Subheading className="text-center">
+        From global member mapping to AI-powered content creation, we've built everything 
+        you need to run a thriving community at scale.
       </Subheading>
 
       <div className="relative">

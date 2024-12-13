@@ -1,58 +1,109 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { IconDots, IconPlus } from "@tabler/icons-react";
-import { Switch } from "../switch";
+import { PlayIcon } from "@heroicons/react/24/solid";
+import { SpeakerWaveIcon } from "@heroicons/react/24/outline";
+import type { Spotlight } from "@/db/spotlights_view";
 
-export const SkeletonThree = () => {
+const PodcastEpisode = ({
+  title,
+  guest,
+  role,
+  duration,
+  image,
+  date,
+  delay = 0
+}: {
+  title: string;
+  guest: string;
+  role: string;
+  duration: string;
+  image: string;
+  date: string;
+  delay?: number;
+}) => {
   return (
-    <div className="h-full w-full sm:w-[80%] mx-auto bg-white dark:bg-neutral-800  shadow-2xl dark:shadow-white/40 mt-10 group rounded-md">
-      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-white via-white dark:from-black dark:via-black to-transparent w-full pointer-events-none z-[11]" />
-
-      <div className="flex flex-1 w-full h-full flex-col space-y-2 ">
-        <div className="flex justify-between border-b dark:border-neutral-700 pb-2 p-4">
-          <p className="text-muted text-sm font-bold dark:text-muted-dark">
-            Add LLM
-          </p>
-          <p className="shadow-derek text-muted dark:text-muted-dark text-sm px-2 py-1 rounded-md flex-shrink-0 flex space-x-1 items-center dark:bg-neutral-700">
-            <IconPlus className="h-4 w-4 text-muted dark:text-muted-dark" />{" "}
-            <span>Add</span>
-          </p>
-        </div>
-        <div className="flex flex-col space-y-4 p-4">
-          <Row title="Groq LLM" updatedAt="23rd March" />
-          <Row title="OpenAI GPT0" updatedAt="21st March" active />
-          <Row title="Stable DIffusion" updatedAt="3rd May" />
-          <Row title="Llama 2" updatedAt="1st April" active />
-          <Row title="Claude 200k" updatedAt="2nd June" active />
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+      className="flex items-center gap-4 p-4 bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+    >
+      <div className="relative flex-shrink-0">
+        <Image
+          src={image}
+          alt={guest}
+          width={80}
+          height={80}
+          className="rounded-lg object-cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+          <PlayIcon className="w-8 h-8 text-white" />
         </div>
       </div>
-    </div>
+      <div className="flex-grow">
+        <h3 className="font-medium line-clamp-1">{title}</h3>
+        <p className="text-sm text-neutral-500">with {guest}</p>
+        <p className="text-sm text-neutral-500">{role}</p>
+        <div className="mt-2 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <SpeakerWaveIcon className="w-4 h-4 text-neutral-500" />
+            <span className="text-xs text-neutral-500">{duration}</span>
+          </div>
+          <span className="text-xs text-neutral-500">{new Date(date).toLocaleDateString()}</span>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
-export const Row = ({
-  title,
-  updatedAt,
-  active = false,
-}: {
-  title: string;
-  updatedAt: string;
-  active?: boolean;
-}) => {
-  const [checked, setChecked] = useState(active);
+export const SkeletonThree = () => {
+  const episodes = [
+    {
+      title: "Building Community-First Products",
+      guest: "Sarah Chen",
+      role: "Product Designer",
+      duration: "32:15",
+      image: "https://ik.imagekit.io/libralab/VoiceLoop/SPARK_004.png",
+      date: "2024-03-15"
+    },
+    {
+      title: "The Art of Community Leadership",
+      guest: "Marcus Johnson",
+      role: "Community Lead",
+      duration: "45:30",
+      image: "https://ik.imagekit.io/libralab/VoiceLoop/SPARK_004.png",
+      date: "2024-03-14"
+    },
+    {
+      title: "Frontend Development Best Practices",
+      guest: "Elena Rodriguez",
+      role: "Frontend Developer",
+      duration: "28:45",
+      image: "https://ik.imagekit.io/libralab/VoiceLoop/SPARK_004.png",
+      date: "2024-03-13"
+    }
+  ];
+
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex space-x-2 items-center">
-        <p className="text-muted dark:text-muted-dark text-xs shadow-aceternity dark:bg-neutral-700 px-1 py-0.5 rounded-md">
-          {title}
-        </p>
-        <p className="text-muted dark:text-muted-dark text-xs">{updatedAt}</p>
-      </div>
-      <div className="flex items-center space-x-1">
-        <Switch checked={checked} setChecked={setChecked} />
-        <IconDots className="h-4 w-4 text-muted dark:text-muted-dark" />
+    <div className="relative h-full w-full">
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background dark:from-background via-background dark:via-background to-transparent w-full pointer-events-none z-10" />
+      <div className="p-4 space-y-4 overflow-y-auto max-h-[500px]">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-sm font-medium">Recording Live</span>
+          </div>
+          <div className="text-sm text-neutral-500">{episodes.length} Episodes</div>
+        </div>
+        {episodes.map((episode, index) => (
+          <PodcastEpisode
+            key={episode.title}
+            {...episode}
+            delay={index * 0.2}
+          />
+        ))}
       </div>
     </div>
   );

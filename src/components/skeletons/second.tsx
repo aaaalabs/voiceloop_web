@@ -1,71 +1,82 @@
 "use client";
-import { stagger, useAnimate } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { getSpotlights } from "@/db/spotlights_view";
+import type { Spotlight } from "@/db/spotlights_view";
+
+const LinkedInPost = ({ 
+  name, 
+  role, 
+  spotlight_image_url,
+  spotlight_date,
+  delay = 0 
+}: { 
+  name: string;
+  role: string;
+  spotlight_image_url: string;
+  spotlight_date: string;
+  delay?: number;
+}) => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+      className="bg-white dark:bg-neutral-900 p-4 rounded-xl border border-neutral-200 dark:border-neutral-800"
+    >
+      <div className="relative w-full aspect-square mb-4">
+        <Image
+          src={spotlight_image_url}
+          alt={name}
+          fill
+          className="rounded-lg object-cover"
+        />
+      </div>
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="font-medium">{name}</h3>
+          <p className="text-sm text-neutral-500">{role}</p>
+        </div>
+        <span className="text-xs text-neutral-500">
+          {new Date(spotlight_date).toLocaleDateString('en-US', { 
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          })}
+        </span>
+      </div>
+    </motion.div>
+  );
+};
 
 export const SkeletonTwo = () => {
-  const [scope, animate] = useAnimate();
-  const [animating, setAnimating] = useState(false);
+  const [spotlights, setSpotlights] = useState<Spotlight[]>([]);
 
-  const handleAnimation = async () => {
-    if (animating) return;
+  useEffect(() => {
+    const loadSpotlights = async () => {
+      const data = await getSpotlights(3); // Get latest 3 spotlights
+      setSpotlights(data);
+    };
 
-    setAnimating(true);
-    await animate(
-      ".message",
-      {
-        opacity: [0, 1],
-        y: [20, 0],
-      },
-      {
-        delay: stagger(0.5),
-      }
-    );
-    setAnimating(false);
-  };
+    loadSpotlights();
+  }, []);
+
   return (
-    <div className="relative h-full w-full mt-4">
-      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-white via-white dark:from-black dark:via-black to-transparent w-full pointer-events-none" />
-      <div className="p-4 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px] h-full z-20">
-        <div className="p-2 bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] h-full">
-          <div className="w-20 rounded-full bg-neutral-200/80 dark:bg-neutral-800/80 mx-auto h-6" />
-          <div
-            onMouseEnter={handleAnimation}
-            ref={scope}
-            className="content mt-4 w-[90%] mx-auto"
-          >
-            <UserMessage>
-              Hello chat! Give me all the links from this website -
-              https://ui.aceternity.com
-            </UserMessage>
-            <AIMessage>Why don&apos;t you do it yourself?</AIMessage>
-            <UserMessage>
-              Umm.. Because I&apos;m paying $20/mo for your services?
-            </UserMessage>
-            <AIMessage>You think I work for the money?</AIMessage>
-            <UserMessage>Who do you think you are?</UserMessage>
-            <AIMessage>I&apos; batman.</AIMessage>
-            <AIMessage>
-              Now Playing <br />{" "}
-              <span className="italic">Something in the way - Nirvana</span>
-            </AIMessage>
-          </div>
-        </div>
+    <div className="relative h-full w-full">
+      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background dark:from-background via-background dark:via-background to-transparent w-full pointer-events-none z-10" />
+      <div className="p-4 space-y-4 overflow-y-auto max-h-[500px]">
+        {spotlights.map((spotlight, index) => (
+          <LinkedInPost
+            key={index}
+            name={spotlight.name || "Anonymous"}
+            role={spotlight.career_stage || "Member"}
+            spotlight_image_url={spotlight.spotlight_image_url || "/template_assets/tyler.jpeg"}
+            spotlight_date={spotlight.spotlight_date || new Date().toISOString()}
+            delay={index * 0.2}
+          />
+        ))}
       </div>
-    </div>
-  );
-};
-
-const UserMessage = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="message bg-neutral-100 dark:bg-neutral-800 dark:text-white text-black p-2 sm:p-4 text-[10px] sm:text-xs my-4 rounded-md">
-      {children}
-    </div>
-  );
-};
-const AIMessage = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="message bg-black text-white dark:bg-white dark:text-black p-2 sm:p-4 text-[10px] sm:text-xs my-4 rounded-md">
-      {children}
     </div>
   );
 };

@@ -4,6 +4,10 @@ const links = [
     href: "https://voiceloop.canny.io/feature-requests",
   },
   {
+    name: "Mapper",
+    href: "https://mapper.voiceloop.io",
+  },
+  {
     name: "ChurnCalc",
     href: "/churncalc",
   },

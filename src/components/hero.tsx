@@ -166,7 +166,7 @@ export const Hero = ({
           <HiArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </motion.div>
-      <FlowchartEmbed className="z-10" />
+
     </div>
   );
 };

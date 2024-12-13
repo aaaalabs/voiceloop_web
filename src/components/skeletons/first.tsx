@@ -1,113 +1,222 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { BlurImage } from "../blur-image";
+import dynamic from 'next/dynamic';
+import { MapContainer, TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// Add this CSS class at the top of your component
+const pulsingCircle = {
+  animation: "pulsing 2s infinite",
+  "@keyframes pulsing": {
+    "0%": {
+      transform: "scale(0.95)",
+      opacity: 0.5,
+    },
+    "70%": {
+      transform: "scale(1.1)",
+      opacity: 0.3,
+    },
+    "100%": {
+      transform: "scale(0.95)",
+      opacity: 0.5,
+    },
+  },
+};
 
 export const SkeletonOne = () => {
+  const berlinPosition: [number, number] = [52.5200, 13.4050];
+  const members = [
+    { 
+      name: "Lukas Weber", 
+      location: "Kreuzberg", 
+      role: "Tech Lead", 
+      position: [52.4965, 13.3617], 
+      status: "online", // online, away, offline
+      avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2Fb0a4b1922813b989103a3616d7111562.png&w=400&q=75"
+    },
+    { 
+      name: "Anna Schmidt", 
+      location: "Mitte", 
+      role: "Product Manager", 
+      position: [52.5200, 13.4050],
+      status: "away",
+      avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2Fbb3d2a58ea153b635a4951d82affb4db.png&w=400&q=75"
+    },
+    { 
+      name: "Max Mueller", 
+      location: "Prenzlauer Berg", 
+      role: "UX Designer", 
+      position: [52.5426, 13.4149],
+      status: "offline",
+      avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2F67b732b96785fd368415dd82951466c1.png&w=400&q=75"
+    },
+  ];
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "online": return "#22c55e"; // green-500
+      case "away": return "#f59e0b";   // amber-500
+      case "offline": return "#6b7280"; // gray-500
+      default: return "#6b7280";
+    }
+  };
+
   return (
     <div className="relative flex p-8 gap-10 h-full">
-      <div className=" w-full md:w-[90%] p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
-        <div className="flex flex-1 w-full h-full flex-col space-y-2 opacity-20 dark:opacity-60 ">
-          <UserMessage>
-            I want to generate an image of two people, fighting outside a bar.
-            They fight to the core. Once they&apos;re done, they sit down and
-            drink beer.
-          </UserMessage>
-          <AIMessage>
-            Certainly, I&apos;m generating this picture for you in a while. BTW
-            are you talking about THAT movie?
-          </AIMessage>
-          <UserMessage>
-            I don&apos;t know what you&apos;re talking about.
-          </UserMessage>
-          <AIMessage>Are you sure?</AIMessage>
-          <UserMessage>
-            Yes, I&apos;m sure. But if you&apos;re generating that scene, make
-            sure the fighters have clown shoes and rubber chickens instead of
-            fists!
-          </UserMessage>
-          <AIMessage>Affirmative, here&apos;s your image.</AIMessage>
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 absolute inset-0">
-        <div className="p-2 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px]  r h-[250px] w-[250px] md:h-[300px] md:w-[300px] mx-auto  flex-shrink-0  z-20 group-hover:scale-[1.02] transition duration-200">
-          <div className="p-2 bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] flex-shrink-0">
-            <BlurImage
-              src="/skeleton-one.png"
-              alt="header"
-              width={800}
-              height={800}
-              className="rounded-[20px] w-full h-full object-cover object-bottom aspect-square flex-shrink-0 grayscale"
-            />
+      <div className="w-full md:w-[90%] p-5 mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
+        <div className="flex flex-1 w-full h-full flex-col space-y-4">
+          {/* Map Header */}
+          <div className="flex justify-between items-center">
+            <div className="flex space-x-2 items-center">
+              <div className="h-3 w-3 rounded-full bg-green-500" />
+              <span className="text-sm text-neutral-500">42 Members in Berlin</span>
+            </div>
+            <div className="flex space-x-2">
+              <div className="px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-xs">
+                Filter by Industry
+              </div>
+              <div className="px-2 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-xs">
+                Filter by Role
+              </div>
+            </div>
+          </div>
+
+          {/* Map Container */}
+          <div className="relative h-[400px] w-full rounded-xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
+            <MapContainer
+              key="map"
+              center={berlinPosition}
+              zoom={12}
+              className="h-full w-full rounded-xl"
+              zoomControl={false}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+              />
+              {members.map((member, index) => (
+                <React.Fragment key={index}>
+                  {member.status === "online" && (
+                    <CircleMarker 
+                      center={member.position as [number, number]}
+                      pathOptions={{ 
+                        color: getStatusColor(member.status),
+                        fillColor: getStatusColor(member.status),
+                        fillOpacity: 0.1,
+                        weight: 1,
+                        opacity: 0.3,
+                        radius: 15,
+                        className: "animate-pulse"
+                      }}
+                    >
+                      <style jsx global>{`
+                        @keyframes pulsing {
+                          0% {
+                            stroke-opacity: 0.3;
+                            stroke-width: 1;
+                          }
+                          50% {
+                            stroke-opacity: 0.6;
+                            stroke-width: 2;
+                          }
+                          100% {
+                            stroke-opacity: 0.3;
+                            stroke-width: 1;
+                          }
+                        }
+                        .leaflet-interactive {
+                          animation: pulsing 2s infinite;
+                        }
+                      `}</style>
+                    </CircleMarker>
+                  )}
+                  <CircleMarker 
+                    center={member.position as [number, number]}
+                    pathOptions={{ 
+                      color: getStatusColor(member.status),
+                      fillColor: getStatusColor(member.status),
+                      fillOpacity: 0.6,
+                      weight: 1.5,
+                      radius: 6
+                    }}
+                  >
+                    <Popup>
+                      <div className="text-sm">
+                        <div className="flex items-center gap-2">
+                          <strong>{member.name}</strong>
+                          <span 
+                            className={`h-2 w-2 rounded-full`}
+                            style={{ backgroundColor: getStatusColor(member.status) }}
+                          />
+                        </div>
+                        {member.location} · {member.role}
+                      </div>
+                    </Popup>
+                  </CircleMarker>
+                </React.Fragment>
+              ))}
+            </MapContainer>
+          </div>
+
+          {/* Member Cards */}
+          <div className="flex space-x-4 overflow-x-auto pb-2">
+            {members.map((member, index) => (
+              <MemberCard 
+                key={index}
+                name={member.name} 
+                location={member.location} 
+                role={member.role}
+                status={member.status}
+                avatar={member.avatar}
+              />
+            ))}
           </div>
         </div>
-        <div className="p-2 border border-neutral-200 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-[32px]  r h-[250px] w-[250px] md:h-[300px] md:w-[300px] mx-auto  flex-shrink-0  z-20 group-hover:scale-[1.02] transition duration-200">
-          <div className="p-2 bg-white dark:bg-black dark:border-neutral-700 border border-neutral-200 rounded-[24px] flex-shrink-0">
-            <BlurImage
-              src="/tyler.jpeg"
-              alt="header"
-              width={800}
-              height={800}
-              className="rounded-[20px] w-full h-full object-cover object-bottom aspect-square flex-shrink-0 grayscale"
-            />
-          </div>
-        </div>
       </div>
-      <div className="absolute bottom-0 z-40 inset-x-0 h-60 bg-gradient-to-t from-white dark:from-black via-white dark:via-black to-transparent w-full pointer-events-none" />
-      <div className="absolute top-0 z-40 inset-x-0 h-60 bg-gradient-to-b from-white dark:from-black via-transparent to-transparent w-full pointer-events-none" />
+      <div className="absolute bottom-0 z-40 inset-x-0 h-60 bg-gradient-to-t from-background dark:from-background via-background dark:via-background to-transparent w-full pointer-events-none" />
     </div>
   );
 };
 
-const UserMessage = ({ children }: { children: React.ReactNode }) => {
-  const variants = {
-    initial: {
-      x: 0,
-    },
-    animate: {
-      x: 5,
-      transition: {
-        duration: 0.2,
-      },
-    },
+const MemberCard = ({ 
+  name, 
+  location, 
+  role, 
+  status, 
+  avatar
+}: { 
+  name: string; 
+  location: string; 
+  role: string; 
+  status: string;
+  avatar: string;
+}) => {
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "online": return "#22c55e";
+      case "away": return "#f59e0b";
+      case "offline": return "#6b7280";
+      default: return "#6b7280";
+    }
   };
-  return (
-    <motion.div
-      variants={variants}
-      className="flex flex-row rounded-2xl  p-2  items-start space-x-2 bg-white dark:bg-neutral-900"
-    >
-      <Image
-        src="/avatar.jpeg"
-        alt="avatar"
-        height="100"
-        width="100"
-        className="rounded-full h-4 w-4 md:h-10 md:w-10"
-      />
-      <p className="text-[10px] sm:text-sm text-neutral-500">{children}</p>
-    </motion.div>
-  );
-};
 
-const AIMessage = ({ children }: { children: React.ReactNode }) => {
-  const variantsSecond = {
-    initial: {
-      x: 0,
-    },
-    animate: {
-      x: 10,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
   return (
-    <motion.div
-      variants={variantsSecond}
-      className="flex flex-row rounded-2xl   p-2 items-center justify-start space-x-2  bg-white dark:bg-neutral-900 "
-    >
-      <div className="h-4 w-4 md:h-10 md:w-10 rounded-full bg-gradient-to-r from-pink-500 to-violet-500 flex-shrink-0" />
-      <p className="text-[10px] sm:text-sm text-neutral-500">{children}</p>
-    </motion.div>
+    <div className="flex-shrink-0 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg w-48">
+      <div className="flex items-center space-x-2">
+        <div className="relative">
+          <img src={avatar} alt={`${name}'s avatar`} className="h-8 w-8 rounded-full" />
+          <div 
+            className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white dark:border-neutral-800"
+            style={{ backgroundColor: getStatusColor(status) }}
+          />
+        </div>
+        <div>
+          <div className="text-sm font-medium">{name}</div>
+          <div className="text-xs text-neutral-500">{location}</div>
+        </div>
+      </div>
+      <div className="mt-2 text-xs text-neutral-500">{role}</div>
+    </div>
   );
 };

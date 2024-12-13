@@ -20,6 +20,7 @@ import { FlowchartEmbed } from "@/components/flowchart-embed";
 import { MapSection } from "@/components/map-section";
 import { FilloutEmbed } from "@/components/fillout-embed";
 import { CalendarSection } from "@/components/calendar-section";
+import { getServerSupabaseClient } from '../api/supabase';
 
 // ! This is the best version but NextJS keeps throwing an DynamicServerError
 // async function fetchConcurrently(): Promise<{
@@ -54,6 +55,7 @@ import { CalendarSection } from "@/components/calendar-section";
 // }
 
 export default async function Home() {
+  const supabase = await getServerSupabaseClient();
   const [testimonials, currentKpis] = await Promise.all([
     getTestimonials(),
     getCurrentKpis(),
@@ -66,6 +68,7 @@ export default async function Home() {
       </div>
       <Container className="flex min-h-screen flex-col items-center justify-between">
         <Hero currentKpis={currentKpis} />
+        <Features />
         <div className="mt-24 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             The Perfect Blend of AI & Human Touch
@@ -74,7 +77,6 @@ export default async function Home() {
             Six powerful tools working in harmony to transform new members into engaged community champions
           </p>
         </div>
-       
         <GridFeatures />
         <div className="mt-24 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">

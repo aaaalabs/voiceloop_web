@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CalculationResult {
@@ -130,15 +130,7 @@ export function ChurnCalculator() {
   const [results, setResults] = useState<CalculationResult[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
 
-  // Calculate results whenever any input changes, but only after first calculation
-  useEffect(() => {
-    if (hasCalculated) {
-      calculateRevenue();
-    }
-  }, [initialMembers, subscriptionFee, growthRate, initialChurnRate, 
-      churnReductionRate, targetChurnRate, months, hasCalculated]);
-
-  const calculateRevenue = () => {
+  const calculateRevenue = useCallback(() => {
     let members = initialMembers;
     let baselineMembers = initialMembers;
     let churnRate = initialChurnRate;
@@ -171,7 +163,15 @@ export function ChurnCalculator() {
     }
 
     setResults(data);
-  };
+  }, [initialMembers, subscriptionFee, growthRate, initialChurnRate, 
+      churnReductionRate, targetChurnRate, months]);
+
+  // Now use it in useEffect
+  useEffect(() => {
+    if (hasCalculated) {
+      calculateRevenue();
+    }
+  }, [hasCalculated, calculateRevenue]);
 
   const handleFirstCalculation = () => {
     setHasCalculated(true);

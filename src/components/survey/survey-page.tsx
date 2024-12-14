@@ -315,7 +315,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
     if (stayLonger && step === 1) {
       handleSubmit();
     }
-  }, [stayLonger]);
+  }, [stayLonger, step, handleSubmit]);
 
   const renderErrorModal = () => (
     <Dialog open={showErrorModal} onOpenChange={setShowErrorModal}>

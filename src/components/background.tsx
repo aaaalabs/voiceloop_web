@@ -32,23 +32,22 @@ export const Background = () => {
   }, []);
 
   useEffect(() => {
-    // Set CSS variables for colors
     Object.entries(colors).forEach(([key, value]) => {
       document.body.style.setProperty(`--${key}`, value);
     });
     document.body.style.setProperty("--size", "100%");
     document.body.style.setProperty("--blending-value", "soft-light");
-  }, []);
+  }, [colors]);
 
   useEffect(() => {
     function move() {
       if (!interactiveRef.current) return;
-      setCurX(curX + (tgX - curX) / 20);
-      setCurY(curY + (tgY - curY) / 20);
+      setCurX(c => c + (tgX - c) / 20);
+      setCurY(c => c + (tgY - c) / 20);
       interactiveRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
     }
     move();
-  }, [tgX, tgY]);
+  }, [tgX, tgY, curX, curY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {

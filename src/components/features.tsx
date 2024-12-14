@@ -44,7 +44,7 @@ export const Features = () => {
     <div className="relative z-20 py-10 md:py-40">
       <Heading as="h2">Community Management, Supercharged</Heading>
       <Subheading className="text-center">
-        From global member mapping to AI-powered content creation, we've built everything 
+        From global member mapping to AI-powered content creation, we&apos;ve built everything 
         you need to run a thriving community at scale.
       </Subheading>
 

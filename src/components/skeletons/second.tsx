@@ -99,7 +99,7 @@ export const SkeletonTwo = () => {
     {
       name: "Lukas Weber",
       role: "Tech Lead",
-      content: "Innovation isn&apos;t about having all the answers, but asking the right questions. True disruption begins with curiosity and ends with impact.",
+      content: "Innovation is not about having all the answers, but asking the right questions. True disruption begins with curiosity and ends with impact.",
       avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2Fb0a4b1922813b989103a3616d7111562.png&w=400&q=75",
       timestamp: "2 hours ago",
       likes: 142,
@@ -110,7 +110,7 @@ export const SkeletonTwo = () => {
     {
       name: "Anna Schmidt",
       role: "Product Manager",
-      content: "The best products don&apos;t just solve problems - they create opportunities. Focus on building bridges, not just features.",
+      content: "The best products do not just solve problems - they create opportunities. Focus on building bridges, not just features.",
       avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2Fbb3d2a58ea153b635a4951d82affb4db.png&w=400&q=75",
       timestamp: "5 hours ago",
       likes: 284,

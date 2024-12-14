@@ -10,8 +10,16 @@ import { PodcastList } from "@/components/podcast/list";
 import type { PodcastEpisode } from "@/types/podcast";
 import { IconBrandSpotify, IconRss } from "@tabler/icons-react";
 
-export default function PodcastPage({ episodes }: { episodes: PodcastEpisode[] }) {
-  const [currentEpisode, setCurrentEpisode] = useState<PodcastEpisode>(episodes[0]);
+interface PodcastPageProps {
+  episodes: PodcastEpisode[];
+}
+
+export default function PodcastPage({ episodes = [] }: PodcastPageProps) {
+  const [currentEpisode, setCurrentEpisode] = useState<PodcastEpisode | null>(episodes[0] || null);
+
+  if (!episodes.length || !currentEpisode) {
+    return null;
+  }
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">

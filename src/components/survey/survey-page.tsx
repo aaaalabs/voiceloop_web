@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronRight, ChevronLeft, Sparkles, Clock, Target, Users, LinkedinIcon, MessageCircle, Loader2, PenLine } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 import { Button } from "@/components/button";
@@ -104,7 +104,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
     }
   ];
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     setIsSubmitting(true);
     setError(null);
 
@@ -145,7 +145,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [userId, userName, choice, customChallenge, stayLonger]);
 
   // Render thank you page with personalized message
   const renderThankYou = () => (
@@ -330,7 +330,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         </DialogHeader>
         <div className="py-6">
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            Thanks for sharing your thoughts! We couldn't process your last response because:
+            Thanks for sharing your thoughts! We couldn&apos;t process your last response because:
           </p>
           <div className="mt-4 p-4 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800">
             <p className="text-orange-800 dark:text-orange-200 font-medium">

@@ -130,6 +130,7 @@ export function ChurnCalculator() {
   const [results, setResults] = useState<CalculationResult[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
 
+
   const calculateRevenue = useCallback(() => {
     let members = initialMembers;
     let baselineMembers = initialMembers;

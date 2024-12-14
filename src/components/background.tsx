@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 export const Background = () => {
   const interactiveRef = useRef<HTMLDivElement>(null);
@@ -11,16 +11,16 @@ export const Background = () => {
   const [tgY, setTgY] = useState(0);
 
   // Colors from our palette
-  const colors = {
+  const colors = useMemo(() => ({
     gradientBackgroundStart: "#F3EDE5",
     gradientBackgroundEnd: "#1D3640",
-    firstColor: "233, 184, 147", // #E9B893
-    secondColor: "249, 157, 124", // #F99D7C
-    thirdColor: "163, 166, 146", // #A3A692
-    fourthColor: "61, 79, 79",   // #3D4F4F
-    fifthColor: "243, 237, 229", // #F3EDE5
-    pointerColor: "233, 184, 147", // #E9B893
-  };
+    firstColor: "233, 184, 147",
+    secondColor: "249, 157, 124",
+    thirdColor: "163, 166, 146",
+    fourthColor: "61, 79, 79",
+    fifthColor: "243, 237, 229",
+    pointerColor: "233, 184, 147",
+  }), []);
 
   useEffect(() => {
     const handleScroll = () => {

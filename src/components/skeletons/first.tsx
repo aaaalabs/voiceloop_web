@@ -62,9 +62,9 @@ export const SkeletonOne = () => {
   };
 
   return (
-    <div className="relative flex p-8 gap-10 h-full">
-      <div className="w-full md:w-[90%] p-5 mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
-        <div className="flex flex-1 w-full h-full flex-col space-y-4">
+    <div className="relative h-full w-full overflow-hidden">
+      <div className="p-4 space-y-4 overflow-y-auto max-h-[500px] relative">
+        <div className="w-full md:w-[90%] p-5 mx-auto bg-white dark:bg-neutral-900 shadow-2xl group">
           {/* Map Header */}
           <div className="flex justify-between items-center">
             <div className="flex space-x-2 items-center">
@@ -82,18 +82,18 @@ export const SkeletonOne = () => {
           </div>
 
           {/* Map Container */}
-          <div className="relative h-[400px] w-full rounded-xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
+          <div className="relative w-full aspect-[16/7] rounded-xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden mb-[10px]">
             <MapContainer
               key="map"
               center={berlinPosition}
               zoom={12}
               className="h-full w-full rounded-xl"
-              zoomControl={false}
-              scrollWheelZoom={false}
+              zoomControl={true}
+              scrollWheelZoom={true}
+              attributionControl={false}
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
               />
               {members.map((member, index) => (
                 <React.Fragment key={index}>
@@ -103,10 +103,10 @@ export const SkeletonOne = () => {
                       pathOptions={{ 
                         color: getStatusColor(member.status),
                         fillColor: getStatusColor(member.status),
-                        fillOpacity: 0.1,
-                        weight: 1,
-                        opacity: 0.3,
-                        radius: 15,
+                        fillOpacity: 0.2,
+                        weight: 2,
+                        opacity: 0.5,
+                        radius: 20,
                         className: "animate-pulse"
                       }}
                     >
@@ -136,9 +136,9 @@ export const SkeletonOne = () => {
                     pathOptions={{ 
                       color: getStatusColor(member.status),
                       fillColor: getStatusColor(member.status),
-                      fillOpacity: 0.6,
-                      weight: 1.5,
-                      radius: 6
+                      fillOpacity: 0.8,
+                      weight: 2,
+                      radius: 8
                     }}
                   >
                     <Popup>
@@ -173,8 +173,10 @@ export const SkeletonOne = () => {
             ))}
           </div>
         </div>
+        <div 
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F3EDE5] dark:from-[#1D3640]" 
+        />
       </div>
-      <div className="absolute bottom-0 z-40 inset-x-0 h-60 bg-gradient-to-t from-background dark:from-background via-background dark:via-background to-transparent w-full pointer-events-none" />
     </div>
   );
 };

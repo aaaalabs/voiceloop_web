@@ -87,9 +87,8 @@ export const SkeletonThree = () => {
   ];
 
   return (
-    <div className="relative h-full w-full">
-      <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background dark:from-background via-background dark:via-background to-transparent w-full pointer-events-none z-10" />
-      <div className="p-4 space-y-4 overflow-y-auto max-h-[500px]">
+    <div className="relative h-full w-full overflow-hidden">
+      <div className="p-4 space-y-4 overflow-y-auto max-h-[500px] relative">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
             <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse" />
@@ -104,6 +103,9 @@ export const SkeletonThree = () => {
             delay={index * 0.2}
           />
         ))}
+        <div 
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F3EDE5] dark:from-[#1D3640]" 
+        />
       </div>
     </div>
   );

@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['tile.openstreetmap.org', 'tabler.io', 'ik.imagekit.io'],
+    domains: [
+      'media.licdn.com',
+      'tile.openstreetmap.org',
+      'tabler.io',
+      'ik.imagekit.io',
+    ],
     remotePatterns: [
       {
         protocol: 'https',

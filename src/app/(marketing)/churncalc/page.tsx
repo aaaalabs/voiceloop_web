@@ -18,7 +18,7 @@ export default function ChurnCalcPage() {
             Community Churn Calculator
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl mx-auto">
-            See how reducing churn can dramatically impact your community's growth and revenue
+            See how reducing churn can dramatically impact your community&apos;s growth and revenue
           </p>
         </div>
         <ChurnCalculator />

@@ -109,7 +109,7 @@ export function ContactForm() {
               Contact Us
             </h1>
             <p className="mt-4 text-muted dark:text-muted-dark  text-sm max-w-sm">
-              Questions? Ready to amplify your community? We're here.
+              Let&apos;s connect and explore how we can help your community thrive
             </p>
           </div>
 

@@ -3,6 +3,7 @@ import React from "react";
 import dynamic from 'next/dynamic';
 import { MapContainer, TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import Image from 'next/image';
 
 // Add this CSS class at the top of your component
 const pulsingCircle = {
@@ -207,7 +208,13 @@ const MemberCard = ({
     <div className="flex-shrink-0 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg w-48">
       <div className="flex items-center space-x-2">
         <div className="relative">
-          <img src={avatar} alt={`${name}'s avatar`} className="h-8 w-8 rounded-full" />
+          <Image 
+            src={avatar} 
+            alt={`${name}'s avatar`} 
+            width={32} 
+            height={32} 
+            className="rounded-full" 
+          />
           <div 
             className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white dark:border-neutral-800"
             style={{ backgroundColor: getStatusColor(status) }}

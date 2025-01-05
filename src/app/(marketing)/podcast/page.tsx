@@ -10,16 +10,20 @@ import { PodcastList } from "@/components/podcast/list";
 import type { PodcastEpisode } from "@/types/podcast";
 import { IconBrandSpotify, IconRss } from "@tabler/icons-react";
 
-interface PodcastPageProps {
-  episodes: PodcastEpisode[];
-}
+export default function PodcastPage() {
+  const [episodes, setEpisodes] = useState<PodcastEpisode[]>([]);
+  const [currentEpisode, setCurrentEpisode] = useState<PodcastEpisode | null>(null);
 
-export default function PodcastPage({ episodes = [] }: PodcastPageProps) {
-  const [currentEpisode, setCurrentEpisode] = useState<PodcastEpisode | null>(episodes[0] || null);
+  // Use episodes from layout through useEffect
+  useState(() => {
+    const episodes = window.__NEXT_DATA__?.props?.pageProps?.episodes || [];
+    setEpisodes(episodes);
+    if (episodes.length > 0) {
+      setCurrentEpisode(episodes[0]);
+    }
+  }, []);
 
-  if (!episodes.length || !currentEpisode) {
-    return null;
-  }
+  if (!currentEpisode) return null;
 
   return (
     <div className="relative overflow-hidden py-20 md:py-0">

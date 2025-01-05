@@ -96,8 +96,6 @@ export default async function Home() {
         <div className="absolute inset-0 h-full w-full overflow-hidden">
           <Background />
         </div>
-        <CTA />
-        <CalendarSection />
       </div>
     </div>
   );

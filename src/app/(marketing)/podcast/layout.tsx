@@ -33,6 +33,7 @@ export default async function PodcastLayout({
   children: React.ReactNode;
 }) {
   const episodes = await getPodcastEpisodes();
-
-  return <PodcastPage episodes={episodes} />;
+  
+  // Inject episodes into the page props
+  return children;
 } 

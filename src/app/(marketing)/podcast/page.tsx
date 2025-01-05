@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Background } from "@/components/background";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
@@ -15,7 +15,7 @@ export default function PodcastPage() {
   const [currentEpisode, setCurrentEpisode] = useState<PodcastEpisode | null>(null);
 
   // Use episodes from layout through useEffect
-  useState(() => {
+  useEffect(() => {
     const episodes = window.__NEXT_DATA__?.props?.pageProps?.episodes || [];
     setEpisodes(episodes);
     if (episodes.length > 0) {

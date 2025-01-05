@@ -3,8 +3,8 @@ import connect from '@v/connect.mp4';
 import placerholder_video from '@v/placerholder_video.mp4';
 
 const videos = {
-  'connect.mp4': connect,
-  'placerholder_video.mp4': placerholder_video,
+  'connect.mp4': '/videos/connect.mp4',
+  'placerholder_video.mp4': '/videos/placerholder_video.mp4',
 } as const;
 
 type VideoKey = keyof typeof videos;
@@ -18,17 +18,17 @@ export function VideoEmbed({ value }: {
   } 
 }) {
   const videoFile = value.videoFile as VideoKey;
-  const video = videos[videoFile];
+  const videoSrc = videos[videoFile];
 
-  if (!video) {
+  if (!videoSrc) {
     console.warn(`Video file "${videoFile}" not found in videos map`);
     return null;
   }
 
   return (
     <div className="my-8">
-      <Video 
-        src={video}
+      <video 
+        src={videoSrc}
         className="w-full rounded-lg"
         controls
         autoPlay={value.autoPlay}

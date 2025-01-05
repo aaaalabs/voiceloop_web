@@ -1,9 +1,15 @@
 "use client";
 import React from "react";
 import dynamic from 'next/dynamic';
-import { MapContainer, TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
+import { TileLayer, Marker, Popup, CircleMarker } from 'react-leaflet';
+import { LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import Image from 'next/image';
+
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+);
 
 // Add this CSS class at the top of your component
 const pulsingCircle = {
@@ -25,13 +31,13 @@ const pulsingCircle = {
 };
 
 export const SkeletonOne = () => {
-  const berlinPosition: [number, number] = [52.5200, 13.4050];
+  const berlinPosition: LatLngExpression = [52.5200, 13.4050];
   const members = [
     { 
       name: "Lukas Weber", 
       location: "Kreuzberg", 
       role: "Tech Lead", 
-      position: [52.4965, 13.3617], 
+      position: [52.4965, 13.3617] as LatLngExpression, 
       status: "online", // online, away, offline
       avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2Fb0a4b1922813b989103a3616d7111562.png&w=400&q=75"
     },
@@ -39,7 +45,7 @@ export const SkeletonOne = () => {
       name: "Anna Schmidt", 
       location: "Mitte", 
       role: "Product Manager", 
-      position: [52.5200, 13.4050],
+      position: [52.5200, 13.4050] as LatLngExpression,
       status: "away",
       avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2Fbb3d2a58ea153b635a4951d82affb4db.png&w=400&q=75"
     },
@@ -47,7 +53,7 @@ export const SkeletonOne = () => {
       name: "Max Mueller", 
       location: "Prenzlauer Berg", 
       role: "UX Designer", 
-      position: [52.5426, 13.4149],
+      position: [52.5426, 13.4149] as LatLngExpression,
       status: "offline",
       avatar: "https://tabler.io/_next/image?url=%2Favatars%2Fdefault%2F67b732b96785fd368415dd82951466c1.png&w=400&q=75"
     },
@@ -85,13 +91,8 @@ export const SkeletonOne = () => {
           {/* Map Container */}
           <div className="relative w-full aspect-[16/7] rounded-xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden mb-[10px]">
             <MapContainer
-              key="map"
-              center={berlinPosition}
-              zoom={12}
-              className="h-full w-full rounded-xl"
-              zoomControl={true}
-              scrollWheelZoom={true}
-              attributionControl={false}
+              bounds={[[52.4965, 13.3617], [52.5426, 13.4149]]}
+              style={{ height: '100%', width: '100%' }}
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -100,7 +101,7 @@ export const SkeletonOne = () => {
                 <React.Fragment key={index}>
                   {member.status === "online" && (
                     <CircleMarker 
-                      center={member.position as [number, number]}
+                      center={member.position}
                       pathOptions={{ 
                         color: getStatusColor(member.status),
                         fillColor: getStatusColor(member.status),
@@ -133,7 +134,7 @@ export const SkeletonOne = () => {
                     </CircleMarker>
                   )}
                   <CircleMarker 
-                    center={member.position as [number, number]}
+                    center={member.position}
                     pathOptions={{ 
                       color: getStatusColor(member.status),
                       fillColor: getStatusColor(member.status),

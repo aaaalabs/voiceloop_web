@@ -18,7 +18,7 @@ type Props = {
   actionButtons: {
     title: string;
     href: string;
-    variant?: "default" | "simple";
+    variant?: "primary" | "simple";
   }[];
 };
 

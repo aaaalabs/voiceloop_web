@@ -93,6 +93,7 @@
     "react-wrap-balancer": "^1.1.1",
     "recharts": "^2.12.7",
     "rimraf": "^6.0.1",
+    "sanity-plugin-markdown": "^5.0.0",
     "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "sonner": "^1.7.0",

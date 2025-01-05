@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, TextArea } from '@sanity/ui'
+import { Box, TextArea } from 'sanity'
 
 export const MarkdownTableInput = React.forwardRef<HTMLTextAreaElement, any>((props: any, ref) => {
   const { onChange, value } = props
@@ -22,14 +22,14 @@ export const MarkdownTableInput = React.forwardRef<HTMLTextAreaElement, any>((pr
   }
 
   return (
-    <Stack space={3}>
+    <Box paddingY={3}>
       <TextArea
         ref={ref}
         onChange={handleChange}
         placeholder="Paste your markdown table here..."
         rows={10}
       />
-    </Stack>
+    </Box>
   )
 })
 

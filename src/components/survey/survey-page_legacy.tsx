@@ -257,7 +257,7 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
   const renderStep1 = () => (
     <div className="space-y-4">
       <h4 className="text-lg font-semibold text-center mb-6 dark:text-white">
-      Was treibt dich aktuell am meisten um?
+        Which challenge, if solved, would make everything else easier?
       </h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {challenges.map((item, index) => (
@@ -410,6 +410,15 @@ export const SurveyPage = ({ currentKpis, testimonials, userName, userId }: Surv
         {/* Only show testimonials and CTA if not in thank you state */}
         {!showThankYou && (
           <>
+            {/* Social Proof Section */}
+            <div className="bg-[#F3EDE5] dark:bg-[#1D3640] py-20">
+              <div className="max-w-6xl mx-auto px-4 text-center">
+                <h3 className="text-2xl font-bold mb-8 dark:text-white">
+                  Join these AAA members in shaping the future
+                </h3>
+                <Testimonials testimonials={testimonials}/>
+              </div>
+            </div>
 
             {/* CTA Banner */}
             <div className="bg-[#F3EDE5] dark:bg-[#1D3640] py-24">

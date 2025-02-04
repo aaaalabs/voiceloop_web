@@ -1,0 +1,13 @@
+# robots.txt for voiceloop_web
+# Allow all web crawlers to access our content
+User-agent: *
+Allow: /
+
+# Disallow access to API routes
+Disallow: /api/
+
+# Disallow access to admin routes
+Disallow: /admin/
+
+# Add sitemap location (update with your actual domain)
+Sitemap: https://voiceloop.ai/sitemap.xml

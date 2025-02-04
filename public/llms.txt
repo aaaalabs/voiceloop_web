@@ -1,0 +1,31 @@
+# VoiceLoop - Amplify What Matters in Your Community
+
+## About
+VoiceLoop is a community management platform that helps organizations reduce member churn and grow revenue by fostering genuine human connections. We use AI to cut through the noise and amplify what matters in community engagement.
+
+## Key Features
+- Interactive Global Member Map: Real-time visualization of community member locations
+- Automated Member Spotlights: AI-generated LinkedIn posts to celebrate and showcase new members
+- Community Podcast Hub: Convert member stories into podcast content with AI-assisted production
+- Health & Analytics Dashboard: Track engagement, retention, and community growth metrics
+- Churn Reduction Tools: Target 2% monthly churn reduction for up to 88% revenue growth
+- AI-Powered Community Management: Scale community operations while maintaining personal touch
+
+## Site Structure
+- /: Home page and main platform overview
+- /blog: Community management insights and case studies
+- /podcast: Community podcast episodes and content
+- /pricing: Subscription plans and pricing
+- /contact: Get in touch with our team
+- /map: Interactive community member map
+- /spotlight: Featured member highlights
+- /legal: Terms of service, privacy policy, and refund policy
+
+## Contact
+- Website: https://voiceloop.ai
+- Blog: https://voiceloop.ai/blog
+- Support: Contact form available at https://voiceloop.ai/contact
+
+## Updates
+Last updated: 2024-02-04
+Version: Current
